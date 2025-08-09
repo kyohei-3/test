@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo Yamagawa DX Bootcamp - DX人材育成プログラム</title>
+    <meta name="description" content="都心から60分の東京山側で、4日間集中してリアルな地域課題に挑戦し、ビジネスアーキテクトとしてのスキルを身につけるDX人材育成プログラム">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .mountain-bg {
+            background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 50%, #0f2419 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .typing-animation {
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+        
+        /* Day 4 specific styling to ensure text visibility */
+        .day-4-header {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%) !important;
+            color: white !important;
+        }
+        .day-4-header h3, .day-4-header p {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+        }
+        .day-4-icon {
+            background: rgba(255, 255, 255, 0.25) !important;
+            color: white !important;
+        }
+
+        /* Hero text layout improvements - smaller size for mobile */
+        .hero-title {
+            line-height: 1.3;
+        }
+        .hero-title-lg {
+            font-size: 1.75rem; /* Much smaller base size for mobile */
+        }
+        @media (min-width: 640px) {
+            .hero-title-lg {
+                font-size: 2rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .hero-title-lg {
+                font-size: 2.75rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .hero-title-lg {
+                font-size: 3.25rem;
+            }
+        }
+
+        /* Fix hero highlighted text visibility */
+        .hero-highlight {
+            color: #fbbf24 !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+            font-weight: 700 !important;
+        }
+
+        /* FAQ Q3 fix */
+        .faq-q3 {
+            background: #f97316 !important;
+            color: white !important;
+        }
+        .faq-q3 h3 {
+            color: white !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Solution section text visibility fix - improved */
+        .solution-highlight {
+            color: #1f2937 !important;
+            font-weight: 700 !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            padding: 2px 8px !important;
+            border-radius: 6px !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Fix for the third solution card text visibility */
+        .solution-card-3 {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%) !important;
+            color: white !important;
+        }
+        .solution-card-3 h4 {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+        }
+        .solution-card-3 p {
+            color: rgba(255, 255, 255, 0.95) !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Solution section layout alignment fix */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        @media (min-width: 1024px) {
+            .solution-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: stretch;
+            }
+        }
+
+        .solution-left {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .solution-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Mobile responsive improvements */
+        @media (max-width: 640px) {
+            .hero-title {
+                line-height: 1.2;
+            }
+            .hero-title-lg {
+                font-size: 1.5rem;
+            }
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Hero Section -->
+    <section class="mountain-bg text-white py-20 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <div class="mb-8">
+                <p class="text-orange-300 text-base md:text-lg mb-6 font-medium">DX人材、まだ座学だけで育てますか？</p>
+                <h1 class="hero-title hero-title-lg font-bold mb-8">
+                    <div class="mb-3">都心からわずか60分、</div>
+                    <div class="mb-3">
+                        <span class="text-orange-400">東京山側のリアルな課題</span>が、
+                    </div>
+                    <div class="mb-3">貴社の若手を</div>
+                    <div class="mb-3">
+                        <span class="hero-highlight">事業を創造するDXリーダー</span>
+                    </div>
+                    <div>に変える。</div>
+                </h1>
+                <div class="text-lg md:text-2xl lg:text-3xl font-semibold text-orange-300 mb-8">
+                    ― Tokyo Yamagawa DX Bootcamp ―
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full text-base md:text-lg transition duration-300 pulse-animation">
+                    <i class="fas fa-envelope mr-2"></i>
+                    今すぐ資料請求・相談する
+                </a>
+                <a href="#program" class="border-2 border-white text-white hover:bg-white hover:text-gray-800 font-bold py-4 px-8 rounded-full text-base md:text-lg transition duration-300">
+                    <i class="fas fa-play mr-2"></i>
+                    プログラム詳細を見る
+                </a>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur">
+                    <i class="fas fa-clock text-2xl md:text-3xl text-orange-400 mb-3"></i>
+                    <h3 class="font-bold text-lg md:text-xl mb-2">4日間集中</h3>
+                    <p class="text-sm">短期間で圧倒的成長</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur">
+                    <i class="fas fa-map-marker-alt text-2xl md:text-3xl text-orange-400 mb-3"></i>
+                    <h3 class="font-bold text-lg md:text-xl mb-2">都心から60分</h3>
+                    <p class="text-sm">東京都あきる野市</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur">
+                    <i class="fas fa-users text-2xl md:text-3xl text-orange-400 mb-3"></i>
+                    <h3 class="font-bold text-lg md:text-xl mb-2">実践型研修</h3>
+                    <p class="text-sm">リアルな地域課題に挑戦</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                    こんな課題ありませんか？
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600">「DX推進の"真の担い手"がいない…」多くの企業が抱える深刻な悩み</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-l-4 border-red-500">
+                    <i class="fas fa-user-tie text-2xl text-red-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">推進人材の不足</h3>
+                    <p class="text-gray-600">DXの号令はかかっているが、<strong>具体的に事業を構想し、関係者を巻き込んで推進できる人材が社内にいない</strong>…。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-l-4 border-orange-500">
+                    <i class="fas fa-book text-2xl text-orange-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">座学の限界</h3>
+                    <p class="text-gray-600">座学研修やeラーニングは導入したものの、<strong>実践的なスキルが身につかず、現場での成果に繋がらない</strong>…。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-l-4 border-yellow-500">
+                    <i class="fas fa-lightbulb text-2xl text-yellow-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">主体性の欠如</h3>
+                    <p class="text-gray-600">若手・中堅社員に、もっと<strong>主体性を持って新しい価値を創造する経験</strong>を積ませたいが、適切な機会がない…。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-l-4 border-green-500">
+                    <i class="fas fa-rocket text-2xl text-green-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">新規事業の壁</h3>
+                    <p class="text-gray-600">新規事業を立ち上げたいが、<strong>アイデアを形にし、PoC（概念実証）まで進められる"ビジネスアーキテクト"が不足</strong>している…。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-l-4 border-blue-500">
+                    <i class="fas fa-gem text-2xl text-blue-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">人材の活用不足</h3>
+                    <p class="text-gray-600">せっかく採用したDX人材も、<strong>リアルなビジネス課題に触れる機会が少なく、宝の持ち腐れ</strong>になっている気がする…。</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-lg shadow-lg card-hover border-l-4 border-purple-500 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-question-circle text-3xl text-purple-500 mb-3"></i>
+                        <p class="text-purple-700 font-semibold">もし一つでも当てはまるなら、まだ諦めるのは早いかもしれません。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                    私たちのソリューション
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">その課題、「東京山側DXブートキャンプ」が解決の糸口を提示します！</p>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="solution-left">
+                    <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-xl h-full flex flex-col">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-mountain text-green-600 mr-2"></i>
+                            東京の「山側」エリア
+                        </h3>
+                        <p class="text-gray-700 mb-6">
+                            都心から最も近い大自然、東京の「山側」エリア（東京都あきる野市）。
+                            私たちは、このリアルな地域社会が抱える「生きた課題」を最高の教材として活用します。
+                        </p>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-md flex-grow">
+                            <h4 class="font-bold text-lg text-gray-800 mb-3">
+                                <i class="fas fa-star text-yellow-500 mr-2"></i>
+                                強烈な原体験
+                            </h4>
+                            <p class="text-gray-600">
+                                <strong>貴社の若手人材が、4日間という短期間で地域に飛び込み、デジタル技術を駆使して課題解決のプロトタイプを開発する。</strong>
+                                この強烈な原体験こそが、座学だけでは決して得られない「事業をデザインし、実装までやり遂げる力」、すなわち真の「ビジネスアーキテクト」としての<span class="solution-highlight">能力の開花</span>を実現するのです。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-right">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg flex-1">
+                        <i class="fas fa-chart-line text-2xl mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">実践的スキル習得</h4>
+                        <p>リアルな課題に取り組むことで、机上の理論では身につかない実践的なDXスキルを短期間で習得</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-500 to-teal-600 text-white p-6 rounded-lg flex-1">
+                        <i class="fas fa-users text-2xl mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">協働体験</h4>
+                        <p>地域の方々との協働を通じて、多様なステークホルダーとの調整力や巻き込み力を養成</p>
+                    </div>
+                    
+                    <div class="solution-card-3 p-6 rounded-lg flex-1">
+                        <i class="fas fa-brain text-2xl mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">創造力の開花</h4>
+                        <p>制約のある環境での課題解決により、創造力と問題解決能力が飛躍的に向上</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 px-4 gradient-bg text-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+                    <i class="fas fa-trophy text-yellow-300 mr-3"></i>
+                    選ばれる3つの理由
+                </h2>
+                <p class="text-lg md:text-xl opacity-90">なぜ「東京山側DXブートキャンプ」が、他とは違う"圧倒的な成長"を実現できるのか？</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur p-8 rounded-xl card-hover">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-full mb-4">
+                            <i class="fas fa-map-marked-alt text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-3">【超実践】都心から1時間！</h3>
+                        <p class="text-base md:text-lg opacity-90">リアルな地域課題が最高の学び場</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-sm opacity-90">
+                        <p>もう、遠隔地の研修や架空のケーススタディに時間を浪費する必要はありません。東京都あきる野市を舞台に、観光、防災、事業承継、労働力不足といった地域が直面する"本物"の課題に、参加者自らが挑みます。</p>
+                        <p>この「当事者意識」と「切実感」が、学びの吸収率を飛躍的に高めます。都心からのアクセスも抜群。移動負担を最小限に、密度の濃い4日間を提供します。</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur p-8 rounded-xl card-hover">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500 rounded-full mb-4">
+                            <i class="fas fa-certificate text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-3">【体系的】IPAスキル標準準拠！</h3>
+                        <p class="text-base md:text-lg opacity-90">"ビジネスアーキテクト"育成に特化</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-sm opacity-90">
+                        <p>本プログラムは、IPA（独立行政法人情報処理推進機構）が定める「DX推進スキル標準（DSS-P）」における「ビジネスアーキテクト」の育成を主眼に置いて設計されています。</p>
+                        <p>課題発見から構想策定、プロトタイピング、そして提案まで、ビジネスアーキテクトに求められる全プロセスを体系的に経験。事前・事後のスキル評価で、成長を可視化します。</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur p-8 rounded-xl card-hover">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
+                            <i class="fas fa-handshake text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-3">【共創体験】地域経営者×都市部若手！</h3>
+                        <p class="text-base md:text-lg opacity-90">多様な視点が化学反応を生む</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-sm opacity-90">
+                        <p>参加者は、地域企業の経営幹部や現場担当者とチームを組み、課題解決に取り組みます。</p>
+                        <p>都市部企業の若手人材が持つ先進的なデジタル知見と、地域が持つリアルなリソースや課題意識。この二つが交わることで、斬新なアイデアや実装可能な解決策が生まれます。まさに、オープンイノベーションの実践です。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Content Section -->
+    <section id="program" class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-calendar-alt text-blue-500 mr-3"></i>
+                    プログラム内容
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600">4日間で「ビジネスアーキテクト」への変貌を遂げる！プログラムの流れ</p>
+            </div>
+            
+            <div class="mb-8 text-center">
+                <p class="text-base md:text-lg text-gray-700 bg-yellow-100 inline-block px-6 py-3 rounded-full">
+                    <i class="fas fa-lightning-bolt text-yellow-500 mr-2"></i>
+                    本プログラムは、インプットとアウトプットを高速で繰り返し、実践力を徹底的に鍛え上げます。
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Day 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6">
+                        <div class="flex items-center">
+                            <div class="bg-white bg-opacity-20 rounded-full p-3 mr-4">
+                                <i class="fas fa-brain text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold">Day 1：【思考OSインストール】</h3>
+                                <p class="text-base md:text-lg opacity-90">ビジネスアーキテクト思考の獲得</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>DXの本質、ビジネスアーキテクトの役割とスキルセットを理解</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>デザイン思考、システム思考に基づいた課題発見・構想策定手法を習得</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>生成AI、ローコードツールなどの最新テクノロジー活用法をインプット</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Day 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-6">
+                        <div class="flex items-center">
+                            <div class="bg-white bg-opacity-20 rounded-full p-3 mr-4">
+                                <i class="fas fa-search text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold">Day 2：【課題と対峙】</h3>
+                                <p class="text-base md:text-lg opacity-90">地域フィールドワークと本質的課題の特定</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>東京山側（あきる野市）の地域企業や関連施設を訪問。経営者や現場担当者へのヒアリング、業務観察を実施</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>収集した情報を基に、チームで本質的な課題は何かを徹底的に議論し、定義します</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Day 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-6">
+                        <div class="flex items-center">
+                            <div class="bg-white bg-opacity-20 rounded-full p-3 mr-4">
+                                <i class="fas fa-cogs text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold">Day 3：【創造と実装】</h3>
+                                <p class="text-base md:text-lg opacity-90">プロトタイピングと高速改善ループ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>特定した課題に対し、具体的な解決策（新規事業案、業務改善案など）をチームで策定</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>生成AIやローコードツールを駆使し、短時間でアイデアを形にするプロトタイプを開発</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>地域関係者からの中間フィードバックを受け、改善を繰り返します</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Day 4 - Fixed visibility -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="day-4-header p-6">
+                        <div class="flex items-center">
+                            <div class="day-4-icon rounded-full p-3 mr-4">
+                                <i class="fas fa-presentation text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold">Day 4：【価値提案】</h3>
+                                <p class="text-base md:text-lg opacity-90">最終成果発表と次へのアクション</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>開発したプロトタイプと共に、4日間の成果を地域企業の経営陣や関係者に最終提案</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>厳しいながらも愛のあるフィードバックから学びを得て、今後のアクションプランへと繋げます</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span>修了者には、スキルアップを証明する修了証を発行します</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-award text-yellow-500 mr-3"></i>
+                    実績と信頼
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600">確かな実績と専門家ネットワークが、貴社の人材育成を強力にバックアップ！</p>
+            </div>
+            
+            <div class="mb-8 text-center">
+                <p class="text-base md:text-lg text-gray-700 bg-blue-50 inline-block px-6 py-3 rounded-lg">
+                    株式会社東京山側デジタル推進機構は、「東京山側」の地域資源と都心部の人材・技術を繋ぎ、新たな価値を共創することを目指しています。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Past Projects -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-history text-blue-500 mr-2"></i>
+                        過去の主な取り組み事例
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-lg text-gray-800 mb-2">TAMA INNOVATION PROGRAM</h4>
+                            <p class="text-gray-600">慶應義塾大学大学院SDM研究科監修のもと、大手企業社員や学生が参加し、「システム×デザイン思考」を駆使して地域課題解決に挑戦。</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-lg border-l-4 border-green-500">
+                            <h4 class="font-bold text-lg text-gray-800 mb-2">東京多摩島しょ地域交流ワーケーション体験ツアー</h4>
+                            <p class="text-gray-600">大手企業3社11名が参加し、あきる野市でフィールドワークやアイデアワークショップを実施し、新規事業アイデアを創出。</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border-l-4 border-orange-500">
+                            <h4 class="font-bold text-lg text-gray-800 mb-2">イノベーティブな「問い」を創出する実践型研修</h4>
+                            <p class="text-gray-600">自然環境×クリティカルシンキングで、優れた「問い」を創出する研修を提供。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Expert Team -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-users text-green-500 mr-2"></i>
+                        専門家チームによる質の高いプログラム運営
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow-lg border">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-chalkboard-teacher text-2xl text-blue-500 mr-3"></i>
+                                <h4 class="font-bold text-lg text-gray-800">DX講師</h4>
+                            </div>
+                            <p class="text-gray-600">デザイン思考やDXプロジェクト推進で豊富な実績を持つ「むすびかなでる」氏を招聘。</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-lg border">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-user-graduate text-2xl text-purple-500 mr-3"></i>
+                                <h4 class="font-bold text-lg text-gray-800">講義アドバイザー</h4>
+                            </div>
+                            <p class="text-gray-600">大手企業向け人材育成コンサルティングで著名な「株式会社aund」が講義アドバイザーとして参画。</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-lg border">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-user-tie text-2xl text-green-500 mr-3"></i>
+                                <h4 class="font-bold text-lg text-gray-800">プログラムプロデューサー</h4>
+                            </div>
+                            <p class="text-gray-600">代表の足立恭平（株式会社東京山側デジタル推進機構 代表取締役）が、地域との強固なネットワークを活かし、プログラム全体をプロデュースします。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-bullseye text-red-500 mr-3"></i>
+                    こんな企業様・ご担当者様におすすめです
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600">このような課題意識をお持ちの企業様・ご担当者様に最適です！</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-t-4 border-red-500">
+                    <i class="fas fa-rocket text-3xl text-red-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">DX推進企業様</h3>
+                    <p class="text-gray-600">DXを本気で推進したいが、<strong>旗振り役となるリーダー人材が不足</strong>している企業様</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-t-4 border-blue-500">
+                    <i class="fas fa-user-friends text-3xl text-blue-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">人事ご担当者様</h3>
+                    <p class="text-gray-600">若手・中堅社員に、<strong>座学では得られないリアルな課題解決経験と成功体験</strong>を積ませたい人事ご担当者様</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-t-4 border-green-500">
+                    <i class="fas fa-lightbulb text-3xl text-green-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">新規事業責任者様</h3>
+                    <p class="text-gray-600">新規事業開発部門で、<strong>アイデアを形にし、事業化まで推進できる人材</strong>を育成したい責任者様</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-t-4 border-purple-500">
+                    <i class="fas fa-crown text-3xl text-purple-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">経営層の皆様</h3>
+                    <p class="text-gray-600"><strong>社員の主体性や挑戦意欲を引き出し</strong>、組織全体の活性化を図りたい経営層の皆様</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover border-t-4 border-yellow-500">
+                    <i class="fas fa-handshake text-3xl text-yellow-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-3">CSR・ESG推進企業様</h3>
+                    <p class="text-gray-600">CSR活動やESG経営の一環として、<strong>地域社会への貢献と企業価値向上を両立させたい</strong>とお考えの企業様</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-100 to-pink-100 p-6 rounded-lg shadow-lg border-t-4 border-orange-500 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-star text-3xl text-orange-500 mb-3"></i>
+                        <p class="text-orange-700 font-semibold">その他、人材育成にお悩みの企業様もお気軽にご相談ください</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-tag text-green-500 mr-3"></i>
+                    価格
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600">4日間集中育成プログラム：費用について</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 md:p-12 text-center shadow-xl">
+                <div class="mb-8">
+                    <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-2">
+                        <span class="text-green-600">¥100,000</span>
+                        <span class="text-lg md:text-2xl text-gray-500">（税別）</span>
+                    </div>
+                    <p class="text-lg md:text-xl text-gray-600">お一人様</p>
+                </div>
+                
+                <div class="mb-8 space-y-3 text-left max-w-2xl mx-auto">
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-3"></i>
+                        <span>プログラム参加費</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-3"></i>
+                        <span>教材費</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-3"></i>
+                        <span>期間中の現地サポート費</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                    <h4 class="font-bold text-lg text-gray-800 mb-3">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        お申し込みについて
+                    </h4>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p>※5名様以上での企業単位でのお申し込みを基本としますが、ご相談に応じます。</p>
+                        <p>※宿泊費、現地までの交通費、食費等は別途ご負担ください。</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-6 rounded-lg">
+                    <h4 class="font-bold text-lg md:text-xl mb-2">
+                        <i class="fas fa-gem mr-2"></i>
+                        投資対効果
+                    </h4>
+                    <p class="text-base md:text-lg">この投資が、貴社の未来を担うDXリーダーを生み出し、イノベーションを加速させます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-question-circle text-blue-500 mr-3"></i>
+                    よくあるご質問
+                </h2>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-blue-500 text-white p-4">
+                        <h3 class="font-bold text-base md:text-lg">
+                            <i class="fas fa-question mr-2"></i>
+                            Q1：DXに関する専門知識がなくても参加できますか？
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700">
+                            <strong>A1：</strong>はい、問題ありません。本プログラムは、ビジネスアーキテクトとしての思考法や課題解決プロセスを基礎から学ぶことを重視しています。DXの前提知識よりも、新しいことを学ぶ意欲や課題解決への情熱が重要です。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-green-500 text-white p-4">
+                        <h3 class="font-bold text-base md:text-lg">
+                            <i class="fas fa-question mr-2"></i>
+                            Q2：4日間で本当に成果が出ますか？
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700">
+                            <strong>A2：</strong>はい。短期間に集中してリアルな課題に取り組むことで、参加者の潜在能力が最大限に引き出されます。プロトタイプ作成という具体的な「成果物」と、地域への「価値提案」という経験を通じて、確かな成長実感と自信を得ることができます。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="faq-q3 p-4">
+                        <h3 class="font-bold text-base md:text-lg">
+                            <i class="fas fa-question mr-2"></i>
+                            Q3：あきる野市は遠いイメージがありますが…？
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700">
+                            <strong>A3：</strong>ご安心ください。あきる野市は、新宿駅から電車で約1時間と、都心からのアクセスは非常に良好です。日常から少し離れた環境が、新たな発想を促します。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-purple-500 text-white p-4">
+                        <h3 class="font-bold text-base md:text-lg">
+                            <i class="fas fa-question mr-2"></i>
+                            Q4：宿泊施設の手配はお願いできますか？
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700">
+                            <strong>A4：</strong>宿泊施設のご紹介や情報提供は可能です。お気軽にご相談ください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 px-4 gradient-bg text-white">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-8">
+                さあ、貴社の未来を変える一歩を、<br>
+                <span class="text-yellow-300">東京山側で踏み出しませんか？</span>
+            </h2>
+            
+            <div class="mb-12">
+                <p class="text-lg md:text-xl lg:text-2xl mb-6 opacity-90">
+                    「プログラムについて詳しく知りたい」「自社に合うか相談したい」「まずは資料を見てみたい」
+                </p>
+                <p class="text-base md:text-lg opacity-90">
+                    どんなことでもお気軽に、下記メールアドレスよりお問い合わせください。
+                </p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8 mb-8">
+                <h3 class="text-xl md:text-2xl font-bold mb-6">
+                    <i class="fas fa-envelope text-yellow-300 mr-3"></i>
+                    お問い合わせ・詳細資料のご請求はこちら
+                </h3>
+                
+                <div class="mb-6">
+                    <a href="mailto:info@tydi.co.jp" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 md:px-12 rounded-full text-lg md:text-xl transition duration-300 pulse-animation">
+                        <i class="fas fa-envelope mr-3"></i>
+                        info@tydi.co.jp
+                    </a>
+                </div>
+                
+                <p class="text-sm opacity-80">（クリックするとメーラーが起動します）</p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur rounded-xl p-6">
+                <p class="text-base md:text-lg">
+                    プログラムのカスタマイズや、企業様ごとの課題に合わせた個別開催のご相談も承ります。<br>
+                    新しい時代を切り拓く「ビジネスアーキテクト」を、私たちと一緒に育成しましょう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Info Section -->
+    <section class="py-12 px-4 bg-gray-800 text-white">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-xl md:text-2xl font-bold text-center mb-8">
+                <i class="fas fa-building text-blue-400 mr-2"></i>
+                運営者情報
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-building text-blue-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold">運営：</span>
+                            <span>株式会社東京山側デジタル推進機構</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fas fa-user-tie text-blue-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold">代表者：</span>
+                            <span>代表取締役 足立恭平</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-blue-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold">所在地：</span>
+                            <span>東京都あきる野市留原791-3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-globe text-blue-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold">企業URL：</span>
+                            <a href="https://tydi.co.jp/" class="text-blue-300 hover:text-blue-100 transition duration-300">https://tydi.co.jp/</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold">連絡先：</span>
+                            <a href="mailto:info@tydi.co.jp" class="text-blue-300 hover:text-blue-100 transition duration-300">info@tydi.co.jp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixed CTA Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="mailto:info@tydi.co.jp" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 md:px-6 rounded-full shadow-lg transition duration-300 pulse-animation text-sm md:text-base">
+            <i class="fas fa-envelope mr-2"></i>
+            お問い合わせ
+        </a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 left-6 z-50 bg-gray-600 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Scroll to Top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                scrollToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+                scrollToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all card elements
+        document.querySelectorAll('.card-hover').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
