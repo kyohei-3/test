@@ -213,29 +213,11 @@
             border-radius: 9999px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             border: 4px solid white;
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
             font-weight: 900;
             font-size: 1rem;
             letter-spacing: 0.05em;
             white-space: nowrap;
-            min-width: 200px;
-        }
-
-        /* Responsive adjustments for free badge */
-        @media (min-width: 480px) {
-            .free-badge {
-                font-size: 1.125rem;
-                padding: 0.75rem 3rem;
-                min-width: 220px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .free-badge {
-                font-size: 1.25rem;
-                padding: 1rem 3.5rem;
-                min-width: 260px;
-            }
         }
 
         .hero-subtitle {
@@ -271,7 +253,6 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-bottom: 2rem;
         }
 
         .hero-info-item {
@@ -283,30 +264,31 @@
             font-weight: 700;
         }
 
-        .sns-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+        /* Responsive adjustments */
+        @media (min-width: 480px) {
+            .free-badge {
+                font-size: 1.125rem;
+                padding: 0.875rem 3rem;
+            }
         }
 
-        .sns-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 3rem;
-            height: 3rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
 
-        .sns-icon:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            .hero-tagline {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .free-badge {
+                font-size: 1.25rem;
+                padding: 1rem 3.5rem;
+            }
         }
 
         /* Sections */
@@ -365,6 +347,34 @@
         .overview-text p {
             color: var(--green-700);
             font-weight: 500;
+        }
+
+        .sns-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .sns-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            background: rgba(34, 197, 94, 0.1);
+            backdrop-filter: blur(12px);
+            color: var(--green-600);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .sns-icon:hover {
+            background: var(--green-600);
+            color: white;
+            transform: scale(1.1);
         }
 
         /* Movies Section */
@@ -1014,21 +1024,6 @@
             font-weight: 500;
         }
 
-        /* Responsive design */
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 4rem;
-            }
-
-            .hero-tagline {
-                font-size: 1.75rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.25rem;
-            }
-        }
-
         /* Icons */
         .icon {
             width: 1.25rem;
@@ -1116,10 +1111,13 @@
         </div>
         
         <div class="hero-content">
+            <!-- Free Badge moved back to top -->
             <div class="free-badge">入場・鑑賞無料</div>
             
+            <!-- English Title -->
             <p class="hero-subtitle">KOMOREBI CINEMA NO MORI</p>
             
+            <!-- Decorative line -->
             <div class="decorative-line"></div>
             
             <h1 class="hero-title">木もれびシネマの森</h1>
@@ -1143,30 +1141,6 @@
                     <span>多摩あきがわライブフォレスト自然人村</span>
                 </div>
             </div>
-
-            <!-- SNS Icons -->
-            <div class="sns-icons">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Facebook">
-                    <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitter">
-                    <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
-                    <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="YouTube">
-                    <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                </a>
-            </div>
         </div>
     </section>
 
@@ -1181,6 +1155,33 @@
                 <div class="overview-text">
                     <p>東京にも、美しく、豊かで、楽しい、<br>森と山が広がっています。</p>
                     <p>ファミリーと、お友達と、話しながら、歩きながら、<br>森の世界をのぞきこんで、色んなワクワクと一緒に、<br>映画と水と森にふれあえる一日です。</p>
+                </div>
+            </div>
+            
+            <!-- SNS Icons moved here -->
+            <div class="text-center">
+                <p style="color: var(--green-700); font-weight: 700; font-size: 1.125rem; margin-bottom: 1rem;">最新情報をチェック</p>
+                <div class="sns-icons">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Facebook">
+                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitter">
+                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
+                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="YouTube">
+                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1209,14 +1210,14 @@
             <div class="movies-grid">
                 <!-- ミニオンズ フィーバー -->
                 <div class="movie-item">
-                    <img src="https://images.unsplash.com/photo-1489599235473-66c7dfd6c2ed?q=80&w=600&h=400&fit=crop" alt="Minions Fever movie poster" class="movie-image">
+                    <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=600&h=400&fit=crop" alt="Minions Fever movie poster - animated characters in colorful setting" class="movie-image">
                     <div class="movie-content">
                         <div class="movie-badges">
                             <span class="badge badge-orange">88分</span>
                             <span class="badge badge-orange-light">ファミリー向け</span>
                         </div>
                         <h3 class="movie-title" style="color: var(--orange-800);">ミニオンズ フィーバー</h3>
-                        <p class="movie-description" style="color: var(--orange-700);">史上最強の悪党グルーと愛らしいミニオンたちの最新作！今度はミニオンたちが主役となって繰り広げる、笑いと冒険に満ちた物語です。</p>
+                        <p class="movie-description" style="color: var(--orange-700);">史上最強の悪党グルーと愛らしいミニオンたちの最新作！今度はミニオンたちが主役となって繰り広げる、笑いと冒険に   ちた物語です。</p>
                         <div class="movie-details">
                             <div class="movie-detail">
                                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--orange-600); margin-top: 0.25rem;">
@@ -1260,7 +1261,7 @@
                                 </svg>
                                 <div>
                                     <p class="movie-detail-title" style="color: var(--green-800);">あらすじ</p>
-                                    <p class="movie-detail-text" style="color: var(--green-700);">おばあちゃんが旅行に出かけて一人ぼっちになったミミちゃんの元に、パンダの親子がやってきます。パンダのパパとプチとの楽しい日々を描いた温かい物語。</p>
+                                    <p class="movie-detail-text" style="color: var(--green-700);">おばあちゃんが旅行に出かけて一人ぼっちになったミミちゃんの元に、パンダの親子がやってきます。パン  のパパとプチと   楽しい日々を描いた温かい物語。</p>
                                 </div>
                             </div>
                             <div class="movie-detail">
@@ -1361,7 +1362,7 @@
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-green">13:35</div>
                         <div class="timeline-info">
-                            <h3 style="color: var(--green-800);">森のお話：「東京の森と水源と生き物」</h3>
+                            <h3 style="color: var(--green-800);">森のお話：「東京の森と  源と生き物」</h3>
                             <p style="color: var(--green-700);">檜原村 大嶽ふみより</p>
                             <p style="color: var(--green-700);">（20分）</p>
                         </div>
@@ -1612,7 +1613,7 @@
         <div class="section-container">
             <h2 class="section-title">事前アンケートにご協力ください</h2>
             <div class="survey-card">
-                <p class="survey-description">より良いイベント運営のため、事前アンケートへのご協力をお願いいたします。皆様のご意見を参考に、さらに充実したプログラムをご提供いたします。</p>
+                <p class="survey-description">より良いイベント運営のため、事前アンケートへのご協力をお願いいたします。皆様のご意見を参考に、さらに充実したプログラムをご提供い  します。</p>
                 <button class="survey-button">アンケートに回答する</button>
             </div>
         </div>
