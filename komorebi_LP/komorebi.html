@@ -187,8 +187,20 @@
             text-align: left;
         }
         .survey-description{color:var(--green-700);margin-bottom:1.5rem;font-weight:500;}
-        .survey-button{background:var(--green-600);color:#fff;padding:.75rem 2rem;border:none;border-radius:.375rem;font-weight:900;cursor:pointer;transition:background-color .3s ease;}
-        .survey-button:hover{background:var(--green-700);}
+        /* ▼▼▼【変更】アンケートボタンのスタイル ▼▼▼ */
+        .survey-button{
+            background:var(--orange-500); /* 目立つオレンジ色に変更 */
+            color:#fff;
+            padding:1rem 2rem; /* サイズを大きく */
+            border:none;
+            border-radius:.5rem; /* 角を少し丸く */
+            font-weight:900;
+            font-size:1.1rem; /* 文字を少し大きく */
+            cursor:pointer;
+            transition:background-color .3s ease;
+            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
+        }
+        .survey-button:hover{background:var(--orange-600);}
         .novelty-image{width:100%;max-width:520px;height:auto;border-radius:.5rem;border:2px solid var(--green-200);}
 
         /* Partnerships */
@@ -223,15 +235,22 @@
         html{scroll-behavior:smooth;}
         
         /* =================================== */
-        /* ▼▼▼【追加】スマホ対応スタイル ▼▼▼ */
+        /* ▼▼▼ スマホ対応スタイル ▼▼▼ */
         /* =================================== */
         @media (max-width: 767px) {
             /* -- 文字サイズの調整 -- */
-            h1, .hero-title-new { font-size: 2.5rem; }
+            /* ▼▼▼【変更】ヒーロータイトルの改行防止 ▼▼▼ */
+            h1, .hero-title-new {
+                font-size: 2.2rem;
+                white-space: nowrap;
+            }
+            .hero-tagline-new {
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
             h2 { font-size: 1.6rem; }
             h3 { font-size: 1.2rem; }
             p { font-size: 0.9rem; }
-            .hero-tagline-new { font-size: 1rem; }
             .hero-content { padding-top: 4rem; }
             .free-badge-new { font-size: 1rem; padding: 0.6rem 2rem;}
 
@@ -239,7 +258,6 @@
             .section { padding: 3rem 1rem; }
 
             /* -- 概要セクション -- */
-            .overview-text br { display: none; }
             .event-info { padding: 1rem; }
             .event-info-row:first-child {
                 flex-direction: column;
@@ -276,6 +294,7 @@
             .workshop-image, .food-image { height: 10rem; }
 
             /* -- アンケートセクション -- */
+            /* ▼▼▼【変更】ボタンの中央揃え ▼▼▼ */
             .survey-grid { text-align: center; }
             .survey-card { text-align: center; }
             .survey-button { width: 100%; max-width: 320px; }
@@ -352,7 +371,9 @@
 
             <div class="overview-text" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
                 <p>東京にも、美しく、豊かな、<br>森と山が広がっています。</p>
-                <p>ファミリーと、お友達と、話しながら、歩きながら、<br>森の世界をのぞきこんで、色んなワクワクと一緒に、<br>映画と木と森にふれあえる一日です。</p>
+                <p>ファミリーと、お友達と、話しながら、<br>歩きながら、
+                森の世界をのぞきこんで、<br>色んなワクワクと一緒に、
+                映画と木と森にふれあえる一日です。</p>
             </div>
 
             <div class="overview-grid">
