@@ -90,8 +90,15 @@
             border: 2px solid var(--green-200);
             display: block;
         }
-
-        .event-info{background:#fff;border:2px solid var(--green-200);border-radius:.75rem;padding:1rem 1.25rem; height: 100%;}
+        
+        /* ▼▼▼【変更】イベント概要の枠線を削除し影を追加 ▼▼▼ */
+        .event-info{
+            background:#fff;
+            border-radius:.75rem;
+            padding:1rem 1.25rem; 
+            height: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
         .event-info-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;}
         .event-date{display:flex;align-items:center;gap:.5rem;}
         .event-date .y{font-size:.9rem;color:var(--green-700);font-weight:800;}
@@ -106,8 +113,21 @@
         .films{background:#fff;}
         .films-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
         @media (min-width:768px){.films-grid{grid-template-columns:repeat(3,1fr);}}
-        .film-card{border:2px solid var(--green-200);border-radius:.5rem;overflow:hidden;background:#fff;}
-        .film-head{padding:1rem 1rem 0;text-align:center;color:var(--green-800);font-weight:900;}
+        /* ▼▼▼【変更】上映作品カードの枠線を削除し影を追加 ▼▼▼ */
+        .film-card{
+            border-radius:.5rem;
+            overflow:hidden;
+            background:#fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        /* ▼▼▼【変更】上映作品タイトルの文字を大きく ▼▼▼ */
+        .film-head{
+            padding:1rem 1rem 0;
+            text-align:center;
+            color:var(--green-800);
+            font-weight:900;
+            font-size: 1.25rem;
+        }
         .film-body{padding:0 1rem 1rem;}
         .film-img{width:100%;height:200px;object-fit:cover;border-radius:.5rem;margin:0 0 .75rem;}
         .film-accordion{border:1px solid var(--green-200);border-radius:.5rem;overflow:hidden;}
@@ -189,13 +209,13 @@
         .survey-description{color:var(--green-700);margin-bottom:1.5rem;font-weight:500;}
         /* ▼▼▼【変更】アンケートボタンのスタイル ▼▼▼ */
         .survey-button{
-            background:var(--orange-500); /* 目立つオレンジ色に変更 */
+            background:var(--orange-500);
             color:#fff;
-            padding:1rem 2rem; /* サイズを大きく */
+            padding:1rem 2rem;
             border:none;
-            border-radius:.5rem; /* 角を少し丸く */
+            border-radius:.5rem;
             font-weight:900;
-            font-size:1.1rem; /* 文字を少し大きく */
+            font-size:1.25rem; /* 文字を大きく */
             cursor:pointer;
             transition:background-color .3s ease;
             box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
@@ -241,7 +261,7 @@
             /* -- 文字サイズの調整 -- */
             /* ▼▼▼【変更】ヒーロータイトルの改行防止 ▼▼▼ */
             h1, .hero-title-new {
-                font-size: 2.2rem;
+                font-size: 1.9rem; /* さらに小さくして改行を防止 */
                 white-space: nowrap;
             }
             .hero-tagline-new {
@@ -294,7 +314,6 @@
             .workshop-image, .food-image { height: 10rem; }
 
             /* -- アンケートセクション -- */
-            /* ▼▼▼【変更】ボタンの中央揃え ▼▼▼ */
             .survey-grid { text-align: center; }
             .survey-card { text-align: center; }
             .survey-button { width: 100%; max-width: 320px; }
@@ -371,8 +390,9 @@
 
             <div class="overview-text" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
                 <p>東京にも、美しく、豊かな、<br>森と山が広がっています。</p>
-                <p>ファミリーと、お友達と、話しながら、<br>歩きながら、
-                森の世界をのぞきこんで、<br>色んなワクワクと一緒に、
+                <p>ファミリーと、お友達と、話しながら、<br>
+                歩きながら、 森の世界をのぞきこんで、<br>
+                色んなワクワクと一緒に、<br>
                 映画と木と森にふれあえる一日です。</p>
             </div>
 
