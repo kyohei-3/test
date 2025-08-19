@@ -18,7 +18,6 @@
         /* Reset and base styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ▼▼▼【変更】カラーパレットを指定の色で再定義 ▼▼▼ */
         :root{
             --color-main: #006532;        /* メインのグリーン */
             --color-sub: #5E4E48;         /* サブのブラウン（主にテキスト） */
@@ -59,7 +58,14 @@
         .hero-bg{position:absolute;inset:0;z-index:0;}
         .hero-bg img{width:100%;height:100%;object-fit:cover;}
         .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);}
-        .hero-content{position:relative;z-index:10;text-align:center;color:var(--white);max-width:1024px;margin:0 auto;padding:5rem 1rem 0;}
+        .hero-content{position:relative;z-index:10;text-align:center;color:var(--white);max-width:1024px;margin:0 auto;padding:5rem 1rem 0; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        /* ▼▼▼【追加】ロゴ画像のスタイル ▼▼▼ */
+        .hero-logo {
+            width: 90%;
+            max-width: 600px; /* PCでの最大幅を指定 */
+            height: auto;
+            margin-bottom: 2.5rem; /* ロゴとバッジの間隔 */
+        }
         .free-badge-new{
             background: var(--white);
             color: var(--color-main);
@@ -83,8 +89,6 @@
             font-weight: 900;
             line-height: 1;
         }
-        .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:var(--white);}
-        .hero-tagline-new{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:2rem;}
         .icon{width:1.25rem;height:1.25rem;display:inline-block;}
         @media (min-width:768px){
             .hero-content{padding-top:6rem !important;}
@@ -268,14 +272,6 @@
         /* =================================== */
         @media (max-width: 767px) {
             /* -- 文字サイズの調整 -- */
-            h1, .hero-title-new {
-                font-size: 1.9rem;
-                white-space: nowrap;
-            }
-            .hero-tagline-new {
-                font-size: 0.9rem;
-                white-space: nowrap;
-            }
             h2 { font-size: 1.6rem; }
             h3 { font-size: 1.2rem; }
             p { font-size: 0.9rem; }
@@ -383,13 +379,10 @@
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title-new">木もれびシネマの森</h1>
-            <p class="hero-tagline-new">～映画と森のクラフトフェスティバル～</p>
-            <div style="margin-top: 2.5rem;">
-                 <div class="free-badge-new">
-                     <span class="free-badge-small-text">入場・鑑賞</span>
-                     <span class="free-badge-large-text">無料</span>
-                 </div>
+            <img src="./image/title_logo.png" alt="木もれびシネマの森 ロゴ" class="hero-logo">
+            <div class="free-badge-new">
+                <span class="free-badge-small-text">入場・鑑賞</span>
+                <span class="free-badge-large-text">無料</span>
             </div>
         </div>
     </section>
