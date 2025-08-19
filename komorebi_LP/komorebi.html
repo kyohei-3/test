@@ -1,1101 +1,377 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>木もれびシネマの森 ～映画と森のクラフトフェスティバル～</title>
+    
+    <meta name="description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」">
+    <meta property="og:title" content="木もれびシネマの森 ～映画と森のクラフトフェスティバル～">
+    <meta property="og:description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/komorebi-cinema"> <meta property="og:image" content="https://example.com/image/mainvisual.png"> <meta property="og:image:alt" content="森の中の映画祭のメインビジュアル">
+    <meta property="og:site_name" content="木もれびシネマの森">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root{
+            --green-50:#f0fdf4;--green-100:#dcfce7;--green-200:#bbf7d0;--green-400:#4ade80;
+            --green-500:#22c55e;--green-600:#16a34a;--green-700:#15803d;--green-800:#166534;
+            --orange-100:#ffedd5;--orange-200:#fed7aa;--orange-500:#f97316;--orange-600:#ea580c;--orange-700:#c2410c;--orange-800:#9a3412;
+            --blue-100:#dbeafe;--blue-500:#3b82f6;--blue-600:#2563eb;--blue-700:#1d4ed8;--blue-800:#1e40af;
+            --gray-100:#f3f4f6;--gray-500:#6b7280;--gray-600:#4b5563;--gray-800:#1f2937;--white:#fff;--black:#000;
         }
 
-        :root {
-            --green-50: #f0fdf4;
-            --green-100: #dcfce7;
-            --green-200: #bbf7d0;
-            --green-400: #4ade80;
-            --green-500: #22c55e;
-            --green-600: #16a34a;
-            --green-700: #15803d;
-            --green-800: #166534;
-            --orange-100: #ffedd5;
-            --orange-200: #fed7aa;
-            --orange-500: #f97316;
-            --orange-600: #ea580c;
-            --orange-700: #c2410c;
-            --orange-800: #9a3412;
-            --blue-100: #dbeafe;
-            --blue-500: #3b82f6;
-            --blue-600: #2563eb;
-            --blue-700: #1d4ed8;
-            --blue-800: #1e40af;
-            --gray-100: #f3f4f6;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-800: #1f2937;
-            --white: #ffffff;
-            --black: #000000;
-        }
-
-        body {
-            font-family: 'M PLUS Rounded 1c', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(to bottom, var(--green-50), var(--white));
-            min-height: 100vh;
-        }
+        body{font-family:'M PLUS Rounded 1c',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#333;background:linear-gradient(to bottom,var(--green-50),var(--white));min-height:100vh;}
 
         /* Typography */
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 900;
-            line-height: 1.3;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            line-height: 1.4;
-        }
-
-        p {
-            font-weight: 500;
-        }
+        h1{font-size:2.5rem;font-weight:900;line-height:1.2;}
+        h2{font-size:2rem;font-weight:900;line-height:1.3;}
+        h3{font-size:1.5rem;font-weight:800;line-height:1.4;}
+        p{font-weight:500;}
 
         /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);transition:.3s;}
+        .nav-container{max-width:1280px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+        .nav-logo{color:var(--green-800);font-weight:900;font-size:1.125rem;}
+        .nav-menu{display:none;gap:1.5rem;}
+        .nav-menu.active{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:1rem;border-top:1px solid var(--green-100);}
+        .nav-item{padding:.5rem .75rem;border-radius:.375rem;transition:.2s;cursor:pointer;font-weight:500;color:var(--gray-600);text-decoration:none;}
+        .nav-item:hover{color:var(--green-800);background:var(--green-50);}
+        .nav-item.active{color:var(--green-800);background:var(--green-100);}
+        .mobile-menu-btn{display:block;background:none;border:none;color:var(--green-800);padding:.5rem;cursor:pointer;}
+        @media (min-width:768px){
+            .nav-menu{display:flex;position:static;background:none;flex-direction:row;padding:0;border:none;}
+            .nav-menu.active{display:flex;}
+            .mobile-menu-btn{display:none;}
         }
 
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-
-        .nav-logo {
-            color: var(--green-800);
-            font-weight: 900;
-            font-size: 1.125rem;
-        }
-
-        .nav-menu {
-            display: none;
-            gap: 1.5rem;
-        }
-
-        .nav-menu.active {
-            display: flex;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+        /* Hero */
+        .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .hero-bg{position:absolute;inset:0;z-index:0;}
+        .hero-bg img{width:100%;height:100%;object-fit:cover;}
+        .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.2);}
+        .hero-content{position:relative;z-index:10;text-align:center;color:#fff;max-width:1024px;margin:0 auto;padding:5rem 1rem 0;}
+        .free-badge-new{
             background: var(--white);
-            flex-direction: column;
-            padding: 1rem;
-            border-top: 1px solid var(--green-100);
-        }
-
-        .nav-item {
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            font-weight: 500;
-            color: var(--gray-600);
-            text-decoration: none;
-        }
-
-        .nav-item:hover {
-            color: var(--green-800);
-            background-color: var(--green-50);
-        }
-
-        .nav-item.active {
-            color: var(--green-800);
-            background-color: var(--green-100);
-        }
-
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            color: var(--green-800);
-            padding: 0.5rem;
-            cursor: pointer;
-        }
-
-        /* Desktop navigation */
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex;
-                position: static;
-                background: none;
-                flex-direction: row;
-                padding: 0;
-                border: none;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: none;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .hero-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            color: white;
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .free-badge {
-            display: inline-block;
-            background: var(--green-500);
-            color: white;
-            padding: 0.75rem 2.5rem;
+            color: var(--green-700);
             border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
-            margin-bottom: 3rem;
-            font-weight: 900;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-        }
-
-        .hero-subtitle {
-            font-size: 1.125rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .decorative-line {
-            width: 8rem;
-            height: 1px;
-            background: white;
-            margin: 1.5rem auto;
-            opacity: 0.6;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-tagline {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #dcfce7;
-            margin-bottom: 2rem;
-        }
-
-        .hero-info {
-            display: flex;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
+            border: 4px solid #fff;
+            padding: 0.6rem 2.5rem;
+            display: inline-flex;
             flex-direction: column;
-            gap: 1rem;
-        }
-
-        .hero-info-item {
-            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            font-size: 1.125rem;
+            font-weight: 800;
+        }
+        .free-badge-small-text {
+            font-size: 0.8rem;
             font-weight: 700;
+            line-height: 1.2;
         }
-
-        /* Responsive adjustments */
-        @media (min-width: 480px) {
-            .free-badge {
-                font-size: 1.125rem;
-                padding: 0.875rem 3rem;
-            }
+        /* ▼▼▼【変更】無料バッジの文字サイズバランスを調整 ▼▼▼ */
+        .free-badge-large-text {
+            font-size: 1.6rem;
+            font-weight: 900;
+            line-height: 1.1;
         }
-
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 4rem;
-            }
-
-            .hero-tagline {
-                font-size: 1.75rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.25rem;
-            }
-
-            .free-badge {
-                font-size: 1.25rem;
-                padding: 1rem 3.5rem;
-            }
+        .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:#fff;}
+        .hero-tagline-new{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:2rem;}
+        .icon{width:1.25rem;height:1.25rem;display:inline-block;}
+        @media (min-width:768px){
+            .hero-content{padding-top:6rem !important;}
         }
 
         /* Sections */
-        .section {
-            padding: 4rem 1rem;
-        }
+        .section{padding:4rem 1rem;}
+        .section-container{max-width:1024px;margin:0 auto;}
+        .section-container-wide{max-width:1280px;margin:0 auto;}
+        .section-title{text-align:center;margin-bottom:2rem;color:var(--green-800);font-weight:900;}
 
-        .section-container {
-            max-width: 1024px;
-            margin: 0 auto;
-        }
-
-        .section-container-wide {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--green-800);
-            font-weight: 900;
-        }
-
-        /* Event Overview */
-        .overview {
-            background-color: #efe07e;
-        }
-
-        .overview-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .overview-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .overview-image {
+        /* Overview */
+        .overview{background:var(--green-50);}
+        .overview-text{display:flex;flex-direction:column;gap:1rem;text-align:left;}
+        .overview-text p{color:var(--green-700);font-weight:500;}
+        .overview-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
+        @media (min-width:768px){.overview-grid{grid-template-columns:1fr 1fr;}}
+        .overview-map-image {
             width: 100%;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            height: auto;
+            border-radius: .75rem;
+            display: block;
         }
-
-        .overview-text {
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .event-info{
+            background:#fff;
+            border-radius:.75rem;
+            padding:1rem 1.25rem; 
+            height: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
+        .event-info-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;}
+        .event-date{display:flex;align-items:center;gap:.5rem;}
+        .event-date .y{font-size:.9rem;color:var(--green-700);font-weight:800;}
+        .event-date .md{font-size:2.5rem;font-weight:900;color:var(--green-800);letter-spacing:.02em;}
+        .event-date .w{border:2px solid var(--green-600);border-radius:9999px;padding:.1rem .55rem;font-weight:900;color:var(--green-800);}
+        .event-openclose{display:flex;gap:1rem;font-weight:900;color:var(--green-800);}
+        .event-openclose span{background:var(--green-100);padding:.25rem .6rem;border-radius:.375rem;}
+        .event-venue{font-weight:800;color:var(--green-800);}
+        .event-addr{font-size:.85rem;color:var(--gray-600);}
 
-        .overview-text p {
-            color: var(--green-700);
-            font-weight: 500;
+        /* Films */
+        .films{background:#fff;}
+        .films-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
+        @media (min-width:768px){.films-grid{grid-template-columns:repeat(3,1fr);}}
+        .film-card{
+            border-radius:.5rem;
+            overflow:hidden;
+            background:#fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-
-        .sns-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+        .film-head{
+            padding:1rem 1rem 0;
+            text-align:center;
+            color:var(--green-800);
+            font-weight:900;
+            font-size: 1.25rem;
         }
-
-        .sns-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 3rem;
-            height: 3rem;
-            background: rgba(34, 197, 94, 0.1);
-            backdrop-filter: blur(12px);
-            color: var(--green-600);
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .sns-icon:hover {
-            background: var(--green-600);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        /* Movies Section */
-        .movies {
-            background: var(--white);
-        }
-
-        .movies-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .movies-title {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .movies-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .movie-item {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .movie-item {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .movie-item:nth-child(2) .movie-image {
-                order: 2;
-            }
-
-            .movie-item:nth-child(2) .movie-content {
-                order: 1;
-            }
-        }
-
-        .movie-image {
-            width: 100%;
-            height: 20rem;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .movie-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .movie-badges {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 900;
-        }
-
-        .badge-orange {
-            background: var(--orange-500);
-            color: white;
-        }
-
-        .badge-orange-light {
-            background: var(--orange-100);
-            color: var(--orange-800);
-        }
-
-        .badge-green {
-            background: var(--green-500);
-            color: white;
-        }
-
-        .badge-green-light {
-            background: var(--green-100);
-            color: var(--green-800);
-        }
-
-        .badge-blue {
-            background: var(--blue-500);
-            color: white;
-        }
-
-        .badge-blue-light {
-            background: var(--blue-100);
-            color: var(--blue-800);
-        }
-
-        .movie-title {
-            font-weight: 900;
-            font-size: 1.5rem;
-        }
-
-        .movie-description {
-            font-weight: 500;
-        }
-
-        .movie-details {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .movie-detail {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .movie-detail-title {
-            font-weight: 900;
-            font-size: 0.875rem;
-        }
-
-        .movie-detail-text {
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .movie-copyright {
-            font-size: 0.75rem;
-            color: var(--gray-600);
-            font-weight: 500;
-        }
-
-        .separator {
-            height: 1px;
-            background: #e5e7eb;
-            margin: 3rem 0;
-        }
+        .film-body{padding:0 1rem 1rem;}
+        .film-img{width:100%;height:200px;object-fit:cover;border-radius:.5rem;margin:0 0 .75rem;}
+        .film-accordion{border:1px solid var(--green-200);border-radius:.5rem;overflow:hidden;}
+        .film-accordion summary{list-style:none;cursor:pointer;padding:.6rem .75rem;font-weight:900;color:var(--green-800);background:var(--green-50);}
+        .film-accordion summary::-webkit-details-marker{display:none;}
+        .film-accordion .panel{padding:.5rem .75rem .75rem;font-size:.9rem;color:var(--green-700);}
 
         /* Timetable */
-        .timetable {
-            background: linear-gradient(135deg, var(--green-400), #14b8a6, var(--blue-500));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timetable-decorative {
-            position: absolute;
-            inset: 0;
-            opacity: 0.1;
-        }
-
-        .decorative-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: white;
-        }
-
-        .decorative-circle-1 {
-            top: 2.5rem;
-            left: 2.5rem;
-            width: 5rem;
-            height: 5rem;
-        }
-
-        .decorative-circle-2 {
-            top: 8rem;
-            right: 5rem;
-            width: 4rem;
-            height: 4rem;
-            background: #fde047;
-        }
-
-        .decorative-circle-3 {
-            bottom: 5rem;
-            left: 8rem;
-            width: 3rem;
-            height: 3rem;
-            background: #f9a8d4;
-        }
-
-        .decorative-circle-4 {
-            bottom: 10rem;
-            right: 2.5rem;
-            width: 6rem;
-            height: 6rem;
-            background: #c084fc;
-        }
-
-        .timetable-container {
-            max-width: 1024px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .timetable-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .timetable-subtitle {
-            color: white;
-            font-size: 1.125rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .timetable-title-badge {
-            display: inline-block;
-            background: white;
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .timetable-title-badge h2 {
-            color: var(--green-800);
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-        }
-
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .timeline-item {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .timeline-time {
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 900;
-            font-size: 1.125rem;
-            flex-shrink: 0;
-        }
-
-        .timeline-time-green {
-            background: var(--green-500);
-        }
-
-        .timeline-time-orange {
-            background: var(--orange-500);
-        }
-
-        .timeline-time-blue {
-            background: var(--blue-500);
-        }
-
-        .timeline-time-gray {
-            background: var(--gray-500);
-        }
-
-        .timeline-info h3 {
-            font-weight: 900;
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-info p {
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-copyright {
-            font-size: 0.75rem;
-            color: var(--gray-600);
-            margin-top: 0.25rem;
-        }
+        .timetable{background:linear-gradient(135deg,var(--green-400),#14b8a6,var(--blue-500));position:relative;overflow:hidden;}
+        .timetable-decorative{position:absolute;inset:0;opacity:.1;}
+        .decorative-circle{position:absolute;border-radius:50%;background:#fff;}
+        .decorative-circle-1{top:2.5rem;left:2.5rem;width:5rem;height:5rem;}
+        .decorative-circle-2{top:8rem;right:5rem;width:4rem;height:4rem;background:#fde047;}
+        .decorative-circle-3{bottom:5rem;left:8rem;width:3rem;height:3rem;background:#f9a8d4;}
+        .decorative-circle-4{bottom:10rem;right:2.5rem;width:6rem;height:6rem;background:#c084fc;}
+        .timetable-container{max-width:1024px;margin:0 auto;position:relative;z-index:10;}
+        .timetable-header{text-align:center;margin-bottom:3rem;}
+        .timetable-subtitle{color:#fff;font-size:1.125rem;font-weight:700;margin-bottom:1rem;}
+        .timetable-title-badge{display:inline-block;background:#fff;padding:.75rem 2rem;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .timetable-title-badge h2{color:var(--green-800);font-size:1.5rem;font-weight:900;letter-spacing:.1em;}
+        .timeline{display:flex;flex-direction:column;gap:1rem;}
+        .timeline-item{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .timeline-content{display:flex;align-items:flex-start;gap:1rem;}
+        .timeline-time{color:#fff;padding:.5rem 1rem;border-radius:9999px;font-weight:900;font-size:1.125rem;flex-shrink:0;}
+        .timeline-time-green{background:var(--green-500);}
+        .timeline-time-orange{background:var(--orange-500);}
+        .timeline-time-blue{background:var(--blue-500);}
+        .timeline-time-gray{background:var(--gray-500);}
 
         /* Workshops */
-        .workshops {
-            background: var(--white);
-        }
+        .workshops{background:#fff;}
+        .workshops-intro{text-align:center;margin-bottom:2rem;}
+        .workshops-intro p{color:var(--green-700);font-weight:700;font-size:1.125rem;}
+        .workshop-group{margin-bottom:3rem;}
+        .workshop-group h3{color:var(--green-800);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
+        .workshop-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+        @media (min-width:768px){.workshop-grid-3{grid-template-columns:repeat(3,1fr)}.workshop-grid-2{grid-template-columns:repeat(2,1fr)}}
+        .workshop-card{border:2px solid var(--green-200);border-radius:.5rem;overflow:hidden;transition:box-shadow .3s ease;}
+        .workshop-card:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .workshop-card-header{padding:1.5rem 1.5rem 0;}
+        .workshop-card-title{text-align:center;color:var(--green-800);font-weight:900;margin-bottom:1rem;}
+        .workshop-card-content{padding:0 1.5rem 1.5rem;}
+        .workshop-image{width:100%;height:12rem;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
+        .workshop-description{color:var(--green-700);text-align:center;font-weight:500;}
+        .text-sm{font-size:.875rem;}
+        .text-xs{font-size:.75rem;}
 
-        .workshops-intro {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+        /* Circle badge */
+        .circle-note{display:inline-block;padding:.1rem .6rem;border:2px solid var(--green-500);border-radius:9999px;color:var(--green-800);background:#fff;font-size:.85rem;font-weight:700;}
 
-        .workshops-intro p {
-            color: var(--green-700);
-            font-weight: 700;
-            font-size: 1.125rem;
-        }
-
-        .workshop-group {
-            margin-bottom: 3rem;
-        }
-
-        .workshop-group h3 {
-            color: var(--green-800);
-            font-weight: 900;
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .workshop-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .workshop-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .workshop-grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .workshop-card {
-            border: 2px solid var(--green-200);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .workshop-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .workshop-card-header {
-            padding: 1.5rem 1.5rem 0;
-        }
-
-        .workshop-card-title {
-            text-align: center;
-            color: var(--green-800);
-            font-weight: 900;
-            margin-bottom: 1rem;
-        }
-
-        .workshop-card-content {
-            padding: 0 1.5rem 1.5rem;
-        }
-
-        .workshop-image {
-            width: 100%;
-            height: 12rem;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .workshop-description {
-            color: var(--green-700);
-            text-align: center;
-            font-weight: 500;
-        }
-
-        /* Food Section */
-        .food {
-            background: var(--green-50);
-        }
-
-        .food-group {
-            margin-bottom: 2rem;
-        }
-
-        .food-group h3 {
-            color: var(--green-800);
-            font-weight: 900;
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .food-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .food-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .food-card {
-            border: 2px solid var(--green-200);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            background: white;
-        }
-
-        .food-card-header {
-            padding: 1.5rem 1.5rem 0;
-        }
-
-        .food-card-title {
-            color: var(--green-800);
-            font-weight: 900;
-        }
-
-        .food-card-content {
-            padding: 0 1.5rem 1.5rem;
-        }
-
-        .food-image {
-            width: 100%;
-            height: 12rem;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .food-description {
-            color: var(--green-700);
-            font-weight: 500;
-        }
+        /* Food */
+        .food{background:var(--green-50);}
+        .food-group{margin-bottom:2rem;}
+        .food-group h3{color:var(--green-800);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
+        .food-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+        @media (min-width:768px){.food-grid{grid-template-columns:repeat(2,1fr)}}
+        .food-card{border:2px solid var(--green-200);border-radius:.5rem;overflow:hidden;background:#fff;}
+        .food-card-header{padding:1.5rem 1.5rem 0;}
+        .food-card-title{color:var(--green-800);font-weight:900;}
+        .food-card-content{padding:0 1.5rem 1.5rem;}
+        .food-image{width:100%;height:12rem;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
+        .food-description{color:var(--green-700);font-weight:500;}
 
         /* Survey */
-        .survey {
-            background: var(--white);
+        .survey-grid {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
         }
-
+        @media (min-width: 768px) {
+            .survey-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
         .survey-card {
-            border: 2px solid var(--green-200);
-            border-radius: 0.5rem;
-            padding: 2rem;
-            text-align: center;
+            padding: 0;
+            text-align: left;
         }
-
-        .survey-description {
-            color: var(--green-700);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+        .survey-description{color:var(--green-700);margin-bottom:1.5rem;font-weight:500;}
+        .survey-button{
+            background:var(--orange-500);
+            color:#fff;
+            padding:1rem 2rem;
+            border:none;
+            border-radius:.5rem;
+            font-weight:900;
+            font-size:1.25rem;
+            cursor:pointer;
+            transition:background-color .3s ease;
+            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
         }
-
-        .survey-button {
-            background: var(--green-600);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 0.375rem;
-            font-weight: 900;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .survey-button:hover {
-            background: var(--green-700);
-        }
+        .survey-button:hover{background:var(--orange-600);}
+        .novelty-image{width:100%;max-width:520px;height:auto;border-radius:.5rem;border:2px solid var(--green-200);}
 
         /* Partnerships */
-        .partnerships {
-            background: var(--green-500);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .partnerships-decorative {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 16rem;
-            height: 16rem;
-            opacity: 0.2;
-        }
-
-        .partnerships-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .partnerships-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .partnerships-title {
-            font-weight: 900;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .partnerships-subtitle {
-            font-weight: 700;
-            font-size: 1.125rem;
-        }
-
-        .partnerships-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .partnerships-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .partnership-card {
-            background: white;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            color: var(--green-800);
-        }
-
-        .partnership-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .partnership-number {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.25rem;
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-        }
-
-        .partnership-number-pink {
-            background: #f472b6;
-        }
-
-        .partnership-number-orange {
-            background: var(--orange-500);
-        }
-
-        .partnership-title {
-            font-weight: 900;
-            font-size: 1.125rem;
-            color: var(--green-800);
-        }
-
-        .partnership-image {
-            width: 100%;
-            height: 12rem;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .partnership-details {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            color: var(--green-700);
-            font-weight: 500;
-        }
-
-        .partnership-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .partnership-badge {
-            background: var(--gray-100);
-            color: var(--green-800);
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-        }
-
-        .partnership-description {
-            font-size: 0.875rem;
-            margin-top: 0.75rem;
-        }
+        .partnerships{background:var(--green-500);color:#fff;position:relative;overflow:hidden;}
+        .partnerships-decorative{position:absolute;top:0;right:0;width:16rem;height:16rem;opacity:.2;}
+        .partnerships-container{max-width:1280px;margin:0 auto;position:relative;z-index:10;}
+        .partnerships-header{text-align:center;margin-bottom:3rem;}
+        .partnerships-title{font-weight:900;color:#fff;margin-bottom:1rem;}
+        .partnerships-subtitle{font-weight:700;font-size:1.125rem;}
+        .partnerships-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
+        @media (min-width:768px){.partnerships-grid{grid-template-columns:repeat(2,1fr)}}
+        .partnership-card{background:#fff;border-radius:.5rem;padding:1.5rem;color:var(--green-800);}
+        .partnership-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;}
+        .partnership-number{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.25rem;color:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);flex-shrink:0;}
+        .partnership-number-pink{background:#f472b6;}
+        .partnership-number-orange{background:var(--orange-500);}
+        .partnership-title{font-weight:900;font-size:1.125rem;color:var(--green-800);}
+        .partnership-image{width:100%;height:12rem;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
+        .partnership-details{display:flex;flex-direction:column;gap:.5rem;color:var(--green-700);font-weight:500;}
+        .partnership-badge{background:var(--gray-100);color:var(--green-800);padding:.25rem .5rem;border-radius:.25rem;font-size:.875rem;font-weight:700;}
+        .partnership-description{font-size:.875rem;margin-top:.75rem;}
 
         /* Footer */
-        .footer {
-            background: var(--green-800);
-            color: white;
-            padding: 3rem 1rem;
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
+        .footer{background:var(--green-800);color:#fff;padding:3rem 1rem;}
+        .footer-container{max-width:1280px;margin:0 auto;}
+        .footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2rem;}
+        @media (min-width:768px){.footer-grid{grid-template-columns:repeat(3,1fr)}}
+        .footer-section h3{margin-bottom:1rem;font-weight:700;}
+        .footer-section p{color:#dcfce7;font-weight:500;margin-bottom:.5rem;}
+        .footer-separator{height:1px;background:var(--green-600);margin:2rem 0;}
+        .text-xs{font-size:.75rem;}
+        html{scroll-behavior:smooth;}
+        
+        /* =================================== */
+        /* ▼▼▼ スマホ対応スタイル ▼▼▼ */
+        /* =================================== */
+        @media (max-width: 767px) {
+            /* -- 文字サイズの調整 -- */
+            h1, .hero-title-new {
+                font-size: 1.9rem;
+                white-space: nowrap;
             }
+            .hero-tagline-new {
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.2rem; }
+            p { font-size: 0.9rem; }
+            .hero-content { padding-top: 4rem; }
+            
+            /* -- 全体の余白調整 -- */
+            .section { padding: 3rem 1rem; }
+
+            /* -- 概要セクション -- */
+            .event-info { padding: 1rem; }
+            .event-info-row:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .event-openclose {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .event-date .md { font-size: 2rem; }
+
+            /* -- タイムテーブルセクション -- */
+            .timeline-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .timeline-time {
+                font-size: 1rem;
+                padding: 0.25rem 0.75rem;
+            }
+            .timeline-item { padding: 1rem; }
+            .timetable-title-badge h2 { font-size: 1.3rem; }
+            
+            /* -- 上映作品セクション -- */
+            .films-grid { gap: 1.5rem; }
+            .film-img { height: auto; aspect-ratio: 2 / 3; }
+
+            /* -- ワークショップ & キッチンカーセクション -- */
+            .workshop-card-header, .food-card-header { padding: 1rem 1rem 0; }
+            .workshop-card-content, .food-card-content { padding: 0 1rem 1rem; }
+            .workshop-image, .food-image { height: 10rem; }
+
+            /* -- アンケートセクション -- */
+            .survey-grid { text-align: center; }
+            .survey-card { text-align: center; }
+            .survey-button { width: 100%; max-width: 320px; }
+
+            /* -- 連携企画セクション -- */
+            .partnership-card { padding: 1.25rem; }
+            .partnership-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .partnership-details { align-items: center; text-align: center; gap: 0.75rem;}
+            .partnership-detail { display: flex; flex-direction: column; gap: 0.25rem; }
+            .partnership-description { text-align: left; }
+
+            /* -- フッターセクション -- */
+            .footer-grid { text-align: center; }
+            .footer-section > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-section .icon { display: none; }
         }
 
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .footer-section p {
-            color: #dcfce7;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-separator {
-            height: 1px;
-            background: var(--green-600);
-            margin: 2rem 0;
-        }
-
-        .footer-copyright {
-            text-align: center;
-            color: #dcfce7;
-        }
-
-        .footer-copyright p {
-            font-weight: 500;
-        }
-
-        /* Icons */
-        .icon {
-            width: 1.25rem;
-            height: 1.25rem;
-            display: inline-block;
-        }
-
-        .icon-lg {
-            width: 2rem;
-            height: 2rem;
-            display: inline-block;
-        }
-
-        .icon-sns {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Utility classes */
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-3 {
-            margin-bottom: 0.75rem;
-        }
-
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-
-        .mt-1 {
-            margin-top: 0.25rem;
-        }
-
-        .text-sm {
-            font-size: 0.875rem;
-        }
-
-        .text-xs {
-            font-size: 0.75rem;
-        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">木もれびシネマの森</div>
-            
             <div class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-item" data-section="home">ホーム</a>
                 <a href="#overview" class="nav-item" data-section="overview">イベント概要</a>
-                <a href="#movies" class="nav-item" data-section="movies">上映作品</a>
+                <a href="#films" class="nav-item" data-section="films">上映作品</a>
                 <a href="#timetable" class="nav-item" data-section="timetable">タイムテーブル</a>
                 <a href="#workshops" class="nav-item" data-section="workshops">ワークショップ</a>
                 <a href="#food" class="nav-item" data-section="food">キッチンカー</a>
                 <a href="#survey" class="nav-item" data-section="survey">アンケート</a>
                 <a href="#partnerships" class="nav-item" data-section="partnerships">連携企画</a>
             </div>
-            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;">
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: none;">
+                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;display:none;">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -1105,36 +381,16 @@
 
     <section id="home" class="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?q=80&w=1200&h=800&fit=crop" alt="Forest cinema with people watching movies under the trees">
+            <img src="./image/mainvisual.png" alt="森の中の映画祭のメインビジュアル">
             <div class="hero-overlay"></div>
         </div>
-        
         <div class="hero-content">
-            <div class="free-badge">入場・鑑賞無料</div>
-            
-            <p class="hero-subtitle">KOMOREBI CINEMA NO MORI</p>
-            
-            <div class="decorative-line"></div>
-            
-            <h1 class="hero-title">木もれびシネマの森</h1>
-            <p class="hero-tagline">～映画と森のクラフトフェスティバル～</p>
-            
-            <div class="hero-info">
-                <div class="hero-info-item">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    <span>2025年10月5日（日）11:00〜17:00</span>
-                </div>
-                <div class="hero-info-item">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span>多摩あきがわライブフォレスト自然人村</span>
+            <h1 class="hero-title-new">木もれびシネマの森</h1>
+            <p class="hero-tagline-new">～映画と森のクラフトフェスティバル～</p>
+            <div style="margin-top: 2.5rem;">
+                 <div class="free-badge-new">
+                    <span class="free-badge-small-text">入場・鑑賞</span>
+                    <span class="free-badge-large-text">無料</span>
                 </div>
             </div>
         </div>
@@ -1143,164 +399,89 @@
     <section id="overview" class="section overview">
         <div class="section-container">
             <h2 class="section-title">イベント概要</h2>
+
+            <div class="overview-text" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
+                <p>東京にも、美しく、豊かな、<br>森と山が広がっています。</p>
+                <p>ファミリーと、お友達と、話しながら、<br>
+                歩きながら、 森の世界をのぞきこんで、<br>
+                色んなワクワクと一緒に、<br>
+                映画と木と森にふれあえる一日です。</p>
+            </div>
+
             <div class="overview-grid">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?q=80&w=800&h=600&fit=crop" alt="Tokyo forest" class="overview-image">
+                    <div class="event-info">
+                        <div class="event-info-row" style="margin-bottom:.25rem;">
+                            <div class="event-date">
+                                <span class="y">2025年</span>
+                                <span class="md">10.5</span>
+                                <span class="w">日</span>
+                            </div>
+                            <div class="event-openclose">
+                                <span>OPEN 11:00</span>
+                                <span>CLOSE 17:00</span>
+                            </div>
+                        </div>
+                        <div class="event-info-row">
+                            <div class="event-venue">多摩あきがわライブフォレスト自然人村</div>
+                        </div>
+                        <div class="event-info-row">
+                            <div class="event-addr">東京都あきる野市深沢198</div>
+                        </div>
+                        <div class="event-info-row">
+                            <div class="event-addr text-xs">JR五日市線「武蔵五日市駅」より 徒歩：約20分／無料シャトルバス：約10分（約20分間隔で運行）</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="overview-text">
-                    <p>東京にも、美しく、豊かで、楽しい、<br>森と山が広がっています。</p>
-                    <p>ファミリーと、お友達と、話しながら、歩きながら、<br>森の世界をのぞきこんで、色んなワクワクと一緒に、<br>映画と水と森にふれあえる一日です。</p>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <p style="color: var(--green-700); font-weight: 700; font-size: 1.125rem; margin-bottom: 1rem;">最新情報をチェック</p>
-                <div class="sns-icons">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Facebook">
-                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Twitter">
-                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
-                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="YouTube">
-                        <svg class="icon-sns" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </a>
+
+                <div>
+                    <img src="./image/summary_map.png" alt="イベント会場地図" class="overview-map-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="movies" class="section movies">
-        <div class="section-container-wide">
-            <div class="movies-header">
-                <div class="movies-title">
-                    <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                    <h2 class="section-title" style="margin-bottom: 0;">上映作品</h2>
-                    <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                </div>
-                <p style="color: var(--green-700); font-weight: 500;">森の中で楽しむ3つの素敵な映画の詳細をご紹介します</p>
-            </div>
-            
-            <div class="movies-grid">
-                <div class="movie-item">
-                    <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=600&h=400&fit=crop" alt="Minions Fever movie poster - animated characters in colorful setting" class="movie-image">
-                    <div class="movie-content">
-                        <div class="movie-badges">
-                            <span class="badge badge-orange">88分</span>
-                            <span class="badge badge-orange-light">ファミリー向け</span>
-                        </div>
-                        <h3 class="movie-title" style="color: var(--orange-800);">ミニオンズ フィーバー</h3>
-                        <p class="movie-description" style="color: var(--orange-700);">史上最強の悪党グルーと愛らしいミニオンたちの最新作！今度はミニオンたちが主役となって繰り広げる、笑いと冒険にちた物語です。</p>
-                        <div class="movie-details">
-                            <div class="movie-detail">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--orange-600); margin-top: 0.25rem;">
-                                    <polygon points="5,3 19,12 5,21"></polygon>
-                                </svg>
-                                <div>
-                                    <p class="movie-detail-title" style="color: var(--orange-800);">あらすじ</p>
-                                    <p class="movie-detail-text" style="color: var(--orange-700);">ミニオンたちが新たなボスを見つけるために世界中を駆け回る大冒険。彼らのおちゃめで愛らしい行動に、子どもから大人まで笑顔になること間違いなし！</p>
-                                </div>
+    <section id="films" class="section films">
+        <div class="section-container">
+            <h2 class="section-title">上映作品</h2>
+            <div class="films-grid">
+                <div class="film-card">
+                    <div class="film-head">ミニオンズ フィーバー</div>
+                    <div class="film-body">
+                        <img class="film-img" src="./image/movie_minions.png" alt="ミニオンズ フィーバー">
+                        <details class="film-accordion">
+                            <summary>作品詳細</summary>
+                            <div class="panel">
+                                <p>88分／ファミリー向け</p>
+                                <p style="font-size:.85rem;color:var(--gray-600);margin-top:.25rem;">©2022 Universal Studios. All Rights Reserved.</p>
                             </div>
-                            <div class="movie-detail">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--orange-600); margin-top: 0.25rem;">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div>
-                                    <p class="movie-detail-title" style="color: var(--orange-800);">見どころ</p>
-                                    <p class="movie-detail-text" style="color: var(--orange-700);">カラフルで楽しいアニメーションと、森の自然環境が織りなす特別な鑑賞体験をお楽しみください。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="movie-copyright">©2022 Universal Studios. All Rights Reserved.</p>
+                        </details>
                     </div>
                 </div>
-
-                <div class="separator"></div>
-
-                <div class="movie-item">
-                    <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?q=80&w=600&h=400&fit=crop" alt="Panda Kopanda movie poster" class="movie-image">
-                    <div class="movie-content">
-                        <div class="movie-badges">
-                            <span class="badge badge-green">33分</span>
-                            <span class="badge badge-green-light">名作・ファミリー</span>
-                        </div>
-                        <h3 class="movie-title" style="color: var(--green-800);">パンダコパンダ</h3>
-                        <p class="movie-description" style="color: var(--green-700);">宮崎駿監督による心温まる名作アニメーション。パンダの親子と少女ミミちゃんとの優しい物語は、世代を超えて愛され続けています。</p>
-                        <div class="movie-details">
-                            <div class="movie-detail">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green-600); margin-top: 0.25rem;">
-                                    <polygon points="5,3 19,12 5,21"></polygon>
-                                </svg>
-                                <div>
-                                    <p class="movie-detail-title" style="color: var(--green-800);">あらすじ</p>
-                                    <p class="movie-detail-text" style="color: var(--green-700);">おばあちゃんが旅行に出かけて一人ぼっちになったミミちゃんの元に、パンダの親子がやってきます。パンのパパとプチと楽しい日々を描いた温かい物語。</p>
-                                </div>
+                <div class="film-card">
+                    <div class="film-head">パンダコパンダ</div>
+                    <div class="film-body">
+                        <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
+                        <details class="film-accordion">
+                            <summary>作品詳細</summary>
+                            <div class="panel">
+                                <p>33分／名作・ファミリー</p>
+                                <p style="font-size:.85rem;color:var(--gray-600);margin-top:.25rem;">©TMS</p>
                             </div>
-                            <div class="movie-detail">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green-600); margin-top: 0.25rem;">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div>
-                                    <p class="movie-detail-title" style="color: var(--green-800);">見どころ</p>
-                                    <p class="movie-detail-text" style="color: var(--green-700);">宮崎駿監督の初期の傑作。森の中での鑑賞により、作品の自然への愛がより深く感じられる特別な体験です。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="movie-copyright">©TMS</p>
+                        </details>
                     </div>
                 </div>
-
-                <div class="separator"></div>
-
-                <div class="movie-item">
-                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=600&h=400&fit=crop" alt="SING movie poster" class="movie-image">
-                    <div class="movie-content">
-                        <div class="movie-badges">
-                            <span class="badge badge-blue">110分</span>
-                            <span class="badge badge-blue-light">音楽・ファミリー</span>
-                        </div>
-                        <h3 class="movie-title" style="color: var(--blue-800);">SING</h3>
-                        <p class="movie-description" style="color: var(--blue-700);">夢と音楽をテーマにした感動のミュージカルアニメーション。個性豊かな動物たちが織りなす歌声と物語に心を打たれる作品です。</p>
-                        <div class="movie-details">
-                            <div class="movie-detail">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-600); margin-top: 0.25rem;">
-                                    <polygon points="5,3 19,12 5,21"></polygon>
-                                </svg>
-                                <div>
-                                    <p class="movie-detail-title" style="color: var(--blue-800);">あらすじ</p>
-                                    <p class="movie-detail-text" style="color: var(--blue-700);">経営難に陥った劇場を救うため、コアラのバスターが歌のオーディションを開催。様々な夢を持つ動物たちが集まり、音楽を通じて成長していく物語。</p>
-                                </div>
+                <div class="film-card">
+                    <div class="film-head">SING</div>
+                    <div class="film-body">
+                        <img class="film-img" src="./image/movie_sing.png" alt="SING">
+                        <details class="film-accordion">
+                            <summary>作品詳細</summary>
+                            <div class="panel">
+                                <p>110分／音楽・ファミリー</p>
+                                <p style="font-size:.85rem;color:var(--gray-600);margin-top:.25rem;">©2016 Universal Studios. All Rights Reserved.</p>
                             </div>
-                            <div class="movie-detail">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-600); margin-top: 0.25rem;">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div>
-                                    <p class="movie-detail-title" style="color: var(--blue-800);">見どころ</p>
-                                    <p class="movie-detail-text" style="color: var(--blue-700);">有名楽曲のカバーと素晴らしいアニメーション。森の自然音響の中で聴く音楽は格別の体験になるでしょう。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="movie-copyright">©2016 Universal Studios. All Rights Reserved.</p>
+                        </details>
                     </div>
                 </div>
             </div>
@@ -1314,86 +495,72 @@
             <div class="decorative-circle decorative-circle-3"></div>
             <div class="decorative-circle decorative-circle-4"></div>
         </div>
-        
         <div class="timetable-container">
             <div class="timetable-header">
                 <p class="timetable-subtitle">映画といっしょに、森をまるごと楽しもう！</p>
-                <div class="timetable-title-badge">
-                    <h2>TIME TABLE</h2>
-                </div>
+                <div class="timetable-title-badge"><h2>TIME TABLE</h2></div>
             </div>
-
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-green">11:00</div>
-                        <div class="timeline-info">
-                            <h3 style="color: var(--green-800);">開場 OPEN</h3>
-                        </div>
+                        <div class="timeline-info"><h3 style="color:var(--green-800);">開場 OPEN</h3></div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-orange">12:00</div>
                         <div class="timeline-info">
-                            <h3 style="color: var(--orange-800);">映画：「ミニオンズ フィーバー」</h3>
-                            <p style="color: var(--orange-700);">（88分）</p>
-                            <p class="timeline-copyright">©2022 Universal Studios. All Rights Reserved.</p>
+                            <h3 style="color:var(--orange-800);">映画：「ミニオンズ フィーバー」</h3>
+                            <p style="color:var(--orange-700);">（88分）</p>
+                            <p class="text-xs" style="color:var(--gray-600);">©2022 Universal Studios. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-green">13:35</div>
                         <div class="timeline-info">
-                            <h3 style="color: var(--green-800);">森のお話：「東京の森と源と生き物」</h3>
-                            <p style="color: var(--green-700);">檜原村 大嶽ふみより</p>
-                            <p style="color: var(--green-700);">（20分）</p>
+                            <h3 style="color:var(--green-800);">森のお話：「東京の森と水源と生き物」</h3>
+                            <p style="color:var(--green-700);">榎戸材木店</p>
+                            <p style="color:var(--green-700);">（20分）</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-orange">14:00</div>
                         <div class="timeline-info">
-                            <h3 style="color: var(--orange-800);">映画：「パンダコパンダ」</h3>
-                            <p style="color: var(--orange-700);">（33分）</p>
-                            <p class="timeline-copyright">©TMS</p>
+                            <h3 style="color:var(--orange-800);">映画：「パンダコパンダ」</h3>
+                            <p style="color:var(--orange-700);">（33分）</p>
+                            <p class="text-xs" style="color:var(--gray-600);">©TMS</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-green">14:45</div>
                         <div class="timeline-info">
-                            <h3 style="color: var(--green-800);">森のお話：「山と山の仕事」</h3>
-                            <p style="color: var(--green-700);">東京チェンソーズ 青木亮輔</p>
-                            <p style="color: var(--green-700);">（20分）</p>
+                            <h3 style="color:var(--green-800);">森のお話：「山と山の仕事」</h3>
+                            <p style="color:var(--green-700);">東京チェンソーズ 青木亮輔</p>
+                            <p style="color:var(--green-700);">（20分）</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-blue">15:10</div>
                         <div class="timeline-info">
-                            <h3 style="color: var(--blue-800);">映画：「SING」</h3>
-                            <p style="color: var(--blue-700);">（110分）</p>
-                            <p class="timeline-copyright">©2016 Universal Studios. All Rights Reserved.</p>
+                            <h3 style="color:var(--blue-800);">映画：「SING」</h3>
+                            <p style="color:var(--blue-700);">（110分）</p>
+                            <p class="text-xs" style="color:var(--gray-600);">©2016 Universal Studios. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time timeline-time-gray">17:00</div>
-                        <div class="timeline-info">
-                            <h3 style="color: var(--gray-800);">終了予定</h3>
-                        </div>
+                        <div class="timeline-info"><h3 style="color:var(--gray-800);">終了予定</h3></div>
                     </div>
                 </div>
             </div>
@@ -1403,226 +570,187 @@
     <section id="workshops" class="section workshops">
         <div class="section-container-wide">
             <h2 class="section-title">とうきょうの木を楽しむワークショップ</h2>
-            <div class="workshops-intro">
-                <p>※参加費はすべて無料です</p>
-            </div>
-            
+            <div class="workshops-intro"><p>※参加費はすべて無料です</p></div>
+
             <div class="workshop-group">
                 <h3>■東京チェンソーズ</h3>
                 <div class="workshop-grid workshop-grid-3">
                     <div class="workshop-card">
-                        <div class="workshop-card-header">
-                            <h4 class="workshop-card-title">●丸太アスレチック</h4>
-                        </div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●丸太アスレチック</h4></div>
                         <div class="workshop-card-content">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&h=300&fit=crop" alt="Log athletics" class="workshop-image">
-                            <p class="workshop-description">※会場内で随時参加できます</p>
+                            <img src="./image/workshop_maruta.png" alt="丸太アスレチックの様子" class="workshop-image">
+                            <p class="workshop-description"><span class="circle-note">会期中は随時参加できます</span></p>
                         </div>
                     </div>
-
                     <div class="workshop-card">
-                        <div class="workshop-card-header">
-                            <h4 class="workshop-card-title">●薪割りで焚き火を楽しむ</h4>
-                        </div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●薪割りで焚き火を楽しむ</h4></div>
                         <div class="workshop-card-content">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&h=300&fit=crop" alt="Wood splitting and bonfire" class="workshop-image">
-                            <p class="workshop-description">※会場内で随時参加できます</p>
+                            <img src="./image/workshop_makiwari.png" alt="薪割り体験" class="workshop-image">
+                            <p class="workshop-description">～焼きマシュマロ、焼き芋なども一緒に～<br><span class="circle-note">会期中は随時参加できます</span></p>
                         </div>
                     </div>
-
                     <div class="workshop-card">
-                        <div class="workshop-card-header">
-                            <h4 class="workshop-card-title">●山に入って森のお話</h4>
-                        </div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●山に入って森のお話</h4></div>
                         <div class="workshop-card-content">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=300&fit=crop" alt="Forest walk" class="workshop-image">
-                            <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植物や長年の森づくりの様子を見てもらいお話しする、40分ほどのプログラムです。<br>【定員15名程度　WEB＆当日受付】</p>
+                            <img src="./image/workshop_tokyochainsaws.png" alt="森のお話フィールドワーク" class="workshop-image">
+                            <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植林や長年の森づくりの姿を見てもらいお話しする、40分ほどのプログラムです。<br>［15時30分より実施／当日会場で受付／定員15名予定］</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="workshop-group">
-                <h3>■極戸材木店</h3>
+                <h3>■榎戸材木店</h3>
+                <div class="workshop-grid workshop-grid-2">
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●ヒノキの枝でバードコールづくり</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_hinoki.png" alt="ヒノキのバードコールづくり" class="workshop-image">
+                            <p class="workshop-description text-sm">ネジを回すと鳥のさえずりのような 音が出ます。自然とつながる工作体験です。（1回3分 ）<br>［受付 11─13時／14─16時／<br>定員 各40名（先着順）］</p>
+                        </div>
+                    </div>
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●どんぐりパチンコ</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_donguri.png" alt="どんぐりパチンコで遊ぶ様子" class="workshop-image">
+                            <p class="workshop-description text-sm">どんぐりを拾ったらパチンコで遊ぼう！<br>拾ったどんぐりは何の木のどんぐりかわかるかな？（1回5～10分）<br>［受付11─13時／14─16時］</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workshop-group">
                 <div class="workshop-grid workshop-grid-2">
                     <div>
                         <h3>■クレコ・ラボ</h3>
                         <div class="workshop-card">
-                            <div class="workshop-card-header">
-                                <h4 class="workshop-card-title">●スギ・ヒノキで、木のトンボづくり</h4>
-                            </div>
+                            <div class="workshop-card-header"><h4 class="workshop-card-title">●スギ・ヒノキで、木のトンボづくり</h4></div>
                             <div class="workshop-card-content">
-                                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=400&h=300&fit=crop" alt="Wooden dragonfly" class="workshop-image">
-                                <p class="workshop-description text-sm">組立簡単！ヒノキで作る木のトンボ。<br>外で思い切りフワッと飛ばそう！<br>【所要 約30分】<br>【受付 11時〜／14時〜】<br>【定員 各10名（事前予約制）】</p>
+                                <img src="./image/workshop_tonbo.png" alt="木のトンボを飛ばす様子" class="workshop-image">
+                                <p class="workshop-description text-sm">組立簡単！モクトンボをつく<br>ろう！ 少しの力でフワッと飛 びあがります。（1回5分）<br>［受付11─17時／定員<br>100名（先着順)］</p>
                             </div>
                         </div>
                     </div>
-
                     <div>
                         <h3>■TOKYO MOKUNAVI</h3>
                         <div class="workshop-card">
-                            <div class="workshop-card-header">
-                                <h4 class="workshop-card-title">●おえかきコーナー</h4>
-                            </div>
+                            <div class="workshop-card-header"><h4 class="workshop-card-title">●おえかきコーナー</h4></div>
                             <div class="workshop-card-content">
-                                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=400&h=300&fit=crop" alt="Drawing corner" class="workshop-image">
-                                <p class="workshop-description text-sm">新宿リビングデザインセンターOZONE内のMOKUNAVIショールームで展示します。<br>【1回10分／定員70名（先着順）】<br>【受付 10-17時】</p>
+                                <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールームの内観" class="workshop-image">
+                                <p class="workshop-description text-sm">新宿リビングデザインセンターOZONE内のショールームで展示します。（1回10分）<br>［受付10─17時／定員70名（先着順）］</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
     <section id="food" class="section food">
         <div class="section-container-wide">
             <h2 class="section-title">森のキッチンカー</h2>
-            
+
             <div class="food-group">
                 <h3>■つけ麺 五ノ神製作所</h3>
                 <div class="food-grid">
                     <div class="food-card">
-                        <div class="food-card-header">
-                            <h4 class="food-card-title">●奥多摩ヤマメのラーメン</h4>
-                        </div>
+                        <div class="food-card-header"><h4 class="food-card-title">●奥多摩ヤマメのラーメン</h4></div>
                         <div class="food-card-content">
-                            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=400&h=300&fit=crop" alt="Yamame ramen" class="food-image">
-                            <p class="food-description">奥多摩の養殖ヤマメをスープ&トッピングに贅沢に使った塩ラーメン</p>
+                            <img src="./image/food_ramen.png" alt="奥多摩ヤマメのラーメン" class="food-image">
+                            <p class="food-description">奥多摩の養殖ヤマメをスープ＆トッピングに贅沢に使った塩ラーメン</p>
                         </div>
                     </div>
-
                     <div class="food-card">
-                        <div class="food-card-header">
-                            <h4 class="food-card-title">●東京軍鶏パエリア</h4>
-                        </div>
+                        <div class="food-card-header"><h4 class="food-card-title">●東京軍鶏パエリア</h4></div>
                         <div class="food-card-content">
-                            <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=400&h=300&fit=crop" alt="Paella" class="food-image">
-                            <p class="food-description">あるる事務所特製で育った東京軍鶏の旨味スープで炊きあげるパエリア。<br>地場野菜、軍鶏肉の味わいをお楽しみください。</p>
+                            <img src="./image/food_piza.png" alt="東京軍鶏のパエリア" class="food-image">
+                            <p class="food-description">あきる野＆青梅で育った東京軍鶏の旨味スープで炊きあげるパエリア。地場野菜、軍鶏肉の味わいをお楽しみください。</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="food-group">
-                <h3>■だしまき玉子専門店 卵道</h3>
                 <div class="food-grid">
-                    <div class="food-card">
-                        <div class="food-card-header">
-                            <h4 class="food-card-title">●だしまきたまご定食</h4>
-                        </div>
-                        <div class="food-card-content">
-                            <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=400&h=300&fit=crop" alt="Dashimaki tamago" class="food-image">
-                            <p class="food-description">職人が丁寧に焼き上げる本格だしまきたまご定食</p>
+                    <div>
+                        <h3>■自然人村</h3>
+                        <div class="food-card">
+                            <div class="food-card-header"><h4 class="food-card-title">●あじさい茶＆森のドリンクバー</h4></div>
+                            <div class="food-card-content">
+                                <img src="./image/food_azisai.png" alt="あじさい茶とドリンク" class="food-image">
+                                <p class="food-description">「南沢あじさい山」名物あじさい茶や、オリジナルジェラート、ソフトドリンクにアルコールまでご用意。</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="food-card">
-                        <div class="food-card-header">
-                            <h4 class="food-card-title">●自家製プリン</h4>
-                        </div>
-                        <div class="food-card-content">
-                            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=400&h=300&fit=crop" alt="Homemade pudding" class="food-image">
-                            <p class="food-description">卵の美味しさを活かした手作りプリン</p>
+                    <div>
+                        <h3>■kaze labo</h3>
+                        <div class="food-card">
+                            <div class="food-card-header"><h4 class="food-card-title">●オリジナルのお酒</h4></div>
+                            <div class="food-card-content">
+                                <img src="./image/food_azisai.png" alt="kaze labo オリジナルドリンク（イメージ）" class="food-image">
+                                <p class="food-description">オリジナルのお酒</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="food-group">
-                <h3>■do-mo キッチン</h3>
-                <div class="food-grid">
-                    <div class="food-card">
-                        <div class="food-card-header">
-                            <h4 class="food-card-title">●あじさい茶＆森のドリンクバー</h4>
-                        </div>
-                        <div class="food-card-content">
-                            <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=400&h=300&fit=crop" alt="Hydrangea tea and drinks" class="food-image">
-                            <p class="food-description">地元の1万株の「南沢あじさい山」名物あじさい茶や、オリジナルゼリードリンク、ソフトドリンクやアルコールまで豊富にご用意いたします。</p>
-                        </div>
-                    </div>
-
-                    <div class="food-card">
-                        <div class="food-card-header">
-                            <h4 class="food-card-title">●kaze labo</h4>
-                        </div>
-                        <div class="food-card-content">
-                            <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=400&h=300&fit=crop" alt="Original sake" class="food-image">
-                            <p class="food-description">オリジナルのお酒</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
     <section id="survey" class="section survey">
         <div class="section-container">
             <h2 class="section-title">事前アンケートにご協力ください</h2>
-            <div class="survey-card">
-                <p class="survey-description">より良いイベント運営のため、事前アンケートへのご協力をお願いいたします。皆様のご意見を参考に、さらに充実したプログラムをご提供いたします。</p>
-                <button class="survey-button">アンケートに回答する</button>
+            <div class="survey-grid">
+                <div class="survey-card">
+                    <p class="survey-description">事前アンケート：専用サイトで事前に回答した方は、来場時にノベルティをプレゼント。</p>
+                    <button class="survey-button">アンケートに回答する</button>
+                </div>
+                <div>
+                    <img src="./image/novelty.png" alt="ノベルティ（トートバッグ）イメージ" class="novelty-image">
+                </div>
             </div>
         </div>
     </section>
 
     <section id="partnerships" class="section partnerships">
         <div class="partnerships-decorative">
-            <svg viewBox="0 0 200 200" style="width: 100%; height: 100%;">
-                <path d="M20,20 Q180,20 180,180 Q20,180 20,20" fill="currentColor" />
-            </svg>
+            <svg viewBox="0 0 200 200" style="width:100%;height:100%;"><path d="M20,20 Q180,20 180,180 Q20,180 20,20" fill="currentColor"/></svg>
         </div>
-        
         <div class="partnerships-container">
             <div class="partnerships-header">
                 <h2 class="partnerships-title">連携企画</h2>
                 <p class="partnerships-subtitle">同日・同時開催イベント</p>
             </div>
-            
+
             <div class="partnerships-grid">
                 <div class="partnership-card">
                     <div class="partnership-header">
                         <div class="partnership-number partnership-number-pink">1</div>
-                        <div>
-                            <h3 class="partnership-title">山里川マルシェ ～手作りクラフト＆アウトドア～</h3>
-                        </div>
+                        <div><h3 class="partnership-title">山里川マーケット ～手作りクラフト＆アウトドア～</h3></div>
                     </div>
-                    
-                    <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=500&h=300&fit=crop" alt="Local market" class="partnership-image">
-                    
+                    <img src="./image/movie_3.png" alt="マーケット イメージ" class="partnership-image">
                     <div class="partnership-details">
-                        <div class="partnership-detail">
-                            <span class="partnership-badge">会場</span>
-                            <span>フレア五日市（JR 武蔵五日市駅前）</span>
-                        </div>
-                        <div class="partnership-detail">
-                            <span class="partnership-badge">開催日時</span>
-                            <span>2025年10月5日（日） 11時 ― 17時</span>
-                        </div>
-                        <p class="partnership-description">仮題 TOKYO MOKUNAVI おえかきコーナーで描いた絵が後日、ショールームで飾られます。</p>
+                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span>フレア五日市（JR 武蔵五日市駅前）</span></div>
+                        <div class="partnership-detail"><span class="partnership-badge">開催日時</span><span>2025年10月5日（日） 11時 ― 17時</span></div>
+                        <p class="partnership-description">東京の山里川の自然の魅力を感じられるマーケットがスタート<br>
+                        クラフト作品や体験ツアーの情報などが会場にギュッと凝縮！<br>
+                        田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」でさっそく相談にも、<br>
+                        のってもらえます！！</p>
                     </div>
                 </div>
 
                 <div class="partnership-card">
                     <div class="partnership-header">
                         <div class="partnership-number partnership-number-orange">2</div>
-                        <div>
-                            <h3 class="partnership-title">おえかきの MOKUNAVI ショールーム展示</h3>
-                        </div>
+                        <div><h3 class="partnership-title">おえかきの MOKUNAVI ショールーム展示</h3></div>
                     </div>
-                    
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=500&h=300&fit=crop" alt="Showroom" class="partnership-image">
-                    
+                    <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールーム展示" class="partnership-image">
                     <div class="partnership-details">
-                        <div class="partnership-detail">
-                            <span class="partnership-badge">会場</span>
-                            <span>新宿リビングデザインセンター OZONE</span>
-                        </div>
-                        <div class="partnership-detail">
-                            <span class="partnership-badge">展示期間</span>
-                            <span>2025年10月9日（木） ― 11月4日（火）</span>
-                        </div>
-                        <p class="partnership-description">仮 TOKYO MOKUNAVI おえかきコーナーで描いた絵が後日、ショールームで飾られます。</p>
+                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span>新宿リビングデザインセンター OZONE 7階</span></div>
+                        <div class="partnership-detail"><span class="partnership-badge">展示期間</span><span>2025年10月9日（木） ― 11月4日（火）</span></div>
+                        <p class="partnership-description">おえかきコーナーで描いた絵が後日、ショールームで飾られます。</p>
                     </div>
                 </div>
             </div>
@@ -1634,47 +762,36 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h3>主催・後援</h3>
-                    <div>
-                        <p>主催：多摩あきがわライブフォレスト</p>
-                        <p>後援：東京都</p>
-                        <p>後援：あきる野市</p>
-                        <p>協力：東京森林組合</p>
-                    </div>
+                    <p>主催： TOKYO MOKUNAVI</p>
+                    <p>後援予定： あきる野市、檜原村、日の出町、あきる野市教育委員会、檜原村教育委員会、日の出町教育委員会</p>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>アクセス</h3>
                     <div>
-                        <div style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 0.25rem; flex-shrink: 0;">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
+                        <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem;">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:.25rem;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                             <div>
                                 <p>多摩あきがわライブフォレスト自然人村</p>
-                                <p class="text-sm">〒190-0174 東京都あきる野市乙津810</p>
+                                <p class="text-xs">〒190-0174 東京都あきる野市深沢198</p>
                             </div>
                         </div>
-                        <p class="text-sm">JR五日市線「武蔵増戸駅」よりバス15分</p>
-                        <p class="text-sm">駐車場完備（無料）</p>
+                        <p class="text-xs">JR五日市線「武蔵五日市駅」より 徒歩：約20分／無料シャトルバス：約10分（約20分間隔で運行）</p>
+                        <p class="text-xs">駐車場完備（無料）</p>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>お問い合わせ</h3>
                     <div>
-                        <p>TEL: 042-596-2371</p>
-                        <p>Email: info@liveforest.com</p>
-                        <p class="text-sm">受付時間：9:00-17:00（平日）</p>
+                        <p>E-mail：entry@earth-garden.jp</p>
+                        <p class="text-xs">受付時間：平日10:00～17:00（12:00～13:00を除く）</p>
+                        <p class="text-xs">＊お返事までに数日お時間いただく場合もございます。</p>
                     </div>
                 </div>
             </div>
-            
             <div class="footer-separator"></div>
-            
-            <div class="footer-copyright">
-                <p>&copy; 2025 木もれびシネマの森. All rights reserved.</p>
-            </div>
+            <div style="text-align:center;color:#dcfce7;"><p>&copy; 2025 木もれびシネマの森. All rights reserved.</p></div>
         </div>
     </footer>
 
@@ -1696,49 +813,30 @@
             }
         });
 
-        // Navigation item clicks
+        // Smooth scroll + active highlight
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = item.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-                
-                // Close mobile menu
-                navMenu.classList.remove('active');
-                menuIcon.style.display = 'block';
-                closeIcon.style.display = 'none';
+                if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                navMenu.classList.remove('active'); menuIcon.style.display='block'; closeIcon.style.display='none';
             });
         });
 
-        // Active section highlighting
-        function updateActiveSection() {
-            const sections = ['home', 'overview', 'movies', 'timetable', 'workshops', 'food', 'survey', 'partnerships'];
+        function updateActiveSection(){
+            const sections = ['home','overview','films','timetable','workshops','food','survey','partnerships'];
             const scrollPosition = window.scrollY + 100;
-
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = document.getElementById(sections[i]);
-                if (section && section.offsetTop <= scrollPosition) {
-                    // Update active nav item
-                    navItems.forEach(item => {
-                        item.classList.remove('active');
-                        if (item.getAttribute('data-section') === sections[i]) {
-                            item.classList.add('active');
-                        }
-                    });
+            for (let i=sections.length-1;i>=0;i--){
+                const s = document.getElementById(sections[i]);
+                if (s && s.offsetTop <= scrollPosition){
+                    navItems.forEach(it => { it.classList.remove('active'); if (it.getAttribute('data-section')===sections[i]) it.classList.add('active'); });
                     break;
                 }
             }
         }
-
-        // Scroll event listener
         window.addEventListener('scroll', updateActiveSection);
-
-        // Initialize active section on page load
         updateActiveSection();
     </script>
 </body>
