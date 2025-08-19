@@ -356,18 +356,6 @@
             .footer-section .icon { display: none; }
         }
 
-        .film-img.img-2 {
-          display: none;
-        }
-        
-        /* スマホ時だけ2枚目を表示し、縦に並ぶ */
-        @media (max-width: 768px) {
-          .film-img.img-2 {
-            display: block;
-            margin-top: 1rem;  /* 画像間の余白 */
-          }
-        }
-
     </style>
 </head>
 <body>
@@ -478,10 +466,7 @@
                 <div class="film-card">
                   <div class="film-head">パンダコパンダ</div>
                   <div class="film-body">
-                    <div class="film-imgs">
-                      <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ1">
-                      <img class="film-img" src="./image/movie_pandakopanda_2.png" alt="パンダコパンダ2">
-                    </div>
+                    <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
                     <details class="film-accordion">
                       <summary>作品詳細</summary>
                       <div class="panel">
@@ -861,6 +846,7 @@
     </script>
 </body>
 </html>
+
 
 
 
