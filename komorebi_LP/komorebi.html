@@ -47,11 +47,10 @@
         .hero-bg img{width:100%;height:100%;object-fit:cover;}
         .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.2);}
         .hero-content{position:relative;z-index:10;text-align:center;color:#fff;max-width:1024px;margin:0 auto;padding:5rem 1rem 0;}
-        /* ▼ MODIFIED - Badge Style: Ellipse shape with new text */
         .free-badge-new{
             background: var(--white);
             color: var(--green-700);
-            border-radius: 9999px; /* For oval shape */
+            border-radius: 9999px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
             border: 4px solid #fff;
             padding: 0.75rem 2.5rem;
@@ -84,7 +83,6 @@
         .overview-text p{color:var(--green-700);font-weight:500;}
         .overview-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
         @media (min-width:768px){.overview-grid{grid-template-columns:1fr 1fr;}}
-        /* ▼ ADDED - Map image style */
         .overview-map-image {
             width: 100%;
             height: auto;
@@ -93,7 +91,6 @@
             display: block;
         }
 
-        /* ▼ ④ 概要の強調情報（添付画像風） */
         .event-info{background:#fff;border:2px solid var(--green-200);border-radius:.75rem;padding:1rem 1.25rem; height: 100%;}
         .event-info-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;}
         .event-date{display:flex;align-items:center;gap:.5rem;}
@@ -105,7 +102,7 @@
         .event-venue{font-weight:800;color:var(--green-800);}
         .event-addr{font-size:.85rem;color:var(--gray-600);}
 
-        /* ▼ ② 新「上映作品」カード */
+        /* Films */
         .films{background:#fff;}
         .films-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
         @media (min-width:768px){.films-grid{grid-template-columns:repeat(3,1fr);}}
@@ -224,6 +221,87 @@
         .footer-separator{height:1px;background:var(--green-600);margin:2rem 0;}
         .text-xs{font-size:.75rem;}
         html{scroll-behavior:smooth;}
+        
+        /* =================================== */
+        /* ▼▼▼【追加】スマホ対応スタイル ▼▼▼ */
+        /* =================================== */
+        @media (max-width: 767px) {
+            /* -- 文字サイズの調整 -- */
+            h1, .hero-title-new { font-size: 2.5rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.2rem; }
+            p { font-size: 0.9rem; }
+            .hero-tagline-new { font-size: 1rem; }
+            .hero-content { padding-top: 4rem; }
+            .free-badge-new { font-size: 1rem; padding: 0.6rem 2rem;}
+
+            /* -- 全体の余白調整 -- */
+            .section { padding: 3rem 1rem; }
+
+            /* -- 概要セクション -- */
+            .overview-text br { display: none; }
+            .event-info { padding: 1rem; }
+            .event-info-row:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .event-openclose {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .event-date .md { font-size: 2rem; }
+
+            /* -- タイムテーブルセクション -- */
+            .timeline-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .timeline-time {
+                font-size: 1rem;
+                padding: 0.25rem 0.75rem;
+            }
+            .timeline-item { padding: 1rem; }
+            .timetable-title-badge h2 { font-size: 1.3rem; }
+            
+            /* -- 上映作品セクション -- */
+            .films-grid { gap: 1.5rem; }
+            .film-img { height: auto; aspect-ratio: 2 / 3; }
+
+            /* -- ワークショップ & キッチンカーセクション -- */
+            .workshop-card-header, .food-card-header { padding: 1rem 1rem 0; }
+            .workshop-card-content, .food-card-content { padding: 0 1rem 1rem; }
+            .workshop-image, .food-image { height: 10rem; }
+
+            /* -- アンケートセクション -- */
+            .survey-grid { text-align: center; }
+            .survey-card { text-align: center; }
+            .survey-button { width: 100%; max-width: 320px; }
+
+            /* -- 連携企画セクション -- */
+            .partnership-card { padding: 1.25rem; }
+            .partnership-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .partnership-details { align-items: center; text-align: center; gap: 0.75rem;}
+            .partnership-detail { display: flex; flex-direction: column; gap: 0.25rem; }
+            .partnership-description { text-align: left; }
+
+            /* -- フッターセクション -- */
+            .footer-grid { text-align: center; }
+            .footer-section > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-section .icon { display: none; }
+        }
+
     </style>
 </head>
 <body>
