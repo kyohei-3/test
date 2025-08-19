@@ -472,7 +472,21 @@
                       <source srcset="./image/movie_pandakopanda_3.png" media="(max-width: 767px)">
                       <!-- PC用（デフォルト） -->
                       <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
-                    </picture>                
+                    </picture>
+                    <picture>
+                      <!-- スマホ用：閾値を 768px に、type 付与、キャッシュバスター付与 -->
+                      <source
+                        media="(max-width: 768px)"
+                        type="image/png"
+                        srcset="./image/movie_pandakopanda_3.png?v=1">
+                      <!-- PC用（デフォルト） -->
+                      <img
+                        class="film-img"
+                        src="./image/movie_pandakopanda_1.png?v=1"
+                        alt="パンダコパンダ"
+                        loading="lazy"
+                        decoding="async">
+                    </picture>     
                     <details class="film-accordion">
                       <summary>作品詳細</summary>
                       <div class="panel">
@@ -852,6 +866,7 @@
     </script>
 </body>
 </html>
+
 
 
 
