@@ -55,11 +55,7 @@
         .hero-bg img{width:100%;height:100%;object-fit:cover;}
         .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);}
         .hero-content{position:relative;z-index:10;text-align:center;color:var(--white);max-width:1024px;margin:0 auto;padding:5rem 1rem 0;}
-        
-        /* ▼▼▼【追加】デフォルト（スマホ）ではSP画像を表示 ▼▼▼ */
-        .hero-bg .pc-only { display: none; }
-        .hero-bg .sp-only { display: block; }
-        
+                
         .free-badge-new{
             background: var(--white);
             color: var(--color-main);
@@ -92,10 +88,6 @@
             .nav-menu.active{display:flex;}
             .mobile-menu-btn{display:none;}
             .hero-content{padding-top:6rem !important;}
-            
-            /* ▼▼▼【追加】PCではPC画像を表示 ▼▼▼ */
-            .hero-bg .pc-only { display: block; }
-            .hero-bg .sp-only { display: none; }
         }
 
         /* Sections */
@@ -387,14 +379,11 @@
 
     <section id="home" class="hero">
         <div class="hero-bg">
-            <img class="pc-only" src="./image/pc_mainvisual.png" alt="森の中の映画祭のメインビジュアル">
-            <img class="sp-only" src="./image/sp_mainvisual.png" alt="森の中の映画祭のメインビジュアル">
+            <img src="./image/mainvisual.png" alt="森の中の映画祭のメインビジュアル">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title-new">木もれびシネマの森</h1>
-            <p class="hero-tagline-new">～映画と森のクラフトフェスティバル～</p>
-            <div style="margin-top: 2.5rem;">
+            <div>
                  <div class="free-badge-new">
                      <span class="free-badge-small-text">入場・鑑賞</span>
                      <span class="free-badge-large-text">無料</span>
