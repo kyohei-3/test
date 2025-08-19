@@ -18,15 +18,19 @@
         /* Reset and base styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* ▼▼▼【変更】カラーパレットを指定の色で再定義 ▼▼▼ */
         :root{
-            --green-50:#f0fdf4;--green-100:#dcfce7;--green-200:#bbf7d0;--green-400:#4ade80;
-            --green-500:#22c55e;--green-600:#16a34a;--green-700:#15803d;--green-800:#166534;
-            --orange-100:#ffedd5;--orange-200:#fed7aa;--orange-500:#f97316;--orange-600:#ea580c;--orange-700:#c2410c;--orange-800:#9a3412;
-            --blue-100:#dbeafe;--blue-500:#3b82f6;--blue-600:#2563eb;--blue-700:#1d4ed8;--blue-800:#1e40af;
-            --gray-100:#f3f4f6;--gray-500:#6b7280;--gray-600:#4b5563;--gray-800:#1f2937;--white:#fff;--black:#000;
+            --color-main: #006532;        /* メインのグリーン */
+            --color-sub: #5E4E48;         /* サブのブラウン（主にテキスト） */
+            --color-accent: #EFE07E;       /* アクセントの黄色 */
+            --color-accent-dark: #DDCB6A;   /* アクセントの濃い黄色（ホバー用） */
+            --color-background: #F4F6F4;   /* 薄いグリーン系の背景色 */
+            --color-border: #CCE0D5;       /* ボーダー用のグリーン */
+            --white: #fff;
+            --black: #000;
         }
 
-        body{font-family:'M PLUS Rounded 1c',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#333;background:linear-gradient(to bottom,var(--green-50),var(--white));min-height:100vh;}
+        body{font-family:'M PLUS Rounded 1c',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:var(--color-sub);background:linear-gradient(to bottom,var(--color-background),var(--white));min-height:100vh;}
 
         /* Typography */
         h1{font-size:2.5rem;font-weight:900;line-height:1.2;}
@@ -37,13 +41,13 @@
         /* Navigation */
         .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);transition:.3s;}
         .nav-container{max-width:1280px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
-        .nav-logo{color:var(--green-800);font-weight:900;font-size:1.125rem;}
+        .nav-logo{color:var(--color-main);font-weight:900;font-size:1.125rem;}
         .nav-menu{display:none;gap:1.5rem;}
-        .nav-menu.active{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:1rem;border-top:1px solid var(--green-100);}
-        .nav-item{padding:.5rem .75rem;border-radius:.375rem;transition:.2s;cursor:pointer;font-weight:500;color:var(--gray-600);text-decoration:none;}
-        .nav-item:hover{color:var(--green-800);background:var(--green-50);}
-        .nav-item.active{color:var(--green-800);background:var(--green-100);}
-        .mobile-menu-btn{display:block;background:none;border:none;color:var(--green-800);padding:.5rem;cursor:pointer;}
+        .nav-menu.active{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:1rem;border-top:1px solid var(--color-border);}
+        .nav-item{padding:.5rem .75rem;border-radius:.375rem;transition:.2s;cursor:pointer;font-weight:500;color:var(--color-sub);text-decoration:none;}
+        .nav-item:hover{color:var(--color-main);background:var(--color-background);}
+        .nav-item.active{color:var(--color-main);background:var(--color-border);}
+        .mobile-menu-btn{display:block;background:none;border:none;color:var(--color-main);padding:.5rem;cursor:pointer;}
         @media (min-width:768px){
             .nav-menu{display:flex;position:static;background:none;flex-direction:row;padding:0;border:none;}
             .nav-menu.active{display:flex;}
@@ -54,14 +58,14 @@
         .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
         .hero-bg{position:absolute;inset:0;z-index:0;}
         .hero-bg img{width:100%;height:100%;object-fit:cover;}
-        .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.2);}
-        .hero-content{position:relative;z-index:10;text-align:center;color:#fff;max-width:1024px;margin:0 auto;padding:5rem 1rem 0;}
+        .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);}
+        .hero-content{position:relative;z-index:10;text-align:center;color:var(--white);max-width:1024px;margin:0 auto;padding:5rem 1rem 0;}
         .free-badge-new{
             background: var(--white);
-            color: var(--green-700);
+            color: var(--color-main);
             border-radius: 9999px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
-            border: 4px solid #fff;
+            border: 4px solid var(--white);
             padding: 0.6rem 2.5rem;
             display: inline-flex;
             flex-direction: column;
@@ -74,13 +78,12 @@
             font-weight: 700;
             line-height: 1.2;
         }
-        /* ▼▼▼【変更】無料バッジの文字サイズバランスを調整 ▼▼▼ */
         .free-badge-large-text {
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1;
         }
-        .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:#fff;}
+        .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:var(--white);}
         .hero-tagline-new{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:2rem;}
         .icon{width:1.25rem;height:1.25rem;display:inline-block;}
         @media (min-width:768px){
@@ -91,12 +94,12 @@
         .section{padding:4rem 1rem;}
         .section-container{max-width:1024px;margin:0 auto;}
         .section-container-wide{max-width:1280px;margin:0 auto;}
-        .section-title{text-align:center;margin-bottom:2rem;color:var(--green-800);font-weight:900;}
+        .section-title{text-align:center;margin-bottom:2rem;color:var(--color-main);font-weight:900;}
 
         /* Overview */
-        .overview{background:var(--green-50);}
+        .overview{background:var(--color-background);}
         .overview-text{display:flex;flex-direction:column;gap:1rem;text-align:left;}
-        .overview-text p{color:var(--green-700);font-weight:500;}
+        .overview-text p{color:var(--color-sub);font-weight:500;}
         .overview-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
         @media (min-width:768px){.overview-grid{grid-template-columns:1fr 1fr;}}
         .overview-map-image {
@@ -106,7 +109,7 @@
             display: block;
         }
         .event-info{
-            background:#fff;
+            background:var(--white);
             border-radius:.75rem;
             padding:1rem 1.25rem; 
             height: 100%;
@@ -114,93 +117,91 @@
         }
         .event-info-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;}
         .event-date{display:flex;align-items:center;gap:.5rem;}
-        .event-date .y{font-size:.9rem;color:var(--green-700);font-weight:800;}
-        .event-date .md{font-size:2.5rem;font-weight:900;color:var(--green-800);letter-spacing:.02em;}
-        .event-date .w{border:2px solid var(--green-600);border-radius:9999px;padding:.1rem .55rem;font-weight:900;color:var(--green-800);}
-        .event-openclose{display:flex;gap:1rem;font-weight:900;color:var(--green-800);}
-        .event-openclose span{background:var(--green-100);padding:.25rem .6rem;border-radius:.375rem;}
-        .event-venue{font-weight:800;color:var(--green-800);}
-        .event-addr{font-size:.85rem;color:var(--gray-600);}
+        .event-date .y{font-size:.9rem;color:var(--color-main);font-weight:800;}
+        .event-date .md{font-size:2.5rem;font-weight:900;color:var(--color-main);letter-spacing:.02em;}
+        .event-date .w{border:2px solid var(--color-main);border-radius:9999px;padding:.1rem .55rem;font-weight:900;color:var(--color-main);}
+        .event-openclose{display:flex;gap:1rem;font-weight:900;color:var(--color-main);}
+        .event-openclose span{background:var(--color-background);padding:.25rem .6rem;border-radius:.375rem;}
+        .event-venue{font-weight:800;color:var(--color-main);}
+        .event-addr{font-size:.85rem;color:var(--color-sub);}
 
         /* Films */
-        .films{background:#fff;}
+        .films{background:var(--white);}
         .films-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
         @media (min-width:768px){.films-grid{grid-template-columns:repeat(3,1fr);}}
         .film-card{
             border-radius:.5rem;
             overflow:hidden;
-            background:#fff;
+            background:var(--white);
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .film-head{
             padding:1rem 1rem 0;
             text-align:center;
-            color:var(--green-800);
+            color:var(--color-main);
             font-weight:900;
             font-size: 1.25rem;
         }
         .film-body{padding:0 1rem 1rem;}
         .film-img{width:100%;height:200px;object-fit:cover;border-radius:.5rem;margin:0 0 .75rem;}
-        .film-accordion{border:1px solid var(--green-200);border-radius:.5rem;overflow:hidden;}
-        .film-accordion summary{list-style:none;cursor:pointer;padding:.6rem .75rem;font-weight:900;color:var(--green-800);background:var(--green-50);}
+        .film-accordion{border:1px solid var(--color-border);border-radius:.5rem;overflow:hidden;}
+        .film-accordion summary{list-style:none;cursor:pointer;padding:.6rem .75rem;font-weight:900;color:var(--color-main);background:var(--color-background);}
         .film-accordion summary::-webkit-details-marker{display:none;}
-        .film-accordion .panel{padding:.5rem .75rem .75rem;font-size:.9rem;color:var(--green-700);}
+        .film-accordion .panel{padding:.5rem .75rem .75rem;font-size:.9rem;color:var(--color-sub);}
 
         /* Timetable */
-        .timetable{background:linear-gradient(135deg,var(--green-400),#14b8a6,var(--blue-500));position:relative;overflow:hidden;}
+        .timetable{background:var(--color-main);position:relative;overflow:hidden;}
         .timetable-decorative{position:absolute;inset:0;opacity:.1;}
-        .decorative-circle{position:absolute;border-radius:50%;background:#fff;}
+        .decorative-circle{position:absolute;border-radius:50%;background:var(--white);}
         .decorative-circle-1{top:2.5rem;left:2.5rem;width:5rem;height:5rem;}
-        .decorative-circle-2{top:8rem;right:5rem;width:4rem;height:4rem;background:#fde047;}
+        .decorative-circle-2{top:8rem;right:5rem;width:4rem;height:4rem;background:var(--color-accent);}
         .decorative-circle-3{bottom:5rem;left:8rem;width:3rem;height:3rem;background:#f9a8d4;}
         .decorative-circle-4{bottom:10rem;right:2.5rem;width:6rem;height:6rem;background:#c084fc;}
         .timetable-container{max-width:1024px;margin:0 auto;position:relative;z-index:10;}
         .timetable-header{text-align:center;margin-bottom:3rem;}
-        .timetable-subtitle{color:#fff;font-size:1.125rem;font-weight:700;margin-bottom:1rem;}
-        .timetable-title-badge{display:inline-block;background:#fff;padding:.75rem 2rem;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
-        .timetable-title-badge h2{color:var(--green-800);font-size:1.5rem;font-weight:900;letter-spacing:.1em;}
+        .timetable-subtitle{color:var(--white);font-size:1.125rem;font-weight:700;margin-bottom:1rem;}
+        .timetable-title-badge{display:inline-block;background:var(--white);padding:.75rem 2rem;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .timetable-title-badge h2{color:var(--color-main);font-size:1.5rem;font-weight:900;letter-spacing:.1em;}
         .timeline{display:flex;flex-direction:column;gap:1rem;}
-        .timeline-item{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .timeline-item{background:var(--white);border-radius:1rem;padding:1.5rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
         .timeline-content{display:flex;align-items:flex-start;gap:1rem;}
-        .timeline-time{color:#fff;padding:.5rem 1rem;border-radius:9999px;font-weight:900;font-size:1.125rem;flex-shrink:0;}
-        .timeline-time-green{background:var(--green-500);}
-        .timeline-time-orange{background:var(--orange-500);}
-        .timeline-time-blue{background:var(--blue-500);}
-        .timeline-time-gray{background:var(--gray-500);}
+        .timeline-time{color:var(--color-sub); background:var(--color-accent); padding:.5rem 1rem;border-radius:9999px;font-weight:900;font-size:1.125rem;flex-shrink:0;}
+        .timeline-item h3 {color: var(--color-main);}
+        .timeline-item p {color: var(--color-sub);}
 
         /* Workshops */
-        .workshops{background:#fff;}
+        .workshops{background:var(--white);}
         .workshops-intro{text-align:center;margin-bottom:2rem;}
-        .workshops-intro p{color:var(--green-700);font-weight:700;font-size:1.125rem;}
+        .workshops-intro p{color:var(--color-sub);font-weight:700;font-size:1.125rem;}
         .workshop-group{margin-bottom:3rem;}
-        .workshop-group h3{color:var(--green-800);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
+        .workshop-group h3{color:var(--color-main);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
         .workshop-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
         @media (min-width:768px){.workshop-grid-3{grid-template-columns:repeat(3,1fr)}.workshop-grid-2{grid-template-columns:repeat(2,1fr)}}
-        .workshop-card{border:2px solid var(--green-200);border-radius:.5rem;overflow:hidden;transition:box-shadow .3s ease;}
+        .workshop-card{border:2px solid var(--color-border);border-radius:.5rem;overflow:hidden;transition:box-shadow .3s ease;}
         .workshop-card:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
         .workshop-card-header{padding:1.5rem 1.5rem 0;}
-        .workshop-card-title{text-align:center;color:var(--green-800);font-weight:900;margin-bottom:1rem;}
+        .workshop-card-title{text-align:center;color:var(--color-main);font-weight:900;margin-bottom:1rem;}
         .workshop-card-content{padding:0 1.5rem 1.5rem;}
         .workshop-image{width:100%;height:12rem;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
-        .workshop-description{color:var(--green-700);text-align:center;font-weight:500;}
+        .workshop-description{color:var(--color-sub);text-align:center;font-weight:500;}
         .text-sm{font-size:.875rem;}
         .text-xs{font-size:.75rem;}
 
         /* Circle badge */
-        .circle-note{display:inline-block;padding:.1rem .6rem;border:2px solid var(--green-500);border-radius:9999px;color:var(--green-800);background:#fff;font-size:.85rem;font-weight:700;}
+        .circle-note{display:inline-block;padding:.1rem .6rem;border:2px solid var(--color-main);border-radius:9999px;color:var(--color-main);background:var(--white);font-size:.85rem;font-weight:700;}
 
         /* Food */
-        .food{background:var(--green-50);}
+        .food{background:var(--color-background);}
         .food-group{margin-bottom:2rem;}
-        .food-group h3{color:var(--green-800);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
+        .food-group h3{color:var(--color-main);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
         .food-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
         @media (min-width:768px){.food-grid{grid-template-columns:repeat(2,1fr)}}
-        .food-card{border:2px solid var(--green-200);border-radius:.5rem;overflow:hidden;background:#fff;}
+        .food-card{border:2px solid var(--color-border);border-radius:.5rem;overflow:hidden;background:var(--white);}
         .food-card-header{padding:1.5rem 1.5rem 0;}
-        .food-card-title{color:var(--green-800);font-weight:900;}
+        .food-card-title{color:var(--color-main);font-weight:900;}
         .food-card-content{padding:0 1.5rem 1.5rem;}
         .food-image{width:100%;height:12rem;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
-        .food-description{color:var(--green-700);font-weight:500;}
+        .food-description{color:var(--color-sub);font-weight:500;}
 
         /* Survey */
         .survey-grid {
@@ -217,10 +218,10 @@
             padding: 0;
             text-align: left;
         }
-        .survey-description{color:var(--green-700);margin-bottom:1.5rem;font-weight:500;}
+        .survey-description{color:var(--color-sub);margin-bottom:1.5rem;font-weight:500;}
         .survey-button{
-            background:var(--orange-500);
-            color:#fff;
+            background:var(--color-accent);
+            color:var(--color-sub);
             padding:1rem 2rem;
             border:none;
             border-radius:.5rem;
@@ -230,37 +231,35 @@
             transition:background-color .3s ease;
             box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
         }
-        .survey-button:hover{background:var(--orange-600);}
-        .novelty-image{width:100%;max-width:520px;height:auto;border-radius:.5rem;border:2px solid var(--green-200);}
+        .survey-button:hover{background:var(--color-accent-dark);}
+        .novelty-image{width:100%;max-width:520px;height:auto;border-radius:.5rem;border:2px solid var(--color-border);}
 
         /* Partnerships */
-        .partnerships{background:var(--green-500);color:#fff;position:relative;overflow:hidden;}
+        .partnerships{background:var(--color-main);color:var(--white);position:relative;overflow:hidden;}
         .partnerships-decorative{position:absolute;top:0;right:0;width:16rem;height:16rem;opacity:.2;}
         .partnerships-container{max-width:1280px;margin:0 auto;position:relative;z-index:10;}
         .partnerships-header{text-align:center;margin-bottom:3rem;}
-        .partnerships-title{font-weight:900;color:#fff;margin-bottom:1rem;}
+        .partnerships-title{font-weight:900;color:var(--white);margin-bottom:1rem;}
         .partnerships-subtitle{font-weight:700;font-size:1.125rem;}
         .partnerships-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
         @media (min-width:768px){.partnerships-grid{grid-template-columns:repeat(2,1fr)}}
-        .partnership-card{background:#fff;border-radius:.5rem;padding:1.5rem;color:var(--green-800);}
+        .partnership-card{background:var(--white);border-radius:.5rem;padding:1.5rem;color:var(--color-main);}
         .partnership-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;}
-        .partnership-number{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.25rem;color:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);flex-shrink:0;}
-        .partnership-number-pink{background:#f472b6;}
-        .partnership-number-orange{background:var(--orange-500);}
-        .partnership-title{font-weight:900;font-size:1.125rem;color:var(--green-800);}
+        .partnership-number{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.25rem;color:var(--color-sub);background:var(--color-accent);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);flex-shrink:0;}
+        .partnership-title{font-weight:900;font-size:1.125rem;color:var(--color-main);}
         .partnership-image{width:100%;height:12rem;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
-        .partnership-details{display:flex;flex-direction:column;gap:.5rem;color:var(--green-700);font-weight:500;}
-        .partnership-badge{background:var(--gray-100);color:var(--green-800);padding:.25rem .5rem;border-radius:.25rem;font-size:.875rem;font-weight:700;}
+        .partnership-details{display:flex;flex-direction:column;gap:.5rem;color:var(--color-sub);font-weight:500;}
+        .partnership-badge{background:var(--color-background);color:var(--color-main);padding:.25rem .5rem;border-radius:.25rem;font-size:.875rem;font-weight:700;}
         .partnership-description{font-size:.875rem;margin-top:.75rem;}
 
         /* Footer */
-        .footer{background:var(--green-800);color:#fff;padding:3rem 1rem;}
+        .footer{background:var(--color-main);color:var(--white);padding:3rem 1rem;}
         .footer-container{max-width:1280px;margin:0 auto;}
         .footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2rem;}
         @media (min-width:768px){.footer-grid{grid-template-columns:repeat(3,1fr)}}
-        .footer-section h3{margin-bottom:1rem;font-weight:700;}
-        .footer-section p{color:#dcfce7;font-weight:500;margin-bottom:.5rem;}
-        .footer-separator{height:1px;background:var(--green-600);margin:2rem 0;}
+        .footer-section h3{margin-bottom:1rem;font-weight:700;color:var(--white);}
+        .footer-section p{color:var(--color-border);font-weight:500;margin-bottom:.5rem;}
+        .footer-separator{height:1px;background:var(--color-border);opacity: 0.5;margin:2rem 0;}
         .text-xs{font-size:.75rem;}
         html{scroll-behavior:smooth;}
         
@@ -388,9 +387,9 @@
             <p class="hero-tagline-new">～映画と森のクラフトフェスティバル～</p>
             <div style="margin-top: 2.5rem;">
                  <div class="free-badge-new">
-                    <span class="free-badge-small-text">入場・鑑賞</span>
-                    <span class="free-badge-large-text">無料</span>
-                </div>
+                     <span class="free-badge-small-text">入場・鑑賞</span>
+                     <span class="free-badge-large-text">無料</span>
+                 </div>
             </div>
         </div>
     </section>
@@ -452,7 +451,7 @@
                             <summary>作品詳細</summary>
                             <div class="panel">
                                 <p>88分／ファミリー向け</p>
-                                <p style="font-size:.85rem;color:var(--gray-600);margin-top:.25rem;">©2022 Universal Studios. All Rights Reserved.</p>
+                                <p style="font-size:.85rem;margin-top:.25rem;">©2022 Universal Studios. All Rights Reserved.</p>
                             </div>
                         </details>
                     </div>
@@ -465,7 +464,7 @@
                             <summary>作品詳細</summary>
                             <div class="panel">
                                 <p>33分／名作・ファミリー</p>
-                                <p style="font-size:.85rem;color:var(--gray-600);margin-top:.25rem;">©TMS</p>
+                                <p style="font-size:.85rem;margin-top:.25rem;">©TMS</p>
                             </div>
                         </details>
                     </div>
@@ -478,7 +477,7 @@
                             <summary>作品詳細</summary>
                             <div class="panel">
                                 <p>110分／音楽・ファミリー</p>
-                                <p style="font-size:.85rem;color:var(--gray-600);margin-top:.25rem;">©2016 Universal Studios. All Rights Reserved.</p>
+                                <p style="font-size:.85rem;margin-top:.25rem;">©2016 Universal Studios. All Rights Reserved.</p>
                             </div>
                         </details>
                     </div>
@@ -502,64 +501,64 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-green">11:00</div>
-                        <div class="timeline-info"><h3 style="color:var(--green-800);">開場 OPEN</h3></div>
+                        <div class="timeline-time">11:00</div>
+                        <div class="timeline-info"><h3>開場 OPEN</h3></div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-orange">12:00</div>
+                        <div class="timeline-time">12:00</div>
                         <div class="timeline-info">
-                            <h3 style="color:var(--orange-800);">映画：「ミニオンズ フィーバー」</h3>
-                            <p style="color:var(--orange-700);">（88分）</p>
-                            <p class="text-xs" style="color:var(--gray-600);">©2022 Universal Studios. All Rights Reserved.</p>
+                            <h3>映画：「ミニオンズ フィーバー」</h3>
+                            <p>（88分）</p>
+                            <p class="text-xs">©2022 Universal Studios. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-green">13:35</div>
+                        <div class="timeline-time">13:35</div>
                         <div class="timeline-info">
-                            <h3 style="color:var(--green-800);">森のお話：「東京の森と水源と生き物」</h3>
-                            <p style="color:var(--green-700);">榎戸材木店</p>
-                            <p style="color:var(--green-700);">（20分）</p>
+                            <h3>森のお話：「東京の森と水源と生き物」</h3>
+                            <p>榎戸材木店</p>
+                            <p>（20分）</p>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-orange">14:00</div>
+                        <div class="timeline-time">14:00</div>
                         <div class="timeline-info">
-                            <h3 style="color:var(--orange-800);">映画：「パンダコパンダ」</h3>
-                            <p style="color:var(--orange-700);">（33分）</p>
-                            <p class="text-xs" style="color:var(--gray-600);">©TMS</p>
+                            <h3>映画：「パンダコパンダ」</h3>
+                            <p>（33分）</p>
+                            <p class="text-xs">©TMS</p>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-green">14:45</div>
+                        <div class="timeline-time">14:45</div>
                         <div class="timeline-info">
-                            <h3 style="color:var(--green-800);">森のお話：「山と山の仕事」</h3>
-                            <p style="color:var(--green-700);">東京チェンソーズ 青木亮輔</p>
-                            <p style="color:var(--green-700);">（20分）</p>
+                            <h3>森のお話：「山と山の仕事」</h3>
+                            <p>東京チェンソーズ 青木亮輔</p>
+                            <p>（20分）</p>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-blue">15:10</div>
+                        <div class="timeline-time">15:10</div>
                         <div class="timeline-info">
-                            <h3 style="color:var(--blue-800);">映画：「SING」</h3>
-                            <p style="color:var(--blue-700);">（110分）</p>
-                            <p class="text-xs" style="color:var(--gray-600);">©2016 Universal Studios. All Rights Reserved.</p>
+                            <h3>映画：「SING」</h3>
+                            <p>（110分）</p>
+                            <p class="text-xs">©2016 Universal Studios. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-time timeline-time-gray">17:00</div>
-                        <div class="timeline-info"><h3 style="color:var(--gray-800);">終了予定</h3></div>
+                        <div class="timeline-time">17:00</div>
+                        <div class="timeline-info"><h3>終了予定</h3></div>
                     </div>
                 </div>
             </div>
@@ -726,7 +725,7 @@
             <div class="partnerships-grid">
                 <div class="partnership-card">
                     <div class="partnership-header">
-                        <div class="partnership-number partnership-number-pink">1</div>
+                        <div class="partnership-number">1</div>
                         <div><h3 class="partnership-title">山里川マーケット ～手作りクラフト＆アウトドア～</h3></div>
                     </div>
                     <img src="./image/movie_3.png" alt="マーケット イメージ" class="partnership-image">
@@ -742,7 +741,7 @@
 
                 <div class="partnership-card">
                     <div class="partnership-header">
-                        <div class="partnership-number partnership-number-orange">2</div>
+                        <div class="partnership-number">2</div>
                         <div><h3 class="partnership-title">おえかきの MOKUNAVI ショールーム展示</h3></div>
                     </div>
                     <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールーム展示" class="partnership-image">
@@ -790,7 +789,7 @@
                 </div>
             </div>
             <div class="footer-separator"></div>
-            <div style="text-align:center;color:#dcfce7;"><p>&copy; 2025 木もれびシネマの森. All rights reserved.</p></div>
+            <div style="text-align:center;"><p>&copy; 2025 木もれびシネマの森. All rights reserved.</p></div>
         </div>
     </footer>
 
@@ -840,4 +839,3 @@
     </script>
 </body>
 </html>
-
