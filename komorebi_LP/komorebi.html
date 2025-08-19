@@ -356,6 +356,17 @@
             .footer-section .icon { display: none; }
         }
 
+        .section-title {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem; /* アイコンと文字の間隔 */
+        }
+        
+        .section-title .title-icon {
+          width: 2rem;   /* サイズはお好みで */
+          height: auto;
+        }
+        
     </style>
 </head>
 <body>
@@ -574,7 +585,10 @@
 
     <section id="workshops" class="section workshops">
         <div class="section-container-wide">
-            <h2 class="section-title">とうきょうの木を楽しむワークショップ</h2>
+            <h2 class="section-title">
+                <img src="./image/flag_workshop.png" alt="" class="title-icon">
+                とうきょうの木を楽しむワークショップ
+            </h2>
             <div class="workshops-intro"><p>※参加費はすべて無料です</p></div>
 
             <div class="workshop-group">
@@ -846,6 +860,7 @@
     </script>
 </body>
 </html>
+
 
 
 
