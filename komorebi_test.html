@@ -347,6 +347,16 @@
             .footer-section .icon { display: none; }
         }
 
+        /* デフォルトはPC用を表示、スマホ用は非表示 */
+        .img-pc { display: block; }
+        .img-sp { display: none; }
+        
+        /* スマホサイズ時は切り替え */
+        @media (max-width: 768px) {
+          .img-pc { display: none; }
+          .img-sp { display: block; }
+        }
+
     </style>
 </head>
 <body>
@@ -842,4 +852,5 @@
     </script>
 </body>
 </html>
+
 
