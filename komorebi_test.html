@@ -468,12 +468,11 @@
                   <div class="film-head">パンダコパンダ</div>
                   <div class="film-body">
                     <picture>
-                      <!-- スマホ用 -->
-                      <source srcset="./image/movie_pandakopanda_3.png" media="(max-width: 768px)">
+                      <!-- スマホ用（767px以下で切り替え） -->
+                      <source srcset="./image/movie_pandakopanda_3.png" media="(max-width: 767px)">
                       <!-- PC用（デフォルト） -->
-                      <img src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
-                    </picture>
-                
+                      <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
+                    </picture>                
                     <details class="film-accordion">
                       <summary>作品詳細</summary>
                       <div class="panel">
@@ -853,6 +852,7 @@
     </script>
 </body>
 </html>
+
 
 
 
