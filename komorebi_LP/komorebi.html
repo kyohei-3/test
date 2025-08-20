@@ -353,7 +353,8 @@
             /* -- ワークショップ & キッチンカーセクション -- */
             .workshop-card-header, .food-card-header { padding: 1rem 1rem 0; }
             .workshop-card-content, .food-card-content { padding: 0 1rem 1rem; }
-            .workshop-image, .food-image { height: 10rem; }
+            /* スマホ用：正方形を維持する */
+            .workshop-image, .food-image { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; }
 
             /* -- アンケートセクション -- */
             .survey-grid { text-align: center; }
@@ -1038,3 +1039,4 @@
 </body>
 
 </html>
+
