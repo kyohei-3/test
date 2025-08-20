@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>木もれびシネマの森 ～映画と森のクラフトフェスティバル～</title>
+    
+    <meta name="description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」">
+    <meta property="og:title" content="木もれびシネマの森 ～映画と森のクラフトフェスティバル～">
+    <meta property="og:description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/komorebi-cinema"> <meta property="og:image" content="https://example.com/image/mainvisual.png"> <meta property="og:image:alt" content="森の中の映画祭のメインビジュアル">
+    <meta property="og:site_name" content="木もれびシネマの森">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ▼▼▼【変更】カラーパレットを指定の色で再定義 ▼▼▼ */
+        :root{
+            --color-main: #006532;       /* メインのグリーン */
+            --color-sub: #5E4E48;         /* サブのブラウン（主にテキスト） */
+            --color-accent: #EFE07E;       /* アクセントの黄色 */
+            --color-accent-dark: #DDCB6A;   /* アクセントの濃い黄色（ホバー用） */
+            --color-background: #F4F6F4;   /* 薄いグリーン系の背景色 */
+            --color-border: #CCE0D5;       /* ボーダー用のグリーン */
+            --white: #fff;
+            --black: #000;
+        }
+
+        body{font-family:'M PLUS Rounded 1c',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:var(--color-sub);background:linear-gradient(to bottom,var(--color-background),var(--white));min-height:100vh;}
+
+        /* Typography */
+        h1{font-size:2.5rem;font-weight:900;line-height:1.2;}
+        h2{font-size:2rem;font-weight:900;line-height:1.3;}
+        h3{font-size:1.5rem;font-weight:800;line-height:1.4;}
+        p{font-weight:500;}
+
+        /* Navigation */
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);transition:.3s;}
+        .nav-container{max-width:1280px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+        .nav-logo{color:var(--color-main);font-weight:900;font-size:1.125rem;}
+        .nav-menu{display:none;gap:1.5rem;}
+        .nav-menu.active{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:1rem;border-top:1px solid var(--color-border);}
+        .nav-item{padding:.5rem .75rem;border-radius:.375rem;transition:.2s;cursor:pointer;font-weight:500;color:var(--color-sub);text-decoration:none;}
+        .nav-item:hover{color:var(--color-main);background:var(--color-background);}
+        .nav-item.active{color:var(--color-main);background:var(--color-border);}
+        .mobile-menu-btn{display:block;background:none;border:none;color:var(--color-main);padding:.5rem;cursor:pointer;}
+        
+        /* Hero */
+        .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .hero-bg{position:absolute;inset:0;z-index:0;}
+        .hero-bg img{width:100%;height:100%;object-fit:cover;}
+        .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);}
+        .hero-content { position:absolute; bottom:0rem; left:50%; transform:translateX(-50%); text-align:center; z-index:10; color:var(--white); max-width:1024px; margin:0 auto; padding:0 1rem; }
+
+        /* ▼▼▼【追加】PC/スマホで画像を切り替え（スマホ優先）▼▼▼ */
+        .hero-bg .pc-only { display: none; }
+        .hero-bg .sp-only { display: block; }
+                
+        .free-badge-new{
+            background: var(--white);
+            color: var(--color-main);
+            border-radius: 9999px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
+            border: 4px solid var(--white);
+            padding: 0.6rem 2.5rem;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        .free-badge-small-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .free-badge-large-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:var(--white);}
+        .hero-tagline-new{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:2rem;}
+        .icon{width:1.25rem;height:1.25rem;display:inline-block;}
+
+        @media (min-width:768px){
+            .nav-menu{display:flex;position:static;background:none;flex-direction:row;padding:0;border:none;}
+            .nav-menu.active{display:flex;}
+            .mobile-menu-btn{display:none;}
+            .hero-content{padding-top:6rem !important;}
+
+            /* ▼▼▼【追加】PCではPC用画像を表示 ▼▼▼ */
+            .hero-bg .pc-only { display: block; }
+            .hero-bg .sp-only { display: none; }
+        }
+
+        /* Sections */
+        .section{padding:4rem 1rem;}
+        .section-container{max-width:1024px;margin:0 auto;}
+        .section-container-wide{max-width:1280px;margin:0 auto;}
+        .section-title{text-align:center;margin-bottom:2rem;color:var(--color-main);font-weight:900;}
+
+        /* Overview */
+        .overview{background:#EFE07E;}
+        .overview-text{display:flex;flex-direction:column;gap:1rem;text-align:left;}
+        .overview-text p{color:var(--color-sub);font-weight:500;}
+        .overview-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
+        @media (min-width:768px){.overview-grid{grid-template-columns:1fr 1fr;}}
+        .overview-map-image {
+            width: 100%;
+            height: auto;
+            border-radius: .75rem;
+            display: block;
+        }
+        .event-info{
+            background:var(--white);
+            border-radius:.75rem;
+            padding:1rem 1.25rem; 
+            height: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .event-info-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;}
+        .event-date{display:flex;align-items:center;gap:.5rem;}
+        .event-date .y{font-size:.9rem;color:var(--color-main);font-weight:800;}
+        .event-date .md{font-size:2.5rem;font-weight:900;color:var(--color-main);letter-spacing:.02em;}
+        .event-date .w{border:2px solid var(--color-main);border-radius:9999px;padding:.1rem .55rem;font-weight:900;color:var(--color-main);}
+        .event-openclose{display:flex;gap:1rem;font-weight:900;color:var(--color-main);}
+        .event-openclose span{background:var(--color-background);padding:.25rem .6rem;border-radius:.375rem;}
+        .event-venue{font-weight:800;color:var(--color-main);}
+        .event-addr{font-size:.85rem;color:var(--color-sub);}
+
+        /* Films */
+        .films{background:var(--white);}
+        .films-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
+        @media (min-width:768px){.films-grid{grid-template-columns:repeat(3,1fr);}}
+        .film-card{
+            border-radius:.5rem;
+            overflow:hidden;
+            background:var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .film-head{
+            padding:1rem 1rem 0;
+            text-align:center;
+            color:var(--color-main);
+            font-weight:900;
+            font-size: 1.25rem;
+        }
+        .film-body{padding:0 1rem 1rem;}
+        .film-img{width:100%;max-width:900px;height:200px;object-fit:contain;object-position:center;border-radius:.5rem;margin:0 0 .75rem;background:#fff;}
+        .film-accordion{border:1px solid var(--color-border);border-radius:.5rem;overflow:hidden;}
+        .film-accordion summary{list-style:none;cursor:pointer;padding:.6rem .75rem;font-weight:900;color:var(--color-main);background:var(--color-background);}
+        .film-accordion summary::-webkit-details-marker{display:none;}
+        .film-accordion .panel{padding:.5rem .75rem .75rem;font-size:.9rem;color:var(--color-sub);}
+
+        /* Timetable */
+        .timetable{background:var(--color-main);position:relative;overflow:hidden;}
+        .timetable-decorative{position:absolute;inset:0;opacity:.1;}
+        .decorative-circle{position:absolute;border-radius:50%;background:var(--white);}
+        .decorative-circle-1{top:2.5rem;left:2.5rem;width:5rem;height:5rem;}
+        .decorative-circle-2{top:8rem;right:5rem;width:4rem;height:4rem;background:var(--color-accent);}
+        .decorative-circle-3{bottom:5rem;left:8rem;width:3rem;height:3rem;background:#f9a8d4;}
+        .decorative-circle-4{bottom:10rem;right:2.5rem;width:6rem;height:6rem;background:#c084fc;}
+        .timetable-container{max-width:1024px;margin:0 auto;position:relative;z-index:10;}
+        .timetable-header{text-align:center;margin-bottom:3rem;}
+        .timetable-subtitle{color:var(--white);font-size:1.125rem;font-weight:700;margin-bottom:1rem;}
+        .timetable-title-badge{display:inline-block;background:var(--white);padding:.75rem 2rem;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .timetable-title-badge h2{color:var(--color-main);font-size:1.5rem;font-weight:900;letter-spacing:.1em;}
+        .timeline{display:flex;flex-direction:column;gap:1rem;}
+        .timeline-item{background:var(--white);border-radius:1rem;padding:1.5rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .timeline-content{display:flex;align-items:flex-start;gap:1rem;}
+        .timeline-time{color:var(--color-sub); background:none; padding:0;border-radius:0;font-weight:900;font-size:1.125rem;flex-shrink:0;}
+        .timeline-item h3 {color: var(--color-main);}
+        .timeline-item p {color: var(--color-sub);}
+        
+        /* TIME TABLE：交互の背景色 */
+        .timeline .timeline-item:nth-child(1),
+        .timeline .timeline-item:nth-child(3),
+        .timeline .timeline-item:nth-child(5),
+        .timeline .timeline-item:nth-child(7){
+        background:#aeca6f;  /* 開場・森のお話・森のお話・終了予定 */
+        }
+
+        .timeline .timeline-item:nth-child(2),
+        .timeline .timeline-item:nth-child(4),
+        .timeline .timeline-item:nth-child(6){
+        background:#EFE07E;  /* 映画３枠 */
+        }
+
+        /* タイムライン枠に対してアイコンを右上固定配置 */
+        .timeline-item{ position: relative; }
+        .timeline-movie-icon{
+        position: absolute;
+        top: 12px;          /* 右上の余白 */
+        right: 12px;
+        width: 64px;        /* お好みで：56～72pxくらいが見やすい */
+        height: auto;
+        border-radius: 6px; /* 角丸でポスター感 */
+        box-shadow: 0 2px 6px rgba(0,0,0,.15);
+        }
+
+        /* Workshops */
+        .workshops{background:var(--white);}
+        .workshops-intro{text-align:center;margin-bottom:2rem;}
+        .workshops-intro p{color:var(--color-sub);font-weight:700;font-size:1.125rem;}
+        .workshop-group{margin-bottom:3rem;}
+        .workshop-group h3{color:var(--color-main);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
+        .workshop-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+        @media (min-width:768px){.workshop-grid-3{grid-template-columns:repeat(3,1fr)}.workshop-grid-2{grid-template-columns:repeat(2,1fr)}}
+        .workshop-card{border:2px solid var(--color-border);border-radius:.5rem;overflow:hidden;transition:box-shadow .3s ease;}
+        .workshop-card:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
+        .workshop-card-header{padding:1.5rem 1.5rem 0;}
+        .workshop-card-title{text-align:center;color:var(--color-main);font-weight:900;margin-bottom:1rem;}
+        .workshop-card-content{padding:0 1.5rem 1.5rem;}
+        .workshop-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: .5rem; margin-bottom: 1rem; }
+        .workshop-description{color:var(--color-sub);text-align:center;font-weight:500;}
+        .text-sm{font-size:.875rem;}
+        .text-xs{font-size:.75rem;}
+
+        /* Circle badge */
+        .circle-note{display:inline-block;padding:.1rem .6rem;border:2px solid var(--color-main);border-radius:9999px;color:var(--color-main);background:var(--white);font-size:.85rem;font-weight:700;}
+
+        /* Food */
+        .food{background:var(--color-background);}
+        .food-group{margin-bottom:2rem;}
+        .food-group h3{color:var(--color-main);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
+        .food-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+        @media (min-width:768px){.food-grid{grid-template-columns:repeat(2,1fr)}}
+        .food-card{border:2px solid var(--color-border);border-radius:.5rem;overflow:hidden;background:var(--white);}
+        .food-card-header{padding:1.5rem 1.5rem 0;}
+        .food-card-title{color:var(--color-main);font-weight:900;}
+        .food-card-content{padding:0 1.5rem 1.5rem;}
+        .food-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: .5rem; margin-bottom: 1rem; }
+        .food-description{color:var(--color-sub);font-weight:500;}
+
+        /* Survey */
+        .survey-grid {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .survey-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .survey-card {
+            padding: 0;
+            text-align: left;
+        }
+        .survey-description{color:var(--color-sub);margin-bottom:1.5rem;font-weight:500;}
+        .survey-button{
+            background:var(--color-accent);
+            color:var(--color-sub);
+            padding:1rem 2rem;
+            border:none;
+            border-radius:.5rem;
+            font-weight:900;
+            font-size:1.25rem;
+            cursor:pointer;
+            transition:background-color .3s ease;
+            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
+        }
+        .survey-button:hover{background:var(--color-accent-dark);}
+        .novelty-image{width:100%;max-width:520px;height:auto;border-radius:.5rem;border:2px solid var(--color-border);}
+
+        /* Partnerships */
+        .partnerships{background:#2b9e5a;color:var(--white);position:relative;overflow:hidden;}
+        .partnerships-decorative{position:absolute;top:0;right:0;width:16rem;height:16rem;opacity:.2;}
+        .partnerships-container{max-width:1280px;margin:0 auto;position:relative;z-index:10;}
+        .partnerships-header{text-align:center;margin-bottom:3rem;}
+        .partnerships-title{font-weight:900;color:var(--white);margin-bottom:1rem;}
+        .partnerships-subtitle{font-weight:700;font-size:1.125rem;}
+        .partnerships-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
+        @media (min-width:768px){.partnerships-grid{grid-template-columns:repeat(2,1fr)}}
+        .partnership-card{background:var(--white);border-radius:.5rem;padding:1.5rem;color:var(--color-main);}
+        .partnership-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;}
+        .partnership-number{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.25rem;color:var(--color-sub);background:var(--color-accent);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);flex-shrink:0;}
+        .partnership-title{font-weight:900;font-size:1.125rem;color:var(--color-main);}
+        .partnership-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: .5rem; margin-bottom: 1rem; }
+        .partnership-details{display:flex;flex-direction:column;gap:.5rem;color:var(--color-sub);font-weight:500;}
+        .partnership-badge{background:var(--color-background);color:var(--color-main);padding:.25rem .5rem;border-radius:.25rem;font-size:.875rem;font-weight:700;}
+        .partnership-description{font-size:.875rem;margin-top:.75rem;}
+
+        /* Footer */
+        .footer{background:var(--color-main);color:var(--white);padding:3rem 1rem;}
+        .footer-container{max-width:1280px;margin:0 auto;}
+        .footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2rem;}
+        @media (min-width:768px){.footer-grid{grid-template-columns:repeat(3,1fr)}}
+        .footer-section h3{margin-bottom:1rem;font-weight:700;color:var(--white);}
+        .footer-section p{color:var(--color-border);font-weight:500;margin-bottom:.5rem;}
+        .footer-separator{height:1px;background:var(--color-border);opacity: 0.5;margin:2rem 0;}
+        .text-xs{font-size:.75rem;}
+        html{scroll-behavior:smooth;}
+        
+        /* =================================== */
+        /* ▼▼▼ スマホ対応スタイル ▼▼▼ */
+        /* =================================== */
+        @media (max-width: 767px) {
+            /* -- 文字サイズの調整 -- */
+            h1, .hero-title-new {
+                font-size: 1.9rem;
+                white-space: nowrap;
+            }
+            .hero-tagline-new {
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.2rem; }
+            p { font-size: 0.9rem; }
+            .hero-content { padding-top: 4rem; }
+            
+            /* -- 全体の余白調整 -- */
+            .section { padding: 3rem 1rem; }
+
+            /* -- 概要セクション -- */
+            .event-info { padding: 1rem; }
+            .event-info-row:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .event-openclose {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .event-date .md { font-size: 2rem; }
+
+            /* -- タイムテーブルセクション -- */
+            .timeline-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .timeline-time {
+                font-size: 1rem;
+                padding: 0.25rem 0.75rem;
+            }
+            .timeline-item { padding: 1rem; }
+            .timetable-title-badge h2 { font-size: 1.3rem; }
+            
+            /* -- 上映作品セクション -- */
+            .films-grid { gap: 1.5rem; }
+            .film-img { height: auto; aspect-ratio: 2 / 3; }
+
+            /* -- ワークショップ & キッチンカーセクション -- */
+            .workshop-card-header, .food-card-header { padding: 1rem 1rem 0; }
+            .workshop-card-content, .food-card-content { padding: 0 1rem 1rem; }
+            .workshop-image, .food-image { height: 10rem; }
+
+            /* -- アンケートセクション -- */
+            .survey-grid { text-align: center; }
+            .survey-card { text-align: center; }
+            .survey-button { width: 100%; max-width: 320px; }
+
+            /* -- 連携企画セクション -- */
+            .partnership-card { padding: 1.25rem; }
+            .partnership-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .partnership-details { align-items: center; text-align: center; gap: 0.75rem;}
+            .partnership-detail { display: flex; flex-direction: column; gap: 0.25rem; }
+            .partnership-description { text-align: left; }
+
+            /* -- フッターセクション -- */
+            .footer-grid { text-align: center; }
+            .footer-section > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-section .icon { display: none; }
+        }
+
+        .section-title {
+          display: flex;
+          align-items: center;
+          justify-content: center; /* 中央揃え */
+          gap: 0.5rem; /* アイコンと文字の間隔 */
+          text-align: center;
+        }
+        
+        .section-title .title-icon {
+          width: 10rem;   /* サイズはお好みで */
+          height: auto;
+        }
+
+        .footer-section a {
+          color: #fff;
+        }
+
+        .event-info-row a {
+        color: #006532;
+        }
+
+        /* 主催・後援ブロック */
+        .sponsor-block {
+            color: #006532;          /* 全体の文字色をグリーンに */
+            font-weight: 700;        /* 全体を太字 */
+            margin-top: 1.5rem;
+        }
+
+        .sponsor-block img {
+            height: 60px;            /* ロゴの大きさ */
+            vertical-align: middle;  /* テキストと中央揃え */
+            margin-left: .5rem;      /* テキストとの間隔 */
+        }
+
+        /* --- Workshops / Food / Survey セクション 背景とカード --- */
+        .workshops,
+        .food,
+        .survey {
+        background: #EFE07E !important;  /* セクション背景を黄色に */
+        padding: 3rem 1rem;              /* 上下左右に余白 */
+        }
+
+        .workshops .section-container-wide,
+        .food .section-container-wide,
+        .survey .section-container {
+        background: #fff;                /* 内側のカードは白 */
+        border-radius: 12px;             /* 角を丸くする */
+        padding: 2rem;                   /* 内側の余白 */
+        margin: 0 auto;                  /* 中央寄せ */
+        max-width: 900px;                /* 横幅を制限して余白を出す */
+        box-shadow: 0 8px 20px rgba(0,0,0,.08); /* 影で浮かせる */
+        border: 1px solid var(--color-border);
+        }
+
+        /* スマホ用調整 */
+        @media (max-width: 767px) {
+        .workshops .section-container-wide,
+        .food .section-container-wide,
+        .survey .section-container {
+            padding: 1.5rem;   /* 内側余白を少し狭める */
+            max-width: 100%;   /* スマホは幅いっぱいに */
+        }
+        }
+
+        .workshop-organization {
+        display: inline-block;         /* 楕円形にするため */
+        background: #5E4E48;           /* 背景色 */
+        color: #fff !important;      /* 文字色（白） */
+        padding: 0.4rem 1.2rem;        /* 内側余白 */
+        border-radius: 9999px;         /* 楕円形に */
+        font-weight: 700;              /* 太字 */
+        font-size: 1.2rem;             /* 文字サイズ調整 */
+        margin-bottom: 1rem;           /* 下に余白 */
+        }
+
+        /* キッチンカー専用ブロック */
+        .food-group--kitchencar .food-card--kitchencar {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        display: flex;
+        }
+
+        .food-group--kitchencar .food-card--kitchencar .food-card-content {
+        padding: 0;
+        display: flex;
+        align-items: center;   /* 縦中央 */
+        justify-content: center; /* 横中央 */
+        width: 100%;
+        height: 100%;
+        min-height: 320px;     /* 必要に応じて調整 */
+        }
+
+        .food-group--kitchencar .kitchencar-image {
+        max-width: 100%;
+        max-height: 360px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">木もれびシネマの森</div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-item" data-section="home">ホーム</a>
+                <a href="#overview" class="nav-item" data-section="overview">イベント概要</a>
+                <a href="#films" class="nav-item" data-section="films">上映作品</a>
+                <a href="#timetable" class="nav-item" data-section="timetable">タイムテーブル</a>
+                <a href="#workshops" class="nav-item" data-section="workshops">ワークショップ</a>
+                <a href="#food" class="nav-item" data-section="food">キッチンカー</a>
+                <a href="#survey" class="nav-item" data-section="survey">アンケート</a>
+                <a href="#partnerships" class="nav-item" data-section="partnerships">連携企画</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;display:none;">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <img class="pc-only" src="./image/pc_mainvisual.png" alt="森の中の映画祭のメインビジュアル">
+            <img class="sp-only" src="./image/sp_mainvisual.png" alt="森の中の映画祭のメインビジュアル">
+        </div>
+        <div class="hero-content">
+            <div>
+                 <div class="free-badge-new">
+                     <span class="free-badge-small-text">入場・鑑賞</span>
+                     <span class="free-badge-large-text">無&nbsp;料</span>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" class="section overview">
+    <div class="section-container">
+        <h2 class="section-title">イベント概要</h2>
+
+        <div class="overview-grid">
+        <!-- 1行目・左：開催情報 -->
+        <div>
+            <div class="event-info">
+            <div class="event-info-row" style="margin-bottom:.25rem;">
+                <div class="event-date">
+                <span class="y">2025年</span>
+                <span class="md">10.5</span>
+                <span class="w">日</span>
+                </div>
+                <div class="event-openclose">
+                <span>OPEN 11:00</span>
+                <span>CLOSE 17:00</span>
+                </div>
+            </div>
+            <div class="event-info-row">
+                <div class="event-venue">多摩あきがわライブフォレスト自然人村</div>
+            </div>
+            <div class="event-info-row">
+                <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">
+                東京都あきる野市深沢198
+                </a>
+            </div>
+            <div class="event-info-row">
+                <div class="event-addr text-xs">JR五日市線「武蔵五日市駅」より 徒歩：約20分／無料シャトルバス：約10分（約20分間隔で運行）</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- 1行目・右：説明文 -->
+        <div>
+            <div class="overview-text" style="text-align:left; max-width: 800px; margin: 0;">
+            <p>東京にも、美しく、豊かな、<br>森と山が広がっています。</p>
+            <p>ファミリーと、お友達と、話しながら、<br>
+            歩きながら、 森の世界をのぞきこんで、<br>
+            色んなワクワクと一緒に、<br>
+            映画と木と森にふれあえる一日です。</p>
+            </div>
+        </div>
+
+        <!-- 2行目・左：主催・後援 -->
+        <div class="sponsor-block">
+            <h3>主催・後援</h3>
+            <p>
+                主催：TOKYO MOKUNAVI
+                <a href="https://tokyomokunavi.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer">
+                    <img src="./image/Mokunabi_logo_green.png" alt="TOKYO MOKUNAVI">
+                </a>
+            </p>
+            <p>
+                後援予定：あきる野市、檜原村、日の出町、<br>あきる野市教育委員会、檜原村教育委員会、日の出町教育委員会
+            </p>
+        </div>
+        
+        <!-- 2行目・右：会場図 -->
+        <div>
+            <img src="./image/summary_map.png" alt="イベント会場地図" class="overview-map-image">
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <section id="films" class="section films">
+        <div class="section-container">
+            <h2 class="section-title">上映作品</h2>
+            <div class="films-grid">
+                <div class="film-card">
+                    <div class="film-head">ミニオンズ フィーバー</div>
+                    <div class="film-body">
+                        <img class="film-img" src="./image/movie_minions.png" alt="ミニオンズ フィーバー">
+                        <details class="film-accordion">
+                            <summary>作品詳細</summary>
+                            <div class="panel">
+                                <p>88分／ファミリー向け</p>
+                                <p style="font-size:.85rem;margin-top:.25rem;">©2022 Universal Studios. All Rights Reserved.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+                <div class="film-card">
+                  <div class="film-head">パンダコパンダ</div>
+                  <div class="film-body">
+                    <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
+                    <details class="film-accordion">
+                      <summary>作品詳細</summary>
+                      <div class="panel">
+                        <p>33分／名作・ファミリー</p>
+                        <p style="font-size:.85rem;margin-top:.25rem;">©TMS</p>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+                <div class="film-card">
+                    <div class="film-head">SING</div>
+                    <div class="film-body">
+                        <img class="film-img" src="./image/movie_sing.png" alt="SING">
+                        <details class="film-accordion">
+                            <summary>作品詳細</summary>
+                            <div class="panel">
+                                <p>110分／音楽・ファミリー</p>
+                                <p style="font-size:.85rem;margin-top:.25rem;">©2016 Universal Studios. All Rights Reserved.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timetable" class="section timetable">
+        <div class="timetable-decorative">
+            <div class="decorative-circle decorative-circle-1"></div>
+            <div class="decorative-circle decorative-circle-2"></div>
+            <div class="decorative-circle decorative-circle-3"></div>
+            <div class="decorative-circle decorative-circle-4"></div>
+        </div>
+        <div class="timetable-container">
+            <div class="timetable-header">
+                <p class="timetable-subtitle">映画といっしょに、森をまるごと楽しもう！</p>
+                <div class="timetable-title-badge"><h2>TIME TABLE</h2></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">11:00</div>
+                        <div class="timeline-info"><h3>開場 OPEN</h3></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">12:00</div>
+                    <div class="timeline-info">
+                    <h3>映画：「ミニオンズ フィーバー」</h3>
+                    <p>（88分）</p>
+                    <p class="text-xs">©2022 Universal Studios. All Rights Reserved.</p>
+                    </div>
+                </div>
+                <img src="./image/movie_minions.png" alt="ミニオンズ フィーバー" class="timeline-movie-icon">
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">13:35</div>
+                        <div class="timeline-info">
+                            <h3>森のお話：「東京の森と水源と生き物」</h3>
+                            <p>榎戸材木店</p>
+                            <p>（20分）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">14:00</div>
+                    <div class="timeline-info">
+                    <h3>映画：「パンダコパンダ」</h3>
+                    <p>（33分）</p>
+                    <p class="text-xs">©TMS</p>
+                    </div>
+                </div>
+                <img src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ" class="timeline-movie-icon">
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:45</div>
+                        <div class="timeline-info">
+                            <h3>森のお話：「山と山の仕事」</h3>
+                            <p>東京チェンソーズ 青木亮輔</p>
+                            <p>（20分）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">15:10</div>
+                    <div class="timeline-info">
+                    <h3>映画：「SING」</h3>
+                    <p>（110分）</p>
+                    <p class="text-xs">©2016 Universal Studios. All Rights Reserved.</p>
+                    </div>
+                </div>
+                <img src="./image/movie_sing.png" alt="SING" class="timeline-movie-icon">
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">17:00</div>
+                        <div class="timeline-info"><h3>終了予定</h3></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workshops" class="section workshops">
+        <div class="section-container-wide">
+            <h2 class="section-title">
+                <img src="./image/flag_workshop.png" alt="" class="title-icon">
+                とうきょうの木を楽しむワークショップ
+            </h2>
+            <div class="workshops-intro"><p>※参加費はすべて無料です</p></div>
+
+            <div class="workshop-group">
+                <h3 class="workshop-organization">東京チェンソーズ</h3>
+                <div class="workshop-grid workshop-grid-3">
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●丸太アスレチック</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_maruta.png" alt="丸太アスレチックの様子" class="workshop-image">
+                            <p class="workshop-description"><span class="circle-note">会期中は随時参加できます</span></p>
+                        </div>
+                    </div>
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●薪割りで焚き火を楽しむ</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_makiwari.png" alt="薪割り体験" class="workshop-image">
+                            <p class="workshop-description">～焼きマシュマロ、焼き芋なども一緒に～<br><span class="circle-note">会期中は随時参加できます</span></p>
+                        </div>
+                    </div>
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●山に入って森のお話</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_tokyochainsaws.png" alt="森のお話フィールドワーク" class="workshop-image">
+                            <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植林や長年の森づくりの姿を見てもらいお話しする、40分ほどのプログラムです。<br>［15時30分より実施／当日会場で受付／定員15名予定］</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workshop-group">
+                <h3 class="workshop-organization">榎戸材木店</h3>
+                <div class="workshop-grid workshop-grid-2">
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●ヒノキの枝でバードコールづくり</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_hinoki.png" alt="ヒノキのバードコールづくり" class="workshop-image">
+                            <p class="workshop-description text-sm">ネジを回すと鳥のさえずりのような 音が出ます。自然とつながる工作体験です。（1回3分 ）<br>［受付 11─13時／14─16時／<br>定員 各40名（先着順）］</p>
+                        </div>
+                    </div>
+                    <div class="workshop-card">
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">●どんぐりパチンコ</h4></div>
+                        <div class="workshop-card-content">
+                            <img src="./image/workshop_donguri.png" alt="どんぐりパチンコで遊ぶ様子" class="workshop-image">
+                            <p class="workshop-description text-sm">どんぐりを拾ったらパチンコで遊ぼう！<br>拾ったどんぐりは何の木のどんぐりかわかるかな？（1回5～10分）<br>［受付11─13時／14─16時］</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workshop-group">
+                <div class="workshop-grid workshop-grid-2">
+                    <div>
+                        <h3 class="workshop-organization">クレコ・ラボ</h3>
+                        <div class="workshop-card">
+                            <div class="workshop-card-header"><h4 class="workshop-card-title">●スギ・ヒノキで、木のトンボづくり</h4></div>
+                            <div class="workshop-card-content">
+                                <img src="./image/workshop_tonbo.png" alt="木のトンボを飛ばす様子" class="workshop-image">
+                                <p class="workshop-description text-sm">組立簡単！モクトンボをつく<br>ろう！ 少しの力でフワッと飛 びあがります。（1回5分）<br>［受付11─17時／定員<br>100名（先着順)］</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="workshop-organization">TOKYO MOKUNAVI</h3>
+                        <div class="workshop-card">
+                            <div class="workshop-card-header"><h4 class="workshop-card-title">●おえかきコーナー</h4></div>
+                            <div class="workshop-card-content">
+                                <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールームの内観" class="workshop-image">
+                                <p class="workshop-description text-sm">新宿リビングデザインセンターOZONE内のショールームで展示します。（1回10分）<br>［受付10─17時／定員70名（先着順）］</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="food" class="section food">
+        <div class="section-container-wide">
+            <h2 class="section-title">
+                <img src="./image/flag_foods.png" alt="" class="title-icon">
+                森のキッチンカー
+            </h2>
+            
+            <div class="food-group">
+                <h3 class="workshop-organization">つけ麺 五ノ神製作所</h3>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-card-header"><h4 class="food-card-title">●奥多摩ヤマメのラーメン</h4></div>
+                        <div class="food-card-content">
+                            <img src="./image/food_ramen.png" alt="奥多摩ヤマメのラーメン" class="food-image">
+                            <p class="food-description">奥多摩の養殖ヤマメをスープ＆トッピングに贅沢に使った塩ラーメン</p>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-card-header"><h4 class="food-card-title">●東京軍鶏パエリア</h4></div>
+                        <div class="food-card-content">
+                            <img src="./image/food_piza.png" alt="東京軍鶏のパエリア" class="food-image">
+                            <p class="food-description">あきる野＆青梅で育った東京軍鶏の旨味スープで炊きあげるパエリア。地場野菜、軍鶏肉の味わいをお楽しみください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-group food-group--kitchencar">
+                <h3 class="workshop-organization">〇〇〇〇〇</h3>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-card-header"><h4 class="food-card-title">〇〇〇〇〇</h4></div>
+                        <div class="food-card-content">
+                            <img src="./image/kitchencar.png" alt="ダミー画像" class="food-image">
+                            <p class="food-description">〇〇〇〇〇</p>
+                        </div>
+                    </div>
+                    <!-- キッチンカー専用カード -->
+                    <div class="food-card food-card--kitchencar">
+                        <div class="food-card-content">
+                            <img src="./image/kitchencar.png" alt="キッチンカー" class="kitchencar-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-group">
+                <div class="food-grid">
+                    <div>
+                        <h3 class="workshop-organization">自然人村</h3>
+                        <div class="food-card">
+                            <div class="food-card-header"><h4 class="food-card-title">●あじさい茶＆森のドリンクバー</h4></div>
+                            <div class="food-card-content">
+                                <img src="./image/food_azisai.png" alt="あじさい茶とドリンク" class="food-image">
+                                <p class="food-description">「南沢あじさい山」名物あじさい茶や、オリジナルジェラート、ソフトドリンクにアルコールまでご用意。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="workshop-organization">kaze labo</h3>
+                        <div class="food-card">
+                            <div class="food-card-header"><h4 class="food-card-title">●オリジナルのお酒</h4></div>
+                            <div class="food-card-content">
+                                <img src="./image/food_azisai.png" alt="kaze labo オリジナルドリンク（イメージ）" class="food-image">
+                                <p class="food-description">オリジナルのお酒</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="survey" class="section survey">
+        <div class="section-container">
+            <h2 class="section-title">事前アンケートにご協力ください</h2>
+            <div class="survey-grid">
+                <div class="survey-card">
+                    <p class="survey-description">
+                        事前アンケート：専用サイトで事前に回答した方は、来場時にノベルティをプレゼント。
+                    </p>
+                    <a href="https://forms.office.com/pages/responsepage.aspx?id=aubvRSI4qUuzWyFnBMiXavK9UT1ZAuRBmfsS9WyytGlUM1AwV0hRTlpYNVRQVTdPMTZZTUdWRTUySi4u&origin=QRCode&route=shorturl" 
+                    class="survey-button" 
+                    target="_blank" 
+                    rel="noopener noreferrer">
+                    アンケートに回答する
+                    </a>
+                </div>
+                <div>
+                    <img src="./image/novelty.png" alt="ノベルティ（トートバッグ）イメージ" class="novelty-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partnerships" class="section partnerships">
+        <div class="partnerships-decorative">
+            <svg viewBox="0 0 200 200" style="width:100%;height:100%;"><path d="M20,20 Q180,20 180,180 Q20,180 20,20" fill="currentColor"/></svg>
+        </div>
+        <div class="partnerships-container">
+            <div class="partnerships-header">
+                <h2 class="partnerships-title">連携企画</h2>
+                <p class="partnerships-subtitle">同日・同時開催イベント</p>
+            </div>
+
+            <div class="partnerships-grid">
+                <div class="partnership-card">
+                    <div class="partnership-header">
+                        <div class="partnership-number">1</div>
+                        <div><h3 class="partnership-title">山里川マーケット ～手作りクラフト＆アウトドア～</h3></div>
+                    </div>
+                    <img src="./image/movie_3.png" alt="マーケット イメージ" class="partnership-image">
+                    <div class="partnership-details">
+                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/fkwsmiBSHrvKCGxu5" target="_blank" rel="noopener noreferrer" style="color:inherit;">フレア五日市（JR 武蔵五日市駅前）</a></span></div>
+                        <div class="partnership-detail"><span class="partnership-badge">開催日時</span><span>2025年10月5日（日） 11時 ― 17時</span></div>
+                        <p class="partnership-description">東京の山里川の自然の魅力を感じられるマーケットがスタート<br>
+                        クラフト作品や体験ツアーの情報などが会場にギュッと凝縮！<br>
+                        田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」でさっそく相談にも、<br>
+                        のってもらえます！！</p>
+                    </div>
+                </div>
+
+                <div class="partnership-card">
+                    <div class="partnership-header">
+                        <div class="partnership-number">2</div>
+                        <div><h3 class="partnership-title">おえかきの MOKUNAVI ショールーム展示</h3></div>
+                    </div>
+                    <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールーム展示" class="partnership-image">
+                    <div class="partnership-details">
+                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/3g2yo5YiY7XH4g8D7" target="_blank" rel="noopener noreferrer" style="color:inherit;">新宿リビングデザインセンター OZONE 7階</a></span></div>
+                        <div class="partnership-detail"><span class="partnership-badge">展示期間</span><span>2025年10月9日（木） ― 11月4日（火）</span></div>
+                        <p class="partnership-description">おえかきコーナーで描いた絵が後日、ショールームで飾られます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+            <div class="footer-section">
+                <h3>主催・後援</h3>
+                <p>
+                    主催： TOKYO MOKUNAVI
+                    <a href="https://tokyomokunavi.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer">
+                        <img src="./image/Mokunabi_logo_white.png" alt="TOKYO MOKUNAVI" style="height:40px; vertical-align:middle; margin-right:.5rem;">
+                    </a>
+                </p>
+                <p>後援予定： あきる野市、檜原村、日の出町、<br>あきる野市教育委員会、檜原村教育委員会、<br>日の出町教育委員会</p>
+            </div>
+                <div class="footer-section">
+                    <h3>アクセス</h3>
+                    <div>
+                        <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem;">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:.25rem;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <div>
+                                <p>多摩あきがわライブフォレスト自然人村</p>
+                                <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">
+                                東京都あきる野市深沢198
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-xs">JR五日市線「武蔵五日市駅」より 徒歩：約20分／無料シャトルバス：約10分（約20分間隔で運行）</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <div>
+                        <p>
+                            E-mail：
+                            <a href="mailto:entry@earth-garden.jp" class="footer-mail">entry@earth-garden.jp</a>
+                        </p>
+                        <p class="text-xs">受付時間：平日10:00～17:00（12:00～13:00を除く）</p>
+                        <p class="text-xs">＊お返事までに数日お時間いただく場合もございます。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-separator"></div>
+            <div style="text-align:center;"><p>&copy; 2025 木もれびシネマの森. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const menuIcon = mobileMenuBtn.querySelector('.menu-icon');
+        const closeIcon = mobileMenuBtn.querySelector('.close-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                menuIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+            } else {
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            }
+        });
+
+        // Smooth scroll + active highlight
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                navMenu.classList.remove('active'); menuIcon.style.display='block'; closeIcon.style.display='none';
+            });
+        });
+
+        function updateActiveSection(){
+            const sections = ['home','overview','films','timetable','workshops','food','survey','partnerships'];
+            const scrollPosition = window.scrollY + 100;
+            for (let i=sections.length-1;i>=0;i--){
+                const s = document.getElementById(sections[i]);
+                if (s && s.offsetTop <= scrollPosition){
+                    navItems.forEach(it => { it.classList.remove('active'); if (it.getAttribute('data-section')===sections[i]) it.classList.add('active'); });
+                    break;
+                }
+            }
+        }
+        window.addEventListener('scroll', updateActiveSection);
+        updateActiveSection();
+    </script>
+</body>
+</html>
