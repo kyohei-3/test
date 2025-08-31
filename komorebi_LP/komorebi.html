@@ -585,6 +585,36 @@
             padding-bottom:56px;  /* ナビ分の余白を下に確保 */
           }
         }
+
+        /* ==== SP時：下固定ナビの上にメニューを展開 ==== */
+        @media (max-width: 767px) {
+          /* 下固定の高さ合わせ（必要なら変更） */
+          .nav-container { height: 56px; }
+        
+          /* デフォは非表示、activeで表示（JSは既存のままでOK） */
+          .nav-menu { display: none; }
+        
+          .nav-menu.active{
+            display: flex;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 56px; /* ← ナビの上端に揃える（下ナビ高さと同じに） */
+            top: auto;
+            flex-direction: column;
+            gap: .5rem;
+            background: #fff;
+            border-top: 1px solid var(--color-border);
+            padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+            max-height: 65vh;          /* 画面を覆い過ぎない */
+            overflow-y: auto;
+            z-index: 1001;             /* 下ナビより前面に */
+          }
+        
+          /* メニューボタンは常に最前面に */
+          .mobile-menu-btn { position: relative; z-index: 1002; }
+        }
+        
     </style>
 </head>
 <body>
@@ -1158,6 +1188,7 @@
     </script>
 </body>
 </html>
+
 
 
 
