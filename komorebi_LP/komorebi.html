@@ -60,29 +60,54 @@
         .hero-bg .pc-only { display: none; }
         .hero-bg .sp-only { display: block; }
                 
+/* ▼ ここを差し替え */
         .free-badge-new{
-            background: var(--white);
-            color: var(--color-main);
-            border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
-            border: 4px solid var(--white);
-            padding: 0.6rem 2.5rem;
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
+        --badge-size: clamp(88px, 12vw, 140px);
+        --green: #006532;       /* 文字＆ピル用の濃い緑（パレット合わせ） */
+        --green-dark: #004a24;  /* 小見出し用のさらに濃い緑 */
+
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .15em;
+
+        width: var(--badge-size);
+        height: var(--badge-size);
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+        border: 4px solid #fff;
+        padding: clamp(6px, 1.2vw, 10px);
+        color: var(--green);
         }
-        .free-badge-small-text {
-            font-size: 0.8rem;
-            font-weight: 700;
-            line-height: 1.2;
+
+        .free-badge-small-text{
+        font-weight: 700;
+        font-size: clamp(10px, 1.9vw, 13px);
+        letter-spacing: .15em;
+        color: var(--green-dark);
+        line-height: 1;
         }
-        .free-badge-large-text {
-            font-size: 2.2rem;
-            font-weight: 900;
-            line-height: 1;
-            white-space: nowrap;
+
+        .free-badge-large-text{
+        font-weight: 900;
+        font-size: clamp(22px, 5.2vw, 40px);
+        letter-spacing: .1em;
+        line-height: 1;
+        white-space: nowrap;
+        }
+        .free-badge-pill{
+        margin-top: .15em;
+        font-weight: 800;
+        font-size: clamp(9px, 1.7vw, 12px);
+        color: #fff;
+        background: var(--green);
+        padding: .35em .8em;
+        border-radius: 9999px;
+        line-height: 1;
+        white-space: nowrap;
         }
         .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:var(--white);}
         .hero-tagline-new{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:2rem;}
@@ -310,6 +335,20 @@
         .footer-separator{height:1px;background:var(--color-border);opacity: 0.5;margin:2rem 0;}
         .text-xs{font-size:.75rem;}
         html{scroll-behavior:smooth;}
+
+        /* 行を2列：左=バッジ、右=本文 */
+        .partnership-detail{
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        column-gap: .5rem;
+        align-items: start;
+        }
+        .partnership-detail > span:last-child{
+        display: block; /* 本文をブロックに */
+        }
+        .partnership-detail > span:first-child{
+        white-space: nowrap; /* 「会場」「展示期間」が折り返さないように */
+        }
         
         /* =================================== */
         /* ▼▼▼ スマホ対応スタイル ▼▼▼ */
@@ -382,8 +421,8 @@
                 text-align: center;
                 gap: 0.5rem;
             }
-            .partnership-details { align-items: center; text-align: center; gap: 0.75rem;}
-            .partnership-detail { display: flex; flex-direction: column; gap: 0.25rem; }
+            .partnership-details{align-items:stretch;text-align:left;gap:.75rem}
+            .partnership-detail{display:grid;grid-template-columns:max-content 1fr;column-gap:.5rem}
             .partnership-description { text-align: left; }
 
             /* -- フッターセクション -- */
@@ -444,7 +483,7 @@
         .survey {
         background: #EFE07E !important;  /* セクション背景を黄色に */
         padding: 3rem 1rem;              /* 上下左右に余白 */
-        }
+        }   
 
         .workshops .section-container-wide,
         .food .section-container-wide,
@@ -513,7 +552,12 @@
         display: block;
         margin: 0 auto 1rem; /* ← 中央寄せ */
         }
-        
+    
+        @media (max-width: 767px) {
+        .navbar{ display:none !important; }
+        body{ padding-top:0; } /* 念のため余白リセット */
+        ｝
+
     </style>
 </head>
 <body>
@@ -528,7 +572,7 @@
                 <a href="#workshops" class="nav-item" data-section="workshops">ワークショップ</a>
                 <a href="#food" class="nav-item" data-section="food">キッチンカー</a>
                 <a href="#survey" class="nav-item" data-section="survey">アンケート</a>
-                <a href="#partnerships" class="nav-item" data-section="partnerships">連携企画</a>
+                <a href="#partnerships" class="nav-item" data-section="partnerships">コラボ企画</a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;">
@@ -553,7 +597,8 @@
             <div>
                  <div class="free-badge-new">
                      <span class="free-badge-small-text">入場・鑑賞</span>
-                     <span class="free-badge-large-text">無&nbsp;料</span>
+                     <span class="free-badge-large-text">無料</span>
+                     <span class="free-badge-pill">雨天開催</span>
                  </div>
             </div>
         </div>
@@ -579,7 +624,7 @@
                 </div>
             </div>
             <div class="event-info-row">
-                <div class="event-venue">多摩あきがわライブフォレスト自然人村</div>
+                <div class="event-venue">自然人村</div>
             </div>
             <div class="event-info-row">
                 <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">
@@ -587,7 +632,7 @@
                 </a>
             </div>
             <div class="event-info-row">
-                <div class="event-addr text-xs">JR武蔵五日市駅より無料往復シャトルで10分（20～30分間隔で10:00─18:00に随時発着）</div>
+                <div class="event-addr text-xs">JR武蔵五日市駅より無料往復シャトルで10分<br>（20～30分間隔で10:00─18:00に随時発着）</div>
             </div>
             </div>
         </div>
@@ -709,10 +754,10 @@
                 <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">12:00</div>
-                    <div class="timeline-info">
-                    <h3>映画：ミニオンズ フィーバー</h3>
-                    <p>（88分）</p>
-                    <p class="text-xs">©2022 Universal Studios. All Rights Reserved.</p>
+                        <div class="timeline-info">
+                        <h3>映画：ミニオンズ フィーバー</h3>
+                        <p>（88分）</p>
+                        <p class="text-xs">©2022 Universal Studios. All Rights Reserved.</p>
                     </div>
                 </div>
                 <img src="./image/movie_minions.png" alt="ミニオンズ フィーバー" class="timeline-movie-icon">
@@ -726,14 +771,15 @@
                             <p>（20分）</p>
                         </div>
                     </div>
+                <img src="./image/movie_enokido.png" alt="榎戸材木店" class="timeline-movie-icon">
                 </div>
                 <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">14:00</div>
-                    <div class="timeline-info">
-                    <h3>映画：パンダコパンダ</h3>
-                    <p>（33分）</p>
-                    <p class="text-xs">©TMS</p>
+                        <div class="timeline-info">
+                        <h3>映画：パンダコパンダ</h3>
+                        <p>（33分）</p>
+                        <p class="text-xs">©TMS</p>
                     </div>
                 </div>
                 <img src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ" class="timeline-movie-icon">
@@ -747,14 +793,15 @@
                             <p>（20分）</p>
                         </div>
                     </div>
+                <img src="./image/movie_tokyochainsaws.png" alt="青木" class="timeline-movie-icon">
                 </div>
                 <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">15:10</div>
-                    <div class="timeline-info">
-                    <h3>映画：SING</h3>
-                    <p>（110分）</p>
-                    <p class="text-xs">©2016 Universal Studios. All Rights Reserved.</p>
+                        <div class="timeline-info">
+                        <h3>映画：SING</h3>
+                        <p>（110分）</p>
+                        <p class="text-xs">©2016 Universal Studios. All Rights Reserved.</p>
                     </div>
                 </div>
                 <img src="./image/movie_sing.png" alt="SING" class="timeline-movie-icon">
@@ -762,7 +809,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-time">17:00</div>
-                        <div class="timeline-info"><h3>終了予定</h3></div>
+                        <div class="timeline-info"><h3>上映終了 CLOSE</h3></div>
                     </div>
                 </div>
             </div>
@@ -773,32 +820,32 @@
         <div class="section-container-wide">
             <h2 class="section-title">
                 <img src="./image/flag_workshop.png" alt="" class="title-icon">
-                とうきょうの木を楽しむワークショップ
+                「とうきょうの木」を楽しむワークショップ
             </h2>
-            <div class="workshops-intro"><p>※参加費はすべて無料です</p></div>
+            <div class="workshops-intro"><p>※参加費はすべて無料です。<br>申し込みは当日会場で受け付けます。</p></div>
 
             <div class="workshop-group">
                 <h3 class="workshop-organization">東京チェンソーズ</h3>
                 <div class="workshop-grid workshop-grid-3">
                     <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">●丸太アスレチック</h4></div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">丸太アスレチック</h4></div>
                         <div class="workshop-card-content">
                             <img src="./image/workshop_maruta.png" alt="丸太アスレチックの様子" class="workshop-image">
                             <p class="workshop-description"><span class="circle-note">会期中は随時参加できます</span></p>
                         </div>
                     </div>
                     <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">●薪割りで焚き火を楽しむ</h4></div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">薪割りで焚き火を楽しむ</h4></div>
                         <div class="workshop-card-content">
                             <img src="./image/workshop_makiwari.png" alt="薪割り体験" class="workshop-image">
                             <p class="workshop-description">～焼きマシュマロ、焼き芋なども一緒に～<br><span class="circle-note">会期中は随時参加できます</span></p>
                         </div>
                     </div>
                     <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">●山に入って森のお話</h4></div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">山に入って森のお話</h4></div>
                         <div class="workshop-card-content">
                             <img src="./image/workshop_tokyochainsaws.png" alt="森のお話フィールドワーク" class="workshop-image">
-                            <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植林や長年の森づくりの姿を見てもらいお話しする、40分ほどのプログラムです。<br>［15時30分より実施／当日会場で受付／定員15名予定］</p>
+                            <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植林や長年の森づくりの姿を見てもらいお話しする、40分ほどのプログラムです。<br>［15:30分より実施／当日会場で受付／定員15名予定］</p>
                         </div>
                     </div>
                 </div>
@@ -808,17 +855,17 @@
                 <h3 class="workshop-organization">榎戸材木店</h3>
                 <div class="workshop-grid workshop-grid-2">
                     <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">●ヒノキの枝でバードコールづくり</h4></div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">ヒノキの枝でバードコールづくり</h4></div>
                         <div class="workshop-card-content">
                             <img src="./image/workshop_hinoki.png" alt="ヒノキのバードコールづくり" class="workshop-image">
-                            <p class="workshop-description text-sm">ネジを回すと鳥のさえずりのような 音が出ます。自然とつながる工作体験です。（1回3分 ）<br>［受付 11─13時／14─16時／<br>定員 各40名（先着順）］</p>
+                            <p class="workshop-description text-sm">ネジを回すと鳥のさえずりのような 音が出ます。自然とつながる工作体験です。<br>（1回3分 ）［受付 11:00～13:00／14:00～16:00／定員 各40名（先着順）］</p>
                         </div>
                     </div>
                     <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">●どんぐりパチンコ</h4></div>
+                        <div class="workshop-card-header"><h4 class="workshop-card-title">どんぐりパチンコ</h4></div>
                         <div class="workshop-card-content">
                             <img src="./image/workshop_donguri.png" alt="どんぐりパチンコで遊ぶ様子" class="workshop-image">
-                            <p class="workshop-description text-sm">どんぐりを拾ったらパチンコで遊ぼう！<br>拾ったどんぐりは何の木のどんぐりかわかるかな？（1回5～10分）<br>［受付11─13時／14─16時］</p>
+                            <p class="workshop-description text-sm">どんぐりを拾ったらパチンコで遊ぼう！<br>拾ったどんぐりは何の木のどんぐりかわかるかな？<br>（1回5～10分）［受付11:00～13:00／14:00～16:00］</p>
                         </div>
                     </div>
                 </div>
@@ -829,20 +876,20 @@
                     <div>
                         <h3 class="workshop-organization">クレコ・ラボ</h3>
                         <div class="workshop-card">
-                            <div class="workshop-card-header"><h4 class="workshop-card-title">●スギ・ヒノキで、木のトンボづくり</h4></div>
+                            <div class="workshop-card-header"><h4 class="workshop-card-title">スギ・ヒノキで、木のトンボづくり</h4></div>
                             <div class="workshop-card-content">
                                 <img src="./image/workshop_tonbo.png" alt="木のトンボを飛ばす様子" class="workshop-image">
-                                <p class="workshop-description text-sm">組立簡単！モクトンボをつく<br>ろう！ 少しの力でフワッと飛 びあがります。（1回5分）<br>［受付11─17時／定員<br>100名（先着順)］</p>
+                                <p class="workshop-description text-sm">組立簡単！モクトンボをつく<br>ろう！ 少しの力でフワッと飛びあがります。<br>（1回5分）［受付11:00～17:00／定員100名（先着順)］</p>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h3 class="workshop-organization">TOKYO MOKUNAVI</h3>
+                        <h3 class="workshop-organization">TOKYO MOKUNAVI</h3>   
                         <div class="workshop-card">
-                            <div class="workshop-card-header"><h4 class="workshop-card-title">●おえかきコーナー</h4></div>
+                            <div class="workshop-card-header"><h4 class="workshop-card-title">おえかきコーナー</h4></div>
                             <div class="workshop-card-content">
-                                <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールームの内観" class="workshop-image">
-                                <p class="workshop-description text-sm">新宿リビングデザインセンターOZONE内のショールームで展示します。（1回10分）<br>［受付10─17時／定員70名（先着順）］</p>
+                                <img src="./image/collaboration_oekaki.png" alt="MOKUNAVIショールームの内観" class="workshop-image">
+                                <p class="workshop-description text-sm">会場で、このイベントの思い出を〝とうきょうの木〟の紙に描いてみよう。<br>［受付 11：00～17：00／定員70名（先着順）］</p>
                             </div>
                         </div>
                     </div>
@@ -858,35 +905,36 @@
                 <img src="./image/flag_foods.png" alt="" class="title-icon">
                 森のキッチンカー
             </h2>
+            <div class="workshops-intro"><p>※11:00から営業予定。売り切れ次第、終了となります。</p></div>
             
             <div class="food-group">
                 <h3 class="workshop-organization">つけ麺 五ノ神製作所</h3>
                 <div class="food-grid">
                     <div class="food-card">
-                        <div class="food-card-header"><h4 class="food-card-title">●奥多摩ヤマメのラーメン</h4></div>
+                        <div class="food-card-header"><h4 class="food-card-title">奥多摩産ヤマメのラーメン</h4></div>
                         <div class="food-card-content">
                             <img src="./image/food_ramen.png" alt="奥多摩ヤマメのラーメン" class="food-image">
                             <p class="food-description">奥多摩の養殖ヤマメをスープ＆トッピングに贅沢に使った塩ラーメン</p>
                         </div>
                     </div>
                     <div class="food-card">
-                        <div class="food-card-header"><h4 class="food-card-title">●東京軍鶏パエリア</h4></div>
+                        <div class="food-card-header"><h4 class="food-card-title">東京しゃもパエリア</h4></div>
                         <div class="food-card-content">
                             <img src="./image/food_piza.png" alt="東京軍鶏のパエリア" class="food-image">
-                            <p class="food-description">あきる野＆青梅で育った東京軍鶏の旨味スープで炊きあげるパエリア。地場野菜、軍鶏肉の味わいをお楽しみください。</p>
+                            <p class="food-description">あきる野＆青梅で育った東京しゃもの旨味スープで炊きあげるパエリア。地場野菜、東京しゃもの味わいをお楽しみください。</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="food-group food-group--kitchencar">
-                <h3 class="workshop-organization">〇〇〇〇〇</h3>
+                <h3 class="workshop-organization">喜輪</h3>
                 <div class="food-grid">
                     <div class="food-card">
-                        <div class="food-card-header"><h4 class="food-card-title">〇〇〇〇〇</h4></div>
+                        <div class="food-card-header"><h4 class="food-card-title">お好み焼き</h4></div>
                         <div class="food-card-content">
-                            <img src="./image/Market_logo_white.png" alt="ダミー画像" class="food-image">
-                            <p class="food-description">〇〇〇〇〇</p>
+                            <img src="./image/food_okonomiyaki.png" alt="お好み焼き" class="food-image">
+                            <p class="food-description">北海道産の小麦粉、青森県産の長芋など国産の材料にこだわったふわふわのお好み焼きです。</p>
                         </div>
                     </div>
                     <!-- キッチンカー専用カード -->
@@ -903,20 +951,20 @@
                     <div>
                         <h3 class="workshop-organization">自然人村</h3>
                         <div class="food-card">
-                            <div class="food-card-header"><h4 class="food-card-title">●あじさい茶＆森のドリンクバー</h4></div>
+                            <div class="food-card-header"><h4 class="food-card-title">あじさい茶＆森のドリンクバー</h4></div>
                             <div class="food-card-content">
                                 <img src="./image/food_azisai.png" alt="あじさい茶とドリンク" class="food-image">
-                                <p class="food-description">「南沢あじさい山」名物あじさい茶や、オリジナルジェラート、ソフトドリンクにアルコールまでご用意。</p>
+                                <p class="food-description">地元あきる野市にある、１万株のあじさいが咲く「南沢あじさい山」名物あじさい茶や、オリジナルジェラート、ソフトドリンク、アルコールをご用意します。</p>
                             </div>
                         </div>
                     </div>
                     <div>
                         <h3 class="workshop-organization">kaze labo</h3>
                         <div class="food-card">
-                            <div class="food-card-header"><h4 class="food-card-title">●オリジナルのお酒</h4></div>
+                            <div class="food-card-header"><h4 class="food-card-title">スモークカクテル</h4></div>
                             <div class="food-card-content">
-                                <img src="./image/food_azisai.png" alt="kaze labo オリジナルドリンク（イメージ）" class="food-image">
-                                <p class="food-description">オリジナルのお酒</p>
+                                <img src="./image/food_cacuteru.png" alt="kaze labo オリジナルドリンク（イメージ）" class="food-image">
+                                <p class="food-description">燻製ギア体験もできる！スモークカクテルの実演販売。</p>
                             </div>
                         </div>
                     </div>
@@ -954,7 +1002,7 @@
         </div>
         <div class="partnerships-container">
             <div class="partnerships-header">
-                <h2 class="partnerships-title">連携企画</h2>
+                <h2 class="partnerships-title">コラボ企画</h2>
                 <p class="partnerships-subtitle">同日・同時開催イベント</p>
             </div>
 
@@ -967,7 +1015,7 @@
                     <img src="./image/Market_logo_white.png" alt="マーケット イメージ" class="partnership-image">
                     <div class="partnership-details">
                         <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/fkwsmiBSHrvKCGxu5" target="_blank" rel="noopener noreferrer" style="color:inherit;">フレア五日市（JR 武蔵五日市駅前）</a></span></div>
-                        <div class="partnership-detail"><span class="partnership-badge">開催日時</span><span>2025年10月5日（日） 11時 ― 17時</span></div>
+                        <div class="partnership-detail"><span class="partnership-badge">開催日時</span><span>2025年10月5日（日） 10:00～17:00</span></div>
                         <p class="partnership-description">東京の山里川の自然の魅力を感じられるマーケットがスタート<br>
                         クラフト作品や体験ツアーの情報などが会場にギュッと凝縮！<br>
                         田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」でさっそく相談にも、<br>
@@ -982,9 +1030,9 @@
                     </div>
                     <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールーム展示" class="partnership-image">
                     <div class="partnership-details">
-                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/3g2yo5YiY7XH4g8D7" target="_blank" rel="noopener noreferrer" style="color:inherit;">新宿リビングデザインセンター OZONE 7階</a></span></div>
-                        <div class="partnership-detail"><span class="partnership-badge">展示期間</span><span>2025年10月9日（木） ― 11月4日（火）</span></div>
-                        <p class="partnership-description">おえかきコーナーで描いた絵が後日、ショールームで飾られます。</p>
+                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/3g2yo5YiY7XH4g8D7" target="_blank" rel="noopener noreferrer" style="color:inherit;">新宿リビングデザインセンター OZONE 7階<br>とうきょうの木 魅力発信拠点 TOKYO MOKUNAVI</a></span></div>
+                        <div class="partnership-detail"><span class="partnership-badge">展示期間</span><span>2025年10月9日（木） ― 11月4日（火）<br>10：30～18：30（休館日：祝日除く水曜日）</span></div>
+                        <p class="partnership-description">TOKYO MOKUNAVI おえかきコーナーで描いた絵を、後日ショールームに展示します。</p>
                     </div>
                 </div>
             </div>
@@ -1002,7 +1050,7 @@
                         <img src="./image/Mokunabi_logo_white.png" alt="TOKYO MOKUNAVI" style="height:40px; vertical-align:middle; margin-right:.5rem;">
                     </a>
                 </p>
-                <p>後援予定： あきる野市、檜原村、日の出町、<br>あきる野市教育委員会、檜原村教育委員会、<br>日の出町教育委員会</p>
+                <p>後援： あきる野市、檜原村、あきる野市教育委員会</p>
             </div>
                 <div class="footer-section">
                     <h3>アクセス</h3>
@@ -1010,18 +1058,18 @@
                         <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem;">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:.25rem;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                             <div>
-                                <p>多摩あきがわライブフォレスト自然人村</p>
+                                <p>自然人村</p>
                                 <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">
                                 東京都あきる野市深沢198
                                 </a>
                             </div>
                         </div>
-                        <p class="text-xs">JR五日市線「武蔵五日市駅」より 徒歩：約20分／無料シャトルバス：約10分（約20分間隔で運行）</p>
+                        <p class="text-xs">JR武蔵五日市駅より無料往復シャトルで10分<br>（20～30分間隔で10:00─18:00に随時発着）</p>
                     </div>
                 </div>
 
                 <div class="footer-section">
-                    <h3>お問い合わせ</h3>
+                    <h3>お問い合わせ</h3>   
                     <div>
                         <p>
                             E-mail：
@@ -1082,20 +1130,5 @@
         updateActiveSection();
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
