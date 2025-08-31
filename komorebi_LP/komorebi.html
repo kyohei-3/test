@@ -571,6 +571,20 @@
           body{ padding-top:64px; }
         }
 
+        @media (max-width: 767px) {
+          .navbar{
+            display:block !important;
+            position: fixed;
+            bottom: 0;   /* ← 上ではなく下に固定 */
+            top: auto;
+            left: 0; right: 0;
+            height: 56px;  /* 必要に応じて調整 */
+          }
+          body{
+            padding-top:0; 
+            padding-bottom:56px;  /* ナビ分の余白を下に確保 */
+          }
+        }
     </style>
 </head>
 <body>
@@ -1144,6 +1158,7 @@
     </script>
 </body>
 </html>
+
 
 
 
