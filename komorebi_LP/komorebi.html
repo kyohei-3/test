@@ -401,20 +401,6 @@
         .event-openclose { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
         .event-date .md { font-size: 2rem; }
         .weather-badge { margin-left: 0; margin-top: 0.5rem; }
-
-        /* バッジ本体を拡大（最小140px、画面に応じて最大220pxまで） */
-        .free-badge-new {
-          --badge-size: clamp(140px, 42vw, 220px);
-          padding: clamp(6px, 1.2vw, 10px); /* 余白は狭めのまま */
-        }
-        /* 文字も拡大してバランスを保つ（必要なら微調整） */
-        .free-badge-small-text { font-size: clamp(12px, 3.6vw, 16px); letter-spacing: 0.12em; }
-        .free-badge-large-text { font-size: clamp(32px, 8.4vw, 54px); }
-        .free-badge-pill       { font-size: clamp(12px, 3.6vw, 16px); padding: 0.32em 0.72em; }
-      
-        /* 下部固定ナビとの干渉を少し避ける（任意） */
-        .hero-content { padding-bottom: 1rem; }
-        }
       
         /* タイムテーブル */
         .timeline-content { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
@@ -1132,6 +1118,7 @@
     </script>
   </body>
 </html>
+
 
 
 
