@@ -459,10 +459,17 @@
       /* 文字間や角の余白も少しだけ増やす */
       padding: clamp(8px, 2vw, 12px);
       }
-    .free-badge-small-text { font-size: clamp(12px, 3.4vw, 16px); }
-    .free-badge-large-text { font-size: clamp(30px, 7.6vw, 48px); }
-    .free-badge-pill       { font-size: clamp(12px, 3.4vw, 16px); }
-      
+      .free-badge-small-text { font-size: clamp(12px, 3.4vw, 16px); }
+      .free-badge-large-text { font-size: clamp(30px, 7.6vw, 48px); }
+      .free-badge-pill       { font-size: clamp(12px, 3.4vw, 16px); }
+
+      /* スマホだけ：ワークショップ／キッチンカーの旗を小さく */
+      @media (max-width: 767px) {
+      #workshops .section-title .title-icon,
+      #food .section-title .title-icon {
+        width: 4.75rem;   /* お好みで 4rem～5rem に調整可 */
+        height: auto;
+      }      
       /* --------------------------------
          Responsive Grids (breakpoints only)
       --------------------------------- */
@@ -1128,6 +1135,7 @@
     </script>
   </body>
 </html>
+
 
 
 
