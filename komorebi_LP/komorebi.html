@@ -358,7 +358,7 @@
       /* --------------------------------
          Desktop Enhancements（PC時の重なり/アンカー隠れを回避）
       --------------------------------- */
-      @media (min-width: 768px) {
+      @media (min-width: 1025px) {
         /* PCメニューの常時表示 */
         .nav-menu { display: flex; position: static; background: none; flex-direction: row; padding: 0; border: none; }
         .nav-menu.active { display: flex; }
@@ -384,7 +384,7 @@
          Mobile (≤767px)
          仕様：下部固定ナビ / 余白は下に確保
       --------------------------------- */
-      @media (max-width: 767px) {
+      @media (max-width: 1024px) {
         /* 文字サイズ調整 */
         h1, .hero-title-new { font-size: 1.9rem; white-space: nowrap; }
         .hero-tagline-new    { font-size: 0.9rem; white-space: nowrap; }
@@ -477,7 +477,7 @@
       /* --------------------------------
          Responsive Grids (breakpoints only)
       --------------------------------- */
-      @media (min-width: 768px) {
+      @media (min-width: 1025px) {
         .overview-grid { grid-template-columns: 1fr 1fr; }
         .overview-intro-block { margin-bottom: 4rem; }
         .films-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1139,6 +1139,7 @@
     </script>
   </body>
 </html>
+
 
 
 
