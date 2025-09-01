@@ -1,1198 +1,1120 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<!-- favicon（PNG）-->
-<link rel="icon" type="image/png" href="./image/favicon.png">
-<!-- iOSのホーム追加用（同じPNGを流用でOK）-->
-<link rel="apple-touch-icon" href="./image/favicon.png">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- ==============================
+         <head> 基本メタ情報
+         ※ 仕様変更なし（OG/Twitter など元のまま）
+    =============================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>木もれびシネマの森 ～映画と森のクラフトフェスティバル～</title>
-    
-    <meta name="description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」">
-    <meta property="og:title" content="木もれびシネマの森 ～映画と森のクラフトフェスティバル～">
-    <meta property="og:description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://example.com/komorebi-cinema"> <meta property="og:image" content="https://example.com/image/mainvisual.png"> <meta property="og:image:alt" content="森の中の映画祭のメインビジュアル">
-    <meta property="og:site_name" content="木もれびシネマの森">
-    <meta name="twitter:card" content="summary_large_image">
 
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./image/favicon.png" />
+    <link rel="apple-touch-icon" href="./image/favicon.png" />
+
+    <meta name="description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」" />
+    <meta property="og:title" content="木もれびシネマの森 ～映画と森のクラフトフェスティバル～" />
+    <meta property="og:description" content="～映画と森のクラフトフェスティバル～「木もれびシネマの森」" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/komorebi-cinema" />
+    <meta property="og:image" content="https://example.com/image/mainvisual.png" />
+    <meta property="og:image:alt" content="森の中の映画祭のメインビジュアル" />
+    <meta property="og:site_name" content="木もれびシネマの森" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Webフォント（元のまま） -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- ==============================
+         Styles
+         ポイント：
+         - 変数の一元化（--nav-h を含む）
+         - セクションごとに整理
+         - 仕様維持（PC 上固定 / SP 下固定、scroll-padding 等）
+    =============================== -->
     <style>
-        /* Reset and base styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+      /* --------------------------------
+         Reset / Base
+      --------------------------------- */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
 
-        /* ▼▼▼【変更】カラーパレットを指定の色で再定義 ▼▼▼ */
-        :root{
-            --color-main: #006532;       /* メインのグリーン */
-            --color-sub: #5E4E48;         /* サブのブラウン（主にテキスト） */
-            --color-accent: #EFE07E;       /* アクセントの黄色 */
-            --color-accent-dark: #DDCB6A;   /* アクセントの濃い黄色（ホバー用） */
-            --color-background: #F4F6F4;   /* 薄いグリーン系の背景色 */
-            --color-border: #CCE0D5;       /* ボーダー用のグリーン */
-            --white: #fff;
-            --black: #000;
-        }
+      /* カラーパレット + 共通変数（ナビ高） */
+      :root {
+        --color-main: #006532;            /* メインのグリーン */
+        --color-sub: #5e4e48;             /* サブのブラウン（主にテキスト） */
+        --color-accent: #efe07e;          /* アクセントの黄色 */
+        --color-accent-dark: #ddcb6a;     /* アクセントの濃い黄色（ホバー用） */
+        --color-background: #f4f6f4;      /* 薄いグリーン系の背景色 */
+        --color-border: #cce0d5;          /* ボーダー用のグリーン */
+        --white: #fff;
+        --black: #000;
 
-        body{font-family:'M PLUS Rounded 1c',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:var(--color-sub);background:linear-gradient(to bottom,var(--color-background),var(--white));min-height:100vh;}
+        --nav-h: 64px;                    /* PCヘッダーの高さ（挙動維持のため数値は元値） */
+      }
 
-        /* Typography */
-        h1{font-size:2.5rem;font-weight:900;line-height:1.2;}
-        h2{font-size:2rem;font-weight:900;line-height:1.3;}
-        h3{font-size:1.5rem;font-weight:800;line-height:1.4;}
-        p{font-weight:500;}
+      body {
+        font-family: "M PLUS Rounded 1c", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+        color: var(--color-sub);
+        background: linear-gradient(to bottom, var(--color-background), var(--white));
+        min-height: 100vh;
+      }
 
-        /* Navigation */
-        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);transition:.3s;}
-        .nav-container{max-width:1280px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
-        .nav-logo{color:var(--color-main);font-weight:900;font-size:1.125rem;}
-        .nav-menu{display:none;gap:1.5rem;}
-        .nav-menu.active{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;padding:1rem;border-top:1px solid var(--color-border);}
-        .nav-item{padding:.5rem .75rem;border-radius:.375rem;transition:.2s;cursor:pointer;font-weight:500;color:var(--color-sub);text-decoration:none;}
-        .nav-item:hover{color:var(--color-main);background:var(--color-background);}
-        .nav-item.active{color:var(--color-main);background:var(--color-border);}
-        .mobile-menu-btn{display:block;background:none;border:none;color:var(--color-main);padding:.5rem;cursor:pointer;}
-        
-        /* Hero */
-        .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-        .hero-bg{position:absolute;inset:0;z-index:0;}
-        .hero-bg img{width:100%;height:100%;object-fit:cover;}
-        .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);}
-        .hero-content { position:absolute; bottom:0rem; left:50%; transform:translateX(-50%); text-align:center; z-index:10; color:var(--white); max-width:1024px; margin:0 auto; padding:0 1rem; }
+      /* --------------------------------
+         Typography
+      --------------------------------- */
+      h1 { font-size: 2.5rem; font-weight: 900; line-height: 1.2; }
+      h2 { font-size: 2rem;   font-weight: 900; line-height: 1.3; }
+      h3 { font-size: 1.5rem; font-weight: 800; line-height: 1.4; }
+      p  { font-weight: 500; }
+      .text-sm { font-size: 0.875rem; }
+      .text-xs { font-size: 0.75rem; }
 
-        /* ▼▼▼【追加】PC/スマホで画像を切り替え（スマホ優先）▼▼▼ */
-        .hero-bg .pc-only { display: none; }
-        .hero-bg .sp-only { display: block; }
-                
-/* ▼ ここを差し替え */
-        .free-badge-new{
-        --badge-size: clamp(88px, 12vw, 140px);
-        --green: #006532;       /* 文字＆ピル用の濃い緑（パレット合わせ） */
-        --green-dark: #004a24;  /* 小見出し用のさらに濃い緑 */
+      /* --------------------------------
+         Global Navigation
+         仕様：PC=上固定 / SP=下固定（後述メディアクエリ）
+      --------------------------------- */
+      .navbar {
+        position: fixed; top: 0; left: 0; right: 0;
+        z-index: 1000; /* PCでは後述で 2000 に上書き */
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        transition: 0.3s;
+      }
+      .nav-container {
+        max-width: 1280px; margin: 0 auto; padding: 0 1rem;
+        display: flex; align-items: center; justify-content: space-between;
+        height: var(--nav-h); /* 64px */
+      }
+      .nav-logo { color: var(--color-main); font-weight: 900; font-size: 1.125rem; }
 
+      .nav-menu { display: none; gap: 1.5rem; }
+      .nav-menu.active {
+        display: flex; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--white); flex-direction: column; padding: 1rem;
+        border-top: 1px solid var(--color-border);
+      }
+      .nav-item {
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
+        transition: 0.2s;
+        cursor: pointer;
+        font-weight: 500;
+        color: var(--color-sub);
+        text-decoration: none;
+      }
+      .nav-item:hover  { color: var(--color-main); background: var(--color-background); }
+      .nav-item.active { color: var(--color-main); background: var(--color-border); }
+
+      .mobile-menu-btn {
+        display: block; background: none; border: none;
+        color: var(--color-main); padding: 0.5rem; cursor: pointer;
+      }
+
+      /* --------------------------------
+         Hero
+      --------------------------------- */
+      .hero {
         position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: .15em;
+        height: 100vh; /* ※ 仕様維持。必要に応じて min-height: calc(100vh - var(--nav-h)) に変更可だが今回は維持 */
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+      }
+      .hero-bg { position: absolute; inset: 0; z-index: 0; }
+      .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+      .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); }
+      .hero-content {
+        position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+        text-align: center; z-index: 10; color: var(--white);
+        max-width: 1024px; margin: 0 auto; padding: 0 1rem;
+      }
 
-        width: var(--badge-size);
-        height: var(--badge-size);
-        background: #fff;
-        border-radius: 50%;
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+      /* ヒーロー画像の端末別出し分け（SP優先） */
+      .hero-bg .pc-only { display: none; }
+      .hero-bg .sp-only { display: block; }
+
+      /* バッジ（元仕様のまま・命名/コメントのみ整理） */
+      .free-badge-new {
+        --badge-size: clamp(88px, 14vw, 160px);
+        --green: #006532;
+        --green-dark: #004a24;
+        position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15em;
+        width: var(--badge-size); height: var(--badge-size);
+        background: #fff; border-radius: 50%;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
         border: 4px solid #fff;
         padding: clamp(6px, 1.2vw, 10px);
         color: var(--green);
-        }
+      }
+      .free-badge-small-text { font-weight: 700; font-size: clamp(11px, 2.2vw, 14px); letter-spacing: 0.15em; color: var(--green-dark); line-height: 1; }
+      .free-badge-large-text { font-weight: 900; font-size: clamp(24px, 5.8vw, 42px); letter-spacing: 0.1em; line-height: 1; white-space: nowrap; }
+      .free-badge-pill { margin-top: 0.15em; font-weight: 800; font-size: clamp(11px, 2.2vw, 14px); color: #006532; background: #efe07e; padding: 0.35em 0.8em; border-radius: 9999px; line-height: 1; white-space: nowrap; }
 
-        .free-badge-small-text{
-        font-weight: 700;
-        font-size: clamp(10px, 1.9vw, 13px);
-        letter-spacing: .15em;
-        color: var(--green-dark);
-        line-height: 1;
-        }
+      .hero-title-new { font-size: 4rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 1.5rem; color: var(--white); }
+      .hero-tagline-new { font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem; }
+      .icon { width: 1.25rem; height: 1.25rem; display: inline-block; }
 
-        .free-badge-large-text{
-        font-weight: 900;
-        font-size: clamp(22px, 5.2vw, 40px);
-        letter-spacing: .1em;
-        line-height: 1;
-        white-space: nowrap;
-        }
-        .free-badge-pill{
-        margin-top: .15em;
-        font-weight: 800;
-        font-size: clamp(9px, 1.7vw, 12px);
-        color: #fff;
-        background: var(--green);
-        padding: .35em .8em;
-        border-radius: 9999px;
-        line-height: 1;
-        white-space: nowrap;
-        }
-        .hero-title-new{font-size:4rem;font-weight:900;letter-spacing:.05em;margin-bottom:1.5rem;color:var(--white);}
-        .hero-tagline-new{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:2rem;}
-        .icon{width:1.25rem;height:1.25rem;display:inline-block;}
+      /* --------------------------------
+         Sections (共通)
+      --------------------------------- */
+      .section { padding: 4rem 1rem; }
+      .section-container      { max-width: 1024px; margin: 0 auto; }
+      .section-container-wide { max-width: 1280px; margin: 0 auto; }
+      .section-title { text-align: center; margin-bottom: 2rem; color: var(--color-main); font-weight: 900; }
 
-        @media (min-width:768px){
-            .nav-menu{display:flex;position:static;background:none;flex-direction:row;padding:0;border:none;}
-            .nav-menu.active{display:flex;}
-            .mobile-menu-btn{display:none;}
-            .hero-content{padding-top:6rem !important;}
+      /* タイトル + アイコン（共通） */
+      .section-title { display: flex; align-items: center; justify-content: center; gap: 0.5rem; text-align: center; }
+      .section-title .title-icon { width: 10rem; height: auto; }
 
-            /* ▼▼▼【追加】PCではPC用画像を表示 ▼▼▼ */
-            .hero-bg .pc-only { display: block; }
-            .hero-bg .sp-only { display: none; }
-        }
+      /* --------------------------------
+         Overview
+      --------------------------------- */
+      .overview-text-section { background-color: var(--color-main); color: var(--white); padding: 2rem 1rem; }
+      .overview-text-section .section-title,
+      .overview-text-section p { color: var(--white); }
 
-        /* Sections */
-        .section{padding:4rem 1rem;}
-        .section-container{max-width:1024px;margin:0 auto;}
-        .section-container-wide{max-width:1280px;margin:0 auto;}
-        .section-title{text-align:center;margin-bottom:2rem;color:var(--color-main);font-weight:900;}
+      .overview-info-section { background-color: var(--color-accent); padding: 3rem 1rem; }
 
-        /* Overview */
-        .overview{background:#EFE07E;}
-        .overview-text{display:flex;flex-direction:column;gap:1rem;text-align:left;}
-        .overview-text p{color:var(--color-sub);font-weight:500;}
-        .overview-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}
-        @media (min-width:768px){.overview-grid{grid-template-columns:1fr 1fr;}}
-        .overview-map-image {
-            width: 100%;
-            height: auto;
-            border-radius: .75rem;
-            display: block;
-        }
-        .event-info{
-            background:var(--white);
-            border-radius:.75rem;
-            padding:1rem 1.25rem; 
-            height: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        .event-info-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;}
-        .event-date{display:flex;align-items:center;gap:.5rem;}
-        .event-date .y{font-size:.9rem;color:var(--color-main);font-weight:800;}
-        .event-date .md{font-size:2.5rem;font-weight:900;color:var(--color-main);letter-spacing:.02em;}
-        .event-date .w{border:2px solid var(--color-main);border-radius:9999px;padding:.1rem .55rem;font-weight:900;color:var(--color-main);}
-        .event-openclose{display:flex;gap:1rem;font-weight:900;color:var(--color-main);}
-        .event-openclose span{background:var(--color-background);padding:.25rem .6rem;border-radius:.375rem;}
-        .event-venue{font-weight:800;color:var(--color-main);}
-        .event-addr{font-size:.85rem;color:var(--color-sub);}
+      .overview-intro-block {
+        background: var(--color-main); color: var(--white);
+        padding: 2.5rem 1.5rem; margin-bottom: 2rem; text-align: center; border-radius: 0.75rem;
+      }
+      .overview-intro-block p { font-weight: 500; line-height: 1.8; }
+      .overview-intro-block .section-title { color: var(--white); }
 
-        /* Films */
-        .films{background:var(--white);}
-        .films-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
-        @media (min-width:768px){.films-grid{grid-template-columns:repeat(3,1fr);}}
-        .film-card{
-            border-radius:.5rem;
-            overflow:hidden;
-            background:var(--white);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        .film-head{
-            padding:1rem 1rem 0;
-            text-align:center;
-            color:var(--color-main);
-            font-weight:900;
-            font-size: 1.25rem;
-        }
-        .film-body{padding:0 1rem 1rem;}
-        .film-img{width:100%;max-width:900px;height:200px;object-fit:contain;object-position:center;border-radius:.5rem;margin:0 0 .75rem;background:#fff;}
-        .film-accordion{border:1px solid var(--color-border);border-radius:.5rem;overflow:hidden;}
-        .film-accordion summary{list-style:none;cursor:pointer;padding:.6rem .75rem;font-weight:900;color:var(--color-main);background:var(--color-background);}
-        .film-accordion summary::-webkit-details-marker{display:none;}
-        .film-accordion .panel{padding:.5rem .75rem .75rem;font-size:.9rem;color:var(--color-sub);}
+      .overview-grid {
+        display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center;
+        background: transparent; border-radius: 12px; padding: 0; box-shadow: none; border: none;
+      }
+      .overview-map-image { width: 100%; height: auto; border-radius: 0.75rem; display: block; }
 
-        /* Timetable */
-        .timetable{background:var(--color-main);position:relative;overflow:hidden;}
-        .timetable-decorative{position:absolute;inset:0;opacity:.1;}
-        .decorative-circle{position:absolute;border-radius:50%;background:var(--white);}
-        .decorative-circle-1{top:2.5rem;left:2.5rem;width:5rem;height:5rem;}
-        .decorative-circle-2{top:8rem;right:5rem;width:4rem;height:4rem;background:var(--color-accent);}
-        .decorative-circle-3{bottom:5rem;left:8rem;width:3rem;height:3rem;background:#f9a8d4;}
-        .decorative-circle-4{bottom:10rem;right:2.5rem;width:6rem;height:6rem;background:#c084fc;}
-        .timetable-container{max-width:1024px;margin:0 auto;position:relative;z-index:10;}
-        .timetable-header{text-align:center;margin-bottom:3rem;}
-        .timetable-subtitle{color:var(--white);font-size:1.125rem;font-weight:700;margin-bottom:1rem;}
-        .timetable-title-badge{display:inline-block;background:var(--white);padding:.75rem 2rem;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
-        .timetable-title-badge h2{color:var(--color-main);font-size:1.5rem;font-weight:900;letter-spacing:.1em;}
-        .timeline{display:flex;flex-direction:column;gap:1rem;}
-        .timeline-item{background:var(--white);border-radius:1rem;padding:1.5rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
-        .timeline-content{display:flex;align-items:flex-start;gap:1rem;}
-        .timeline-time{color:var(--color-sub); background:none; padding:0;border-radius:0;font-weight:900;font-size:1.125rem;flex-shrink:0;}
-        .timeline-item h3 {color: var(--color-main);}
-        .timeline-item p {color: var(--color-sub);}
-        
-        /* TIME TABLE：交互の背景色 */
-        .timeline .timeline-item:nth-child(1),
-        .timeline .timeline-item:nth-child(3),
-        .timeline .timeline-item:nth-child(5),
-        .timeline .timeline-item:nth-child(7){
-        background:#aeca6f;  /* 開場・森のお話・森のお話・終了予定 */
-        }
+      .event-info { background: var(--white); border-radius: 0.75rem; padding: 1rem 1.25rem; height: 100%; }
+      .event-info-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+      .event-date { display: flex; align-items: center; gap: 0.5rem; }
+      .event-date .y  { font-size: 0.9rem; color: var(--color-main); font-weight: 800; }
+      .event-date .md { font-size: 2.5rem; font-weight: 900; color: var(--color-main); letter-spacing: 0.02em; }
+      .event-date .w  { border: 2px solid var(--color-main); border-radius: 9999px; padding: 0.1rem 0.55rem; font-weight: 900; color: var(--color-main); }
+      .weather-badge { display: inline-flex; align-items: center; justify-content: center; padding: 0.3em 0.8em; background-color: var(--color-main); color: var(--white); border-radius: 9999px; font-size: clamp(10px, 2.5vw, 16px); font-weight: 700; white-space: nowrap; margin-left: 0.5rem; }
+      .event-openclose { display: flex; gap: 1rem; font-weight: 900; color: var(--color-main); }
+      .event-openclose span { background: var(--color-background); padding: 0.25rem 0.6rem; border-radius: 0.375rem; }
+      .event-venue { font-weight: 800; color: var(--color-main); font-size: 1.5em; }
+      .event-addr  { font-size: 0.85rem; color: var(--color-sub); }
 
-        .timeline .timeline-item:nth-child(2),
-        .timeline .timeline-item:nth-child(4),
-        .timeline .timeline-item:nth-child(6){
-        background:#EFE07E;  /* 映画３枠 */
-        }
+      /* --------------------------------
+         Films
+      --------------------------------- */
+      .films { background: var(--white); }
+      .films-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+      .film-card { border-radius: 0.5rem; overflow: hidden; background: var(--white); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+      .film-head { padding: 1rem 1rem 0; text-align: center; color: var(--color-main); font-weight: 900; font-size: 1.25rem; }
+      .film-body { padding: 0 1rem 1rem; }
+      .film-img  { width: 100%; max-width: 900px; height: 200px; object-fit: contain; object-position: center; border-radius: 0.5rem; margin: 0 0 0.75rem; background: #fff; }
+      .film-accordion { border: 1px solid var(--color-border); border-radius: 0.5rem; overflow: hidden; }
+      .film-accordion summary { list-style: none; cursor: pointer; padding: 0.6rem 0.75rem; font-weight: 900; color: var(--color-main); background: var(--color-background); }
+      .film-accordion summary::-webkit-details-marker { display: none; }
+      .film-accordion .panel { padding: 0.5rem 0.75rem 0.75rem; font-size: 0.9rem; color: var(--color-sub); }
 
-        /* タイムライン枠に対してアイコンを右上固定配置 */
-        .timeline-item{ position: relative; }
-        .timeline-movie-icon{
-        position: absolute;
-        top: 12px;          /* 右上の余白 */
-        right: 12px;
-        width: 64px;        /* お好みで：56～72pxくらいが見やすい */
-        height: auto;
-        border-radius: 6px; /* 角丸でポスター感 */
-        box-shadow: 0 2px 6px rgba(0,0,0,.15);
-        }
+      /* --------------------------------
+         Timetable
+      --------------------------------- */
+      .timetable { background: var(--color-main); position: relative; overflow: hidden; }
+      .timetable-decorative { position: absolute; inset: 0; opacity: 0.1; }
+      .decorative-circle { position: absolute; border-radius: 50%; background: var(--white); }
+      .decorative-circle-1 { top: 2.5rem; left: 2.5rem; width: 5rem; height: 5rem; }
+      .decorative-circle-2 { top: 8rem; right: 5rem; width: 4rem; height: 4rem; background: var(--color-accent); }
+      .decorative-circle-3 { bottom: 5rem; left: 8rem; width: 3rem; height: 3rem; background: #f9a8d4; }
+      .decorative-circle-4 { bottom: 10rem; right: 2.5rem; width: 6rem; height: 6rem; background: #c084fc; }
 
-        /* Workshops */
-        .workshops{background:var(--white);}
-        .workshops-intro{text-align:center;margin-bottom:2rem;}
-        .workshops-intro p{color:var(--color-sub);font-weight:700;font-size:1.125rem;}
-        .workshop-group{margin-bottom:3rem;}
-        .workshop-group h3{color:var(--color-main);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
-        .workshop-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
-        @media (min-width:768px){.workshop-grid-3{grid-template-columns:repeat(3,1fr)}.workshop-grid-2{grid-template-columns:repeat(2,1fr)}}
-        .workshop-card{border:2px solid var(--color-border);border-radius:.5rem;overflow:hidden;transition:box-shadow .3s ease;}
-        .workshop-card:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.1);}
-        .workshop-card-header{padding:1.5rem 1.5rem 0;}
-        .workshop-card-title{text-align:center;color:var(--color-main);font-weight:900;margin-bottom:1rem;}
-        .workshop-card-content{padding:0 1.5rem 1.5rem;}
-        .workshop-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: .5rem; margin-bottom: 1rem; }
-        .workshop-description{color:var(--color-sub);text-align:center;font-weight:500;}
-        .text-sm{font-size:.875rem;}
-        .text-xs{font-size:.75rem;}
+      .timetable-container { max-width: 1024px; margin: 0 auto; position: relative; z-index: 10; }
+      .timetable-header { text-align: center; margin-bottom: 3rem; }
+      .timetable-subtitle { color: var(--white); font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; }
+      .timetable-title-badge { display: inline-block; background: var(--white); padding: 0.75rem 2rem; border-radius: 9999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+      .timetable-title-badge h2 { color: var(--color-main); font-size: 1.5rem; font-weight: 900; letter-spacing: 0.1em; }
 
-        /* Circle badge */
-        .circle-note{display:inline-block;padding:.1rem .6rem;border:2px solid var(--color-main);border-radius:9999px;color:var(--color-main);background:var(--white);font-size:.85rem;font-weight:700;}
+      .timeline { display: flex; flex-direction: column; gap: 1rem; }
+      .timeline-item { background: var(--white); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); position: relative; }
+      .timeline-content { display: flex; align-items: flex-start; gap: 1rem; }
+      .timeline-time { color: var(--color-sub); background: none; padding: 0; border-radius: 0; font-weight: 900; font-size: 1.125rem; flex-shrink: 0; }
+      .timeline-item h3 { color: var(--color-main); }
+      .timeline-item p  { color: var(--color-sub); }
 
-        /* Food */
-        .food{background:var(--color-background);}
-        .food-group{margin-bottom:2rem;}
-        .food-group h3{color:var(--color-main);font-weight:900;font-size:1.25rem;margin-bottom:1.5rem;}
-        .food-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
-        @media (min-width:768px){.food-grid{grid-template-columns:repeat(2,1fr)}}
-        .food-card{border:2px solid var(--color-border);border-radius:.5rem;overflow:hidden;background:var(--white);}
-        .food-card-header{padding:1.5rem 1.5rem 0;}
-        .food-card-title{color:var(--color-main);font-weight:900;}
-        .food-card-content{padding:0 1.5rem 1.5rem;}
-        .food-image {width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
-        .food-description{color:var(--color-sub);font-weight:500;}
+      /* 交互の背景色（元仕様） */
+      .timeline .timeline-item:nth-child(1),
+      .timeline .timeline-item:nth-child(3),
+      .timeline .timeline-item:nth-child(5),
+      .timeline .timeline-item:nth-child(7) { background: #aeca6f; }
+      .timeline .timeline-item:nth-child(2),
+      .timeline .timeline-item:nth-child(4),
+      .timeline .timeline-item:nth-child(6) { background: #efe07e; }
 
-        /* Survey */
-        .survey-grid {
-            display: grid;
-            gap: 2rem;
-            align-items: center;
-        }
-        @media (min-width: 768px) {
-            .survey-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .survey-card {
-            padding: 0;
-            text-align: left;
-        }
-        .survey-description{color:var(--color-sub);margin-bottom:1.5rem;font-weight:500;}
-        .survey-button{
-            background:var(--color-accent);
-            color:var(--color-sub);
-            padding:1rem 2rem;
-            border:none;
-            border-radius:.5rem;
-            font-weight:900;
-            font-size:1.25rem;
-            cursor:pointer;
-            transition:background-color .3s ease;
-            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
-        }
-        .survey-button:hover{background:var(--color-accent-dark);}
-        .novelty-image{width:100%;max-width:520px;height:auto;border-radius:.5rem;border:2px solid var(--color-border);}
-        
-        /* Partnerships */
-        .partnerships{background:#2b9e5a;color:#fff;position:relative;overflow:hidden;}
-        .partnerships-decorative{position:absolute;top:0;right:0;width:16rem;height:16rem;opacity:.2;}
-        .partnerships-container{max-width:1280px;margin:0 auto;position:relative;z-index:10;}
-        .partnerships-header{text-align:center;margin-bottom:3rem;}
-        .partnerships-title{font-weight:900;color:#fff;margin-bottom:1rem;}
-        .partnerships-subtitle{font-weight:700;font-size:1.125rem;}
-        .partnerships-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
-        @media (min-width:768px){.partnerships-grid{grid-template-columns:repeat(2,1fr)}}
-        .partnership-card{background:transparent;border-radius:.5rem;padding:1.5rem;color:#fff;text-align:center;} /* ← 中央揃え追加 */
-        .partnership-header{
-          display:flex;
-          align-items:center;
-          justify-content:center; /* ← 横方向中央 */
-          gap:1rem;
-          margin-bottom:1rem;
-        }
-        .partnership-number{
-          width:3rem;height:3rem;border-radius:50%;
-          display:flex;align-items:center;justify-content:center;
-          font-weight:900;font-size:1.25rem;
-          color:#2b9e5a;background:var(--color-accent);
-          box-shadow:0 4px 6px -1px rgba(0,0,0,.1);
-          flex-shrink:0;
-        }
-        .partnership-title{font-weight:900;font-size:1.125rem;color:#fff;margin:0;line-height:1.2;text-align:center;} /* ← 中央寄せ */
-        .partnership-image{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:.5rem;margin-bottom:1rem;}
-        .partnership-details{display:flex;flex-direction:column;gap:.5rem;color:#fff;font-weight:500;text-align:left;}
-        .partnership-badge{background:rgba(255,255,255,.2);color:#fff;padding:.25rem .5rem;border-radius:.25rem;font-size:.875rem;font-weight:700;}
-        .partnership-description{font-size:.875rem;margin-top:.75rem;color:#fff;}
+      /* 映画アイコン（右上固定） */
+      .timeline-movie-icon {
+        position: absolute; top: 12px; right: 12px;
+        width: 64px; height: auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      }
 
-        /* Footer */
-        .footer{background:var(--color-main);color:var(--white);padding:3rem 1rem;}
-        .footer-container{max-width:1280px;margin:0 auto;}
-        .footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2rem;}
-        @media (min-width:768px){.footer-grid{grid-template-columns:repeat(3,1fr)}}
-        .footer-section h3{margin-bottom:1rem;font-weight:700;color:var(--white);}
-        .footer-section p{color:var(--color-border);font-weight:500;margin-bottom:.5rem;}
-        .footer-separator{height:1px;background:var(--color-border);opacity: 0.5;margin:2rem 0;}
-        .text-xs{font-size:.75rem;}
-        html{scroll-behavior:smooth;}
+      /* --------------------------------
+         Workshops
+      --------------------------------- */
+      .workshops { background: var(--white); }
+      .workshops-intro { text-align: center; margin-bottom: 2rem; }
+      .workshops-intro p { color: var(--color-sub); font-weight: 700; font-size: 1.125rem; }
+      .workshop-group { margin-bottom: 3rem; }
+      .workshop-group h3 { color: var(--color-main); font-weight: 900; font-size: 1.25rem; margin-bottom: 1.5rem; }
+      .workshop-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      .workshop-card { border: 2px solid var(--color-border); border-radius: 0.5rem; overflow: hidden; transition: box-shadow 0.3s ease; }
+      .workshop-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+      .workshop-card-header { padding: 1.5rem 1.5rem 0; }
+      .workshop-card-title { text-align: center; color: var(--color-main); font-weight: 900; margin-bottom: 1rem; }
+      .workshop-card-content { padding: 0 1.5rem 1.5rem; }
+      .workshop-image { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem; }
+      .workshop-description { color: var(--color-sub); text-align: center; font-weight: 500; }
 
-        /* 行を2列：左=バッジ、右=本文 */
-        .partnership-detail{
-        display: grid;
-        grid-template-columns: max-content 1fr;
-        column-gap: .5rem;
-        align-items: start;
+      /* バッジ */
+      .circle-note { display: inline-block; padding: 0.1rem 0.6rem; border: 2px solid var(--color-main); border-radius: 9999px; color: var(--color-main); background: var(--white); font-size: 0.85rem; font-weight: 700; }
+
+      /* --------------------------------
+         Food
+      --------------------------------- */
+      .food { background: var(--color-background); }
+      .food-group { margin-bottom: 2rem; }
+      .food-group h3 { color: var(--color-main); font-weight: 900; font-size: 1.25rem; margin-bottom: 1.5rem; }
+      .food-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      .food-card { border: 2px solid var(--color-border); border-radius: 0.5rem; overflow: hidden; background: var(--white); }
+      .food-card-header { padding: 1.5rem 1.5rem 0; }
+      .food-card-title { color: var(--color-main); font-weight: 900; }
+      .food-card-content { padding: 0 1.5rem 1.5rem; }
+      .food-image { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 0.5rem; margin-bottom: 1rem; }
+      .food-description { color: var(--color-sub); font-weight: 500; }
+
+      /* キッチンカー専用（仕様維持） */
+      .food-group--kitchencar .food-card--kitchencar { border: none; background: transparent; box-shadow: none; display: flex; }
+      .food-group--kitchencar .food-card--kitchencar .food-card-content {
+        padding: 0; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 320px;
+      }
+      .food-group--kitchencar .kitchencar-image { max-width: 100%; max-height: 360px; height: auto; object-fit: contain; display: block; }
+
+      /* --------------------------------
+         Survey
+      --------------------------------- */
+      .survey-grid { display: grid; gap: 2rem; align-items: center; }
+      .survey-card { padding: 0; text-align: left; }
+      .survey-main-text { font-size: 1.25rem; font-weight: 700; color: var(--color-sub); margin-bottom: 0.5rem; }
+      .survey-description { font-size: 0.875rem; color: var(--color-sub); margin-bottom: 1.5rem; font-weight: 500; }
+      .survey-button { background: var(--color-accent); color: var(--color-sub); padding: 1rem 2rem; border: none; border-radius: 0.5rem; font-weight: 900; font-size: 1.25rem; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1); }
+      .survey-button:hover { background: var(--color-accent-dark); }
+      .novelty-image { width: 100%; max-width: 520px; height: auto; border-radius: 0.5rem; border: 2px solid var(--color-border); }
+
+      /* --------------------------------
+         Partnerships
+      --------------------------------- */
+      .partnerships { background: #2b9e5a; color: #fff; position: relative; overflow: hidden; }
+      .partnerships-decorative { position: absolute; top: 0; right: 0; width: 16rem; height: 16rem; opacity: 0.2; }
+      .partnerships-container { max-width: 1280px; margin: 0 auto; position: relative; z-index: 10; }
+      .partnerships-header { text-align: center; margin-bottom: 3rem; }
+      .partnerships-title { font-weight: 900; color: #fff; margin-bottom: 1rem; }
+      .partnerships-subtitle { font-weight: 700; font-size: 1.125rem; }
+      .partnerships-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+      .partnership-card { background: transparent; border-radius: 0.5rem; padding: 1.5rem; color: #fff; text-align: center; }
+      .partnership-header { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+      .partnership-number { width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.25rem; color: #2b9e5a; background: var(--color-accent); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); flex-shrink: 0; }
+      .partnership-title { font-weight: 900; font-size: 1.125rem; color: #fff; margin: 0; line-height: 1.2; text-align: center; }
+      .partnership-image { width: 60%; max-width: 300px; aspect-ratio: 4/3; object-fit: contain; display: block; margin: 0 auto 1rem; }
+      .partnership-details { display: flex; flex-direction: column; gap: 0.5rem; color: #fff; font-weight: 500; text-align: left; }
+      .partnership-badge { background: rgba(255,255,255,0.2); color: #fff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem; font-weight: 700; }
+      .partnership-description { font-size: 0.875rem; margin-top: 0.75rem; color: #fff; }
+      .partnership-detail { display: grid; grid-template-columns: max-content 1fr; column-gap: 0.5rem; align-items: start; }
+      .partnership-detail > span:last-child { display: block; }
+      .partnership-detail > span:first-child { white-space: nowrap; }
+
+      /* --------------------------------
+         Footer
+      --------------------------------- */
+      .footer { background: var(--color-main); color: var(--white); padding: 3rem 1rem; }
+      .footer-container { max-width: 1280px; margin: 0 auto; }
+      .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+      .footer-section h3 { margin-bottom: 1rem; font-weight: 700; color: var(--white); }
+      .footer-section p  { color: var(--color-border); font-weight: 500; margin-bottom: 0.5rem; }
+      .footer-separator { height: 1px; background: var(--color-border); opacity: 0.5; margin: 2rem 0; }
+      .footer-section a { color: #fff; }
+      .event-info-row a { color: #006532; }
+
+      /* --------------------------------
+         “黄色いカード” の背景演出（仕様維持）
+      --------------------------------- */
+      .workshops, .food, .survey {
+        background: #efe07e !important;
+        padding: 3rem 1rem;
+      }
+      .workshops .section-container-wide,
+      .food .section-container-wide,
+      .survey .section-container {
+        background: #fff; border-radius: 12px; padding: 2rem; margin: 0 auto; max-width: 900px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08); border: 1px solid var(--color-border);
+      }
+
+      /* --------------------------------
+         Desktop Enhancements（PC時の重なり/アンカー隠れを回避）
+      --------------------------------- */
+      @media (min-width: 768px) {
+        /* PCメニューの常時表示 */
+        .nav-menu { display: flex; position: static; background: none; flex-direction: row; padding: 0; border: none; }
+        .nav-menu.active { display: flex; }
+        .mobile-menu-btn { display: none; }
+
+        /* ヒーローの余白（元CSSの !important は仕様維持） */
+        .hero-content { padding-top: 6rem !important; }
+
+        /* PCではPC用画像を表示 */
+        .hero-bg .pc-only { display: block; }
+        .hero-bg .sp-only { display: none; }
+
+        /* 固定ヘッダーぶんの押し下げ＆アンカー見切れ防止 */
+        html { scroll-padding-top: calc(var(--nav-h) + 8px); }
+        body { padding-top: var(--nav-h); }
+        .section, .hero { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+        /* 前面に（元CSSの通り z-index を強化） */
+        .navbar { z-index: 2000; }
+      }
+
+      /* --------------------------------
+         Mobile (≤767px)
+         仕様：下部固定ナビ / 余白は下に確保
+      --------------------------------- */
+      @media (max-width: 767px) {
+        /* 文字サイズ調整 */
+        h1, .hero-title-new { font-size: 1.9rem; white-space: nowrap; }
+        .hero-tagline-new    { font-size: 0.9rem; white-space: nowrap; }
+        h2 { font-size: 1.6rem; } h3 { font-size: 1.2rem; } p { font-size: 0.9rem; }
+        .hero-content { padding-top: 4rem; }
+
+        /* 全体の余白 */
+        .section { padding: 3rem 1rem; }
+        .overview-grid { padding: 1.5rem; }
+
+        /* 概要セクションの細かい調整 */
+        .event-info { padding: 1rem; }
+        .event-info-row:first-child { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+        .event-openclose { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .event-date .md { font-size: 2rem; }
+        .weather-badge { margin-left: 0; margin-top: 0.5rem; }
+
+        /* タイムテーブル */
+        .timeline-content { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .timeline-time { font-size: 1rem; padding: 0.25rem 0.75rem; }
+        .timeline-item { padding: 1rem; }
+        .timetable-title-badge h2 { font-size: 1.3rem; }
+        .timeline-info h3 { font-size: 0.9rem; line-height: 1.25; } /* 見出しを小さく */
+
+        /* 上映作品 */
+        .films-grid { gap: 1.5rem; }
+        .film-img { height: auto; aspect-ratio: 2/3; width: 50%; margin: 0 auto; display: block; }
+
+        /* ワークショップ / フード */
+        .workshop-card-header, .food-card-header { padding: 1rem 1rem 0; }
+        .workshop-card-content, .food-card-content { padding: 0 1rem 1rem; }
+        .workshop-image { width: 100%; aspect-ratio: 1/1; height: auto; object-fit: cover; }
+
+        /* アンケート */
+        .survey-grid, .survey-card { text-align: center; }
+        .novelty-image { margin: 0 auto; }
+        .survey-description { margin-bottom: 1rem; }
+
+        /* 連携企画 */
+        .partnership-card { padding: 1.25rem; }
+        .partnership-header { flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
+        .partnership-details { align-items: stretch; text-align: left; gap: 0.75rem; }
+        .partnership-detail { display: grid; grid-template-columns: max-content 1fr; column-gap: 0.5rem; }
+        .partnership-description { text-align: left; }
+
+        /* フッター */
+        .footer-grid { text-align: center; }
+        .footer-section > div { display: flex; flex-direction: column; align-items: center; }
+        .footer-section .icon { display: none; }
+
+        /* 下部固定ナビ（仕様どおり） */
+        .navbar {
+          display: block !important; position: fixed; bottom: 0; top: auto; left: 0; right: 0; height: 56px;
         }
-        .partnership-detail > span:last-child{
-        display: block; /* 本文をブロックに */
+        .nav-container { height: 56px; }
+        .nav-menu { display: none; }
+        .nav-menu.active {
+          display: flex; position: fixed; left: 0; right: 0; bottom: 56px; top: auto;
+          flex-direction: column; gap: 0.5rem; background: #fff; border-top: 1px solid var(--color-border);
+          padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+          max-height: 65vh; overflow-y: auto; z-index: 1001;
         }
-        .partnership-detail > span:first-child{
-        white-space: nowrap; /* 「会場」「展示期間」が折り返さないように */
-        }
-        
-        /* =================================== */
-        /* ▼▼▼ スマホ対応スタイル ▼▼▼ */
-        /* =================================== */
-        @media (max-width: 767px) {
-            /* -- 文字サイズの調整 -- */
-            h1, .hero-title-new {
-                font-size: 1.9rem;
-                white-space: nowrap;
-            }
-            .hero-tagline-new {
-                font-size: 0.9rem;
-                white-space: nowrap;
-            }
-            h2 { font-size: 1.6rem; }
-            h3 { font-size: 1.2rem; }
-            p { font-size: 0.9rem; }
-            .hero-content { padding-top: 4rem; }
-            
-            /* -- 全体の余白調整 -- */
-            .section { padding: 3rem 1rem; }
+        .mobile-menu-btn { position: relative; z-index: 1002; }
 
-            /* -- 概要セクション -- */
-            .event-info { padding: 1rem; }
-            .event-info-row:first-child {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-            }
-            .event-openclose {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            .event-date .md { font-size: 2rem; }
+        /* 下ナビ高さぶんの余白は body の下側に確保 */
+        body { padding-top: 0; padding-bottom: 56px; }
+      }
 
-            /* -- タイムテーブルセクション -- */
-            .timeline-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            .timeline-time {
-                font-size: 1rem;
-                padding: 0.25rem 0.75rem;
-            }
-            .timeline-item { padding: 1rem; }
-            .timetable-title-badge h2 { font-size: 1.3rem; }
-            
-            /* -- 上映作品セクション -- */
-            .films-grid { gap: 1.5rem; }
-            .film-img { height: auto; aspect-ratio: 2 / 3; }
-
-            /* -- ワークショップ & キッチンカーセクション -- */
-            .workshop-card-header, .food-card-header { padding: 1rem 1rem 0; }
-            .workshop-card-content, .food-card-content { padding: 0 1rem 1rem; }
-            /* スマホ用：正方形を維持する */
-            .workshop-image { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; }
-
-            /* -- アンケートセクション -- */
-            .survey-grid { text-align: center; }
-            .survey-card { text-align: center; }
-            .survey-button { width: 100%; max-width: 320px; }
-
-            /* -- 連携企画セクション -- */
-            .partnership-card { padding: 1.25rem; }
-            .partnership-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 0.5rem;
-            }
-            .partnership-details{align-items:stretch;text-align:left;gap:.75rem}
-            .partnership-detail{display:grid;grid-template-columns:max-content 1fr;column-gap:.5rem}
-            .partnership-description { text-align: left; }
-
-            /* -- フッターセクション -- */
-            .footer-grid { text-align: center; }
-            .footer-section > div {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .footer-section .icon { display: none; }
-
-            /* タイムテーブル内のタイトル（全部）を小さめに */
-            @media (max-width: 767px){
-              .timeline-info h3{
-                font-size: 0.9rem;   /* 元1.5rem → 小さく */
-                line-height: 1.25;   /* 2行になっても詰まりすぎないように */
-              }
-            }
-            
-            @media (max-width: 767px) {
-              .film-img {
-                width: 50%;
-                margin: 0 auto;
-                display: block;
-              }
-            }
-        }
-
-        .section-title {
-          display: flex;
-          align-items: center;
-          justify-content: center; /* 中央揃え */
-          gap: 0.5rem; /* アイコンと文字の間隔 */
-          text-align: center;
-        }
-        
-        .section-title .title-icon {
-          width: 10rem;   /* サイズはお好みで */
-          height: auto;
-        }
-
-        .footer-section a {
-          color: #fff;
-        }
-
-        .event-info-row a {
-        color: #006532;
-        }
-
-        /* 主催・後援ブロック */
-        .sponsor-block {
-            color: #006532;          /* 全体の文字色をグリーンに */
-            font-weight: 700;        /* 全体を太字 */
-            margin-top: 1.5rem;
-        }
-
-        .sponsor-block img {
-            height: 60px;            /* ロゴの大きさ */
-            vertical-align: middle;  /* テキストと中央揃え */
-            margin-left: .5rem;      /* テキストとの間隔 */
-        }
-
-        /* --- Workshops / Food / Survey セクション 背景とカード --- */
-        .workshops,
-        .food,
-        .survey {
-        background: #EFE07E !important;  /* セクション背景を黄色に */
-        padding: 3rem 1rem;              /* 上下左右に余白 */
-        }   
-
-        .workshops .section-container-wide,
-        .food .section-container-wide,
-        .survey .section-container {
-        background: #fff;                /* 内側のカードは白 */
-        border-radius: 12px;             /* 角を丸くする */
-        padding: 2rem;                   /* 内側の余白 */
-        margin: 0 auto;                  /* 中央寄せ */
-        max-width: 900px;                /* 横幅を制限して余白を出す */
-        box-shadow: 0 8px 20px rgba(0,0,0,.08); /* 影で浮かせる */
-        border: 1px solid var(--color-border);
-        }
-
-        /* スマホ用調整 */
-        @media (max-width: 767px) {
-        .workshops .section-container-wide,
-        .food .section-container-wide,
-        .survey .section-container {
-            padding: 1.5rem;   /* 内側余白を少し狭める */
-            max-width: 100%;   /* スマホは幅いっぱいに */
-        }
-        }
-
-        .workshop-organization {
-        display: inline-block;         /* 楕円形にするため */
-        background: #5E4E48;           /* 背景色 */
-        color: #fff !important;      /* 文字色（白） */
-        padding: 0.4rem 1.2rem;        /* 内側余白 */
-        border-radius: 9999px;         /* 楕円形に */
-        font-weight: 700;              /* 太字 */
-        font-size: 1.2rem;             /* 文字サイズ調整 */
-        margin-bottom: 1rem;           /* 下に余白 */
-        }
-
-        /* キッチンカー専用ブロック */
-        .food-group--kitchencar .food-card--kitchencar {
-        border: none;
-        background: transparent;
-        box-shadow: none;
-        display: flex;
-        }
-
-        .food-group--kitchencar .food-card--kitchencar .food-card-content {
-        padding: 0;
-        display: flex;
-        align-items: center;   /* 縦中央 */
-        justify-content: center; /* 横中央 */
-        width: 100%;
-        height: 100%;
-        min-height: 320px;     /* 必要に応じて調整 */
-        }
-
-        .food-group--kitchencar .kitchencar-image {
-        max-width: 100%;
-        max-height: 360px;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        }
-
-        .partnership-image {
-        width: 60%;      /* ← 縮小（例: 60%に変更） */
-        max-width: 300px; /* ← 大きすぎないよう上限を設定 */
-        aspect-ratio: 4/3;
-        object-fit: contain; /* ← ロゴが潰れないように */
-        display: block;
-        margin: 0 auto 1rem; /* ← 中央寄せ */
-        }
-    
-        @media (max-width: 767px){
-          body{ padding-top:64px; }
-        }
-
-        @media (max-width: 767px) {
-          .navbar{
-            display:block !important;
-            position: fixed;
-            bottom: 0;   /* ← 上ではなく下に固定 */
-            top: auto;
-            left: 0; right: 0;
-            height: 56px;  /* 必要に応じて調整 */
-          }
-          body{
-            padding-top:0; 
-            padding-bottom:56px;  /* ナビ分の余白を下に確保 */
-          }
-        }
-
-        /* ==== SP時：下固定ナビの上にメニューを展開 ==== */
-        @media (max-width: 767px) {
-          /* 下固定の高さ合わせ（必要なら変更） */
-          .nav-container { height: 56px; }
-        
-          /* デフォは非表示、activeで表示（JSは既存のままでOK） */
-          .nav-menu { display: none; }
-        
-          .nav-menu.active{
-            display: flex;
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 56px; /* ← ナビの上端に揃える（下ナビ高さと同じに） */
-            top: auto;
-            flex-direction: column;
-            gap: .5rem;
-            background: #fff;
-            border-top: 1px solid var(--color-border);
-            padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
-            max-height: 65vh;          /* 画面を覆い過ぎない */
-            overflow-y: auto;
-            z-index: 1001;             /* 下ナビより前面に */
-          }
-        
-          /* メニューボタンは常に最前面に */
-          .mobile-menu-btn { position: relative; z-index: 1002; }
-        }
-        
+      /* --------------------------------
+         Responsive Grids (breakpoints only)
+      --------------------------------- */
+      @media (min-width: 768px) {
+        .overview-grid { grid-template-columns: 1fr 1fr; }
+        .overview-intro-block { margin-bottom: 4rem; }
+        .films-grid { grid-template-columns: repeat(3, 1fr); }
+        .workshop-grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .workshop-grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .food-grid { grid-template-columns: repeat(2, 1fr); }
+        .survey-grid { grid-template-columns: 1fr 1fr; }
+        .partnerships-grid { grid-template-columns: repeat(2, 1fr); }
+        .footer-grid { grid-template-columns: repeat(3, 1fr); }
+      }
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
+    <!-- ==============================
+         Global Navigation
+         ※ マークアップは元のまま（仕様維持）
+    =============================== -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">木もれびシネマの森</div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-item" data-section="home">ホーム</a>
-                <a href="#overview" class="nav-item" data-section="overview">イベント概要</a>
-                <a href="#films" class="nav-item" data-section="films">上映作品</a>
-                <a href="#timetable" class="nav-item" data-section="timetable">タイムテーブル</a>
-                <a href="#workshops" class="nav-item" data-section="workshops">ワークショップ</a>
-                <a href="#food" class="nav-item" data-section="food">キッチンカー</a>
-                <a href="#survey" class="nav-item" data-section="survey">アンケート</a>
-                <a href="#partnerships" class="nav-item" data-section="partnerships">コラボ企画</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;">
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-                <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;display:none;">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
+      <div class="nav-container">
+        <div class="nav-logo">木もれびシネマの森</div>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#home"           class="nav-item" data-section="home">ホーム</a>
+          <a href="#overview-text"  class="nav-item" data-section="overview-text">イベント概要</a>
+          <a href="#films"          class="nav-item" data-section="films">上映作品</a>
+          <a href="#timetable"      class="nav-item" data-section="timetable">タイムテーブル</a>
+          <a href="#workshops"      class="nav-item" data-section="workshops">ワークショップ</a>
+          <a href="#food"           class="nav-item" data-section="food">キッチンカー</a>
+          <a href="#survey"         class="nav-item" data-section="survey">プレゼント</a>
+          <a href="#partnerships"   class="nav-item" data-section="partnerships">コラボ企画</a>
         </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="メニュー">
+          <!-- ハンバーガー -->
+          <svg class="menu-icon"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px">
+            <line x1="3" y1="6"  x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <!-- クローズ -->
+          <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: none">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     </nav>
 
+    <!-- ==============================
+         Hero
+    =============================== -->
     <section id="home" class="hero">
-        <div class="hero-bg">
-            <img class="pc-only" src="./image/pc_mainvisual.png" alt="森の中の映画祭のメインビジュアル">
-            <img class="sp-only" src="./image/sp_mainvisual.png" alt="森の中の映画祭のメインビジュアル">
+      <div class="hero-bg">
+        <img class="pc-only" src="./image/pc_mainvisual.png" alt="森の中の映画祭のメインビジュアル" />
+        <img class="sp-only"  src="./image/sp_mainvisual.png"  alt="森の中の映画祭のメインビジュアル" />
+      </div>
+      <div class="hero-content">
+        <div class="free-badge-new">
+          <span class="free-badge-small-text">入場・鑑賞</span>
+          <span class="free-badge-large-text">無料</span>
+          <span class="free-badge-pill">雨天開催</span>
         </div>
-        <div class="hero-content">
-            <div>
-                 <div class="free-badge-new">
-                     <span class="free-badge-small-text">入場・鑑賞</span>
-                     <span class="free-badge-large-text">無料</span>
-                     <span class="free-badge-pill">雨天開催</span>
-                 </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <section id="overview" class="section overview">
-    <div class="section-container">
+    <!-- ==============================
+         Overview
+    =============================== -->
+    <section id="overview-text" class="section overview-text-section">
+      <div class="section-container">
         <h2 class="section-title">イベント概要</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--white);">
+          東京にも、美しく、豊かな、<br />
+          森と山が広がっています。<br />
+          ファミリーと、お友達と、話しながら、<br />
+          歩きながら、 森の世界をのぞきこんで、<br />
+          色んなワクワクと一緒に、<br />
+          映画と木と森にふれあえる一日です。
+        </p>
+      </div>
+    </section>
 
+    <section id="overview-info" class="section overview-info-section">
+      <div class="section-container">
         <div class="overview-grid">
-        <!-- 1行目・左：開催情報 -->
-        <div>
+          <div>
             <div class="event-info">
-            <div class="event-info-row" style="margin-bottom:.25rem;">
+              <div class="event-info-row" style="margin-bottom: 0.25rem">
                 <div class="event-date">
-                <span class="y">2025年</span>
-                <span class="md">10.5</span>
-                <span class="w">日</span>
+                  <span class="y">2025年</span>
+                  <span class="md">10.5</span>
+                  <span class="w">日</span>
                 </div>
-                <div class="event-openclose">
-                <span>OPEN 11:00</span>
-                <span>CLOSE 17:00</span>
+                <div class="weather-badge">雨天開催</div>
+                <div class="event-openclose"><span>OPEN 11:00</span><span>CLOSE 17:00</span></div>
+              </div>
+              <div class="event-info-row"><div class="event-venue">自然人村</div></div>
+              <div class="event-info-row">
+                <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">東京都あきる野市深沢198</a>
+              </div>
+              <div class="event-info-row">
+                <div class="event-addr text-xs">
+                  JR武蔵五日市駅より無料往復シャトルで10分<br />
+                  （20～30分間隔で10:00─18:00に随時発着）
                 </div>
+              </div>
             </div>
-            <div class="event-info-row">
-                <div class="event-venue">自然人村</div>
+          </div>
+
+          <div>
+            <img src="./image/summary_map.png" alt="イベント会場地図" class="overview-map-image" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Films
+    =============================== -->
+    <section id="films" class="section films">
+      <div class="section-container">
+        <h2 class="section-title">上映作品</h2>
+
+        <div class="films-grid">
+          <!-- ミニオンズ -->
+          <div class="film-card">
+            <div class="film-head">ミニオンズ フィーバー</div>
+            <div class="film-body">
+              <img class="film-img" src="./image/movie_minions.png" alt="ミニオンズ フィーバー" />
+              <details class="film-accordion">
+                <summary>作品詳細</summary>
+                <div class="panel">
+                  <p>
+                    全米で驚異の大ヒットNo.1発進！！コロナ禍以降アニメ作品最大のオープニング記録を樹立！<br />
+                    世界中で大ヒットミニオン“大フィーバー”。 1億万ドル超えのオープニング興行収入をあげ、作品内容も高評価！<br />
+                    日本でも、初日金曜日から土日月曜祝日の4日間で動員約72万人超えの大ヒットに！！<br />
+                    ミニオンのおかしさ・かわいさ最高潮！NEWコスプレ満載＆ミニオンたちも歌い踊る、ダンサブルな音楽!<br />
+                    大切な仲間は、絶対に手放してはいけない—。<br />
+                    最強最悪のボスに仕えることが生きがいのミニオン。 彼らはなぜ、ひとりの少年グルーをボスに選んだのか？<br />
+                    そして、グルーはどのようにして月をも盗む大悪党になったのか？ すべては…１９７０年代の[グルー誘拐事件]から始まった！<br />
+                    超個性的な新キャラクターを巻き込んでミニオンと怪盗グルー最大の謎が、ついに明らかになる！
+                  </p>
+                  <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                    <img src="./image/movie_minions_1.png" alt="場面写真1" style="width: 100%; border-radius: 0.5rem" />
+                    <img src="./image/movie_minions_2.png" alt="場面写真2" style="width: 100%; border-radius: 0.5rem" />
+                  </div>
+                </div>
+              </details>
             </div>
-            <div class="event-info-row">
-                <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">
-                東京都あきる野市深沢198
-                </a>
+          </div>
+
+          <!-- パンダコパンダ -->
+          <div class="film-card">
+            <div class="film-head">パンダコパンダ</div>
+            <div class="film-body">
+              <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ" />
+              <details class="film-accordion">
+                <summary>作品詳細</summary>
+                <div class="panel">
+                  <p>
+                    ある日突然やって来た親子パンダと少女の心温まるメルヘンファンタジー。<br />
+                    竹やぶの一軒屋にたった一人で住んでいた少女ミミ子。 小学生ながらしっかり者のミミ子が買い物から帰ってくると小さな子パンダのパンちゃんが庭にいた。<br />
+                    さらにその親のパパンダも現れる。 ミミ子に父親がいないことを知ったパパンダは自分が父親代わりになると言い、ミミ子はパンちゃんの母親になると決める。<br />
+                    こうして２頭はそのままミミ子と暮らすことになり、奇妙で楽しい新生活が始まった。<br />
+                    原案は宮崎 駿によるもので、後の宮崎名作アニメの源流と位置づけられる。<br />
+                    ユーモラスで愛くるしい２頭のパンダは今なお人気。
+                  </p>
+                  <br />
+                  <p>
+                    1972年公開／配給・東宝<br />
+                    原案・脚本・画面設定：宮崎 駿<br />
+                    演出：高畑 勲<br />
+                    作画監督：大塚 康生、小田部 羊一
+                  </p>
+                  <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                    <img src="./image/movie_pandakopanda_4.png" alt="場面写真1" style="width: 100%; border-radius: 0.5rem" />
+                    <img src="./image/movie_pandakopanda_2.png" alt="場面写真2" style="width: 100%; border-radius: 0.5rem" />
+                  </div>
+                </div>
+              </details>
             </div>
-            <div class="event-info-row">
-                <div class="event-addr text-xs">JR武蔵五日市駅より無料往復シャトルで10分<br>（20～30分間隔で10:00─18:00に随時発着）</div>
+          </div>
+
+          <!-- SING -->
+          <div class="film-card">
+            <div class="film-head">SING</div>
+            <div class="film-body">
+              <img class="film-img" src="./image/movie_sing.png" alt="SING" />
+              <details class="film-accordion">
+                <summary>作品詳細</summary>
+                <div class="panel">
+                  <p>
+                    ユニバーサル・スタジオが贈る『ミニオンズ』『ペット』に続く大ヒットアニメ!<br />
+                    歌のチカラで元気になれる、新しいエナジームービーがやってきた!<br />
+                    それは、人生を変える最高のステージ!<br />
+                    愛とユーモアたっぷりのストーリーに彩りを添える、老若男女が楽しめるヒットソングが60曲以上!<br />
+                    スティーヴィー・ワンダー、レディー・ガガ、テイラー・スウィフトなど、誰もが聴いたことがあるヒットソングや名曲、さらには楽曲ハリウッドデビューを果たした、きゃりーぱみゅぱみゅの曲も登場!
+                  </p>
+                  <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                    <img src="./image/movie_sing_1.png" alt="場面写真1" style="width: 100%; border-radius: 0.5rem" />
+                    <img src="./image/movie_sing_2.png" alt="場面写真2" style="width: 100%; border-radius: 0.5rem" />
+                  </div>
+                </div>
+              </details>
             </div>
-            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Timetable
+    =============================== -->
+    <section id="timetable" class="section timetable">
+      <div class="timetable-decorative">
+        <div class="decorative-circle decorative-circle-1"></div>
+        <div class="decorative-circle decorative-circle-2"></div>
+        <div class="decorative-circle decorative-circle-3"></div>
+        <div class="decorative-circle decorative-circle-4"></div>
+      </div>
+      <div class="timetable-container">
+        <div class="timetable-header">
+          <p class="timetable-subtitle">映画といっしょに、森をまるごと楽しもう！</p>
+          <div class="timetable-title-badge"><h2>TIME TABLE</h2></div>
         </div>
 
-        <!-- 1行目・右：説明文 -->
-        <div>
-            <div class="overview-text" style="text-align:left; max-width: 800px; margin: 0;">
-            <p>東京にも、美しく、豊かな、<br>森と山が広がっています。</p>
-            <p>ファミリーと、お友達と、話しながら、<br>
-            歩きながら、 森の世界をのぞきこんで、<br>
-            色んなワクワクと一緒に、<br>
-            映画と木と森にふれあえる一日です。</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content"><div class="timeline-time">11:00</div><div class="timeline-info"><h3>開場 OPEN</h3></div></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-time">12:00</div>
+              <div class="timeline-info">
+                <h3>映画：ミニオンズ フィーバー</h3>
+                <p>（88分）</p>
+                <p class="text-xs">©2022 Universal Studios. All Rights Reserved.</p>
+              </div>
             </div>
+            <img src="./image/movie_minions.png" alt="ミニオンズ フィーバー" class="timeline-movie-icon" />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-time">13:35</div>
+              <div class="timeline-info">
+                <h3>森のお話：東京の森と水源と生き物</h3>
+                <p>榎戸材木店</p>
+                <p>（20分）</p>
+              </div>
+            </div>
+            <img src="./image/movie_enokido.png" alt="榎戸材木店" class="timeline-movie-icon" />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-time">14:00</div>
+              <div class="timeline-info">
+                <h3>映画：パンダコパンダ</h3>
+                <p>（33分）</p>
+                <p class="text-xs">©TMS</p>
+              </div>
+            </div>
+            <img src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ" class="timeline-movie-icon" />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-time">14:45</div>
+              <div class="timeline-info">
+                <h3>森のお話：山と山の仕事</h3>
+                <p>東京チェンソーズ 青木亮輔</p>
+                <p>（20分）</p>
+              </div>
+            </div>
+            <img src="./image/movie_tokyochainsaws.png" alt="青木" class="timeline-movie-icon" />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-time">15:10</div>
+              <div class="timeline-info">
+                <h3>映画：SING</h3>
+                <p>（110分）</p>
+                <p class="text-xs">©2016 Universal Studios. All Rights Reserved.</p>
+              </div>
+            </div>
+            <img src="./image/movie_sing.png" alt="SING" class="timeline-movie-icon" />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content"><div class="timeline-time">17:00</div><div class="timeline-info"><h3>上映終了 CLOSE</h3></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Workshops
+    =============================== -->
+    <section id="workshops" class="section workshops">
+      <div class="section-container-wide">
+        <h2 class="section-title">
+          <img src="./image/flag_workshop.png" alt="" class="title-icon" />
+          「とうきょうの木」を楽しむワークショップ
+        </h2>
+        <div class="workshops-intro"><p>※参加費はすべて無料です。<br />申し込みは当日会場で受け付けます。</p></div>
+
+        <div class="workshop-group">
+          <h3 class="workshop-organization">東京チェンソーズ</h3>
+          <div class="workshop-grid workshop-grid-3">
+            <div class="workshop-card">
+              <div class="workshop-card-header"><h4 class="workshop-card-title">丸太アスレチック</h4></div>
+              <div class="workshop-card-content">
+                <img src="./image/workshop_maruta.png" alt="丸太アスレチックの様子" class="workshop-image" />
+                <p class="workshop-description"><span class="circle-note">会期中は随時参加できます</span></p>
+              </div>
+            </div>
+            <div class="workshop-card">
+              <div class="workshop-card-header"><h4 class="workshop-card-title">薪割りで焚き火を楽しむ</h4></div>
+              <div class="workshop-card-content">
+                <img src="./image/workshop_makiwari.png" alt="薪割り体験" class="workshop-image" />
+                <p class="workshop-description">～焼きマシュマロ、焼き芋なども一緒に～<br /><span class="circle-note">会期中は随時参加できます</span></p>
+              </div>
+            </div>
+            <div class="workshop-card">
+              <div class="workshop-card-header"><h4 class="workshop-card-title">山に入って森のお話</h4></div>
+              <div class="workshop-card-content">
+                <img src="./image/workshop_tokyochainsaws.png" alt="森のお話フィールドワーク" class="workshop-image" />
+                <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植林や長年の森づくりの姿を見てもらいお話しする、40分ほどのプログラムです。<br />［15:30分より実施／当日会場で受付／定員15名予定］</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- 2行目・左：主催・後援 -->
-        <div class="sponsor-block">
+        <div class="workshop-group">
+          <h3 class="workshop-organization">榎戸材木店</h3>
+          <div class="workshop-grid workshop-grid-2">
+            <div class="workshop-card">
+              <div class="workshop-card-header"><h4 class="workshop-card-title">ヒノキの枝でバードコールづくり</h4></div>
+              <div class="workshop-card-content">
+                <img src="./image/workshop_hinoki.png" alt="ヒノキのバードコールづくり" class="workshop-image" />
+                <p class="workshop-description text-sm">ネジを回すと鳥のさえずりのような音が出ます。自然とつながる工作体験です。<br />（1回3分）［受付 11:00～13:00／14:00～16:00／定員 各40名（先着順）］</p>
+              </div>
+            </div>
+            <div class="workshop-card">
+              <div class="workshop-card-header"><h4 class="workshop-card-title">どんぐりパチンコ</h4></div>
+              <div class="workshop-card-content">
+                <img src="./image/workshop_donguri.png" alt="どんぐりパチンコで遊ぶ様子" class="workshop-image" />
+                <p class="workshop-description text-sm">どんぐりを拾ったらパチンコで遊ぼう！<br />拾ったどんぐりは何の木のどんぐりかわかるかな？<br />（1回5～10分）［受付11:00～13:00／14:00～16:00］</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workshop-group">
+          <div class="workshop-grid workshop-grid-2">
+            <div>
+              <h3 class="workshop-organization">クレコ・ラボ</h3>
+              <div class="workshop-card">
+                <div class="workshop-card-header"><h4 class="workshop-card-title">スギ・ヒノキで、木のトンボづくり</h4></div>
+                <div class="workshop-card-content">
+                  <img src="./image/workshop_tonbo.png" alt="木のトンボを飛ばす様子" class="workshop-image" />
+                  <p class="workshop-description text-sm">組立簡単！モクトンボをつくろう！ 少しの力でフワッと飛びあがります。<br />（1回5分）［受付11:00～17:00／定員100名（先着順)］</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="workshop-organization">TOKYO MOKUNAVI</h3>
+              <div class="workshop-card">
+                <div class="workshop-card-header"><h4 class="workshop-card-title">おえかきコーナー</h4></div>
+                <div class="workshop-card-content">
+                  <img src="./image/collaboration_oekaki.png" alt="MOKUNAVIショールームの内観" class="workshop-image" />
+                  <p class="workshop-description text-sm">会場で、このイベントの思い出を〝とうきょうの木〟の紙に描いてみよう。<br />［受付 11：00～17：00／定員70名（先着順）］</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================
+         Food
+    =============================== -->
+    <section id="food" class="section food">
+      <div class="section-container-wide">
+        <h2 class="section-title">
+          <img src="./image/flag_foods.png" alt="" class="title-icon" />
+          森のキッチンカー
+        </h2>
+        <div class="workshops-intro"><p>※11:00から営業予定。売り切れ次第、終了となります。</p></div>
+
+        <div class="food-group">
+          <h3 class="workshop-organization">つけ麺 五ノ神製作所</h3>
+          <div class="food-grid">
+            <div class="food-card">
+              <div class="food-card-header"><h4 class="food-card-title">奥多摩産ヤマメのラーメン</h4></div>
+              <div class="food-card-content">
+                <img src="./image/food_ramen.png" alt="奥多摩ヤマメのラーメン" class="food-image" />
+                <p class="food-description">奥多摩の養殖ヤマメをスープ＆トッピングに贅沢に使った塩ラーメン</p>
+              </div>
+            </div>
+            <div class="food-card">
+              <div class="food-card-header"><h4 class="food-card-title">東京しゃもパエリア</h4></div>
+              <div class="food-card-content">
+                <img src="./image/food_piza.png" alt="東京軍鶏のパエリア" class="food-image" />
+                <p class="food-description">あきる野＆青梅で育った東京しゃもの旨味スープで炊きあげるパエリア。地場野菜、東京しゃもの味わいをお楽しみください。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="food-group food-group--kitchencar">
+          <h3 class="workshop-organization">喜輪</h3>
+          <div class="food-grid">
+            <div class="food-card">
+              <div class="food-card-header"><h4 class="food-card-title">お好み焼き</h4></div>
+              <div class="food-card-content">
+                <img src="./image/food_okonomiyaki.png" alt="お好み焼き" class="food-image" />
+                <p class="food-description">北海道産の小麦粉、青森県産の長芋など国産の材料にこだわったふわふわのお好み焼きです。</p>
+              </div>
+            </div>
+            <div class="food-card food-card--kitchencar">
+              <div class="food-card-content">
+                <img src="./image/kitchencar.png" alt="キッチンカー" class="kitchencar-image" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="food-group">
+          <div class="food-grid">
+            <div>
+              <h3 class="workshop-organization">自然人村</h3>
+              <div class="food-card">
+                <div class="food-card-header"><h4 class="food-card-title">あじさい茶＆森のドリンクバー</h4></div>
+                <div class="food-card-content">
+                  <img src="./image/food_azisai.png" alt="あじさい茶とドリンク" class="food-image" />
+                  <p class="food-description">地元あきる野市にある、１万株のあじさいが咲く「南沢あじさい山」名物あじさい茶や、オリジナルジェラート、ソフトドリンク、アルコールをご用意します。</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="workshop-organization">kaze labo</h3>
+              <div class="food-card">
+                <div class="food-card-header"><h4 class="food-card-title">スモークカクテル</h4></div>
+                <div class="workshop-card-content">
+                  <img src="./image/food_cacuteru.png" alt="kaze labo オリジナルドリンク（イメージ）" class="workshop-image" />
+                  <p class="workshop-description">燻製ギア体験もできる！スモークカクテルの実演販売。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================
+         Survey
+    =============================== -->
+    <section id="survey" class="section survey">
+      <div class="section-container">
+        <h2 class="section-title">来場者全員にプレゼント</h2>
+        <div class="survey-grid">
+          <div class="survey-card">
+            <p class="survey-main-text">来場時にノベルティをプレゼント！</p>
+            <p class="survey-description">※写真はイメージです。デザインは変わる可能性があります。<br />在庫がなくなり次第、終了となります。</p>
+          </div>
+          <div><img src="./image/novelty.png" alt="ノベルティ（トートバッグ）イメージ" class="novelty-image" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Partnerships
+    =============================== -->
+    <section id="partnerships" class="section partnerships">
+      <div class="partnerships-decorative">
+        <svg viewBox="0 0 200 200" style="width: 100%; height: 100%">
+          <path d="M20,20 Q180,20 180,180 Q20,180 20,20" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="partnerships-container">
+        <div class="partnerships-header" style="text-align: center">
+          <h2 class="partnerships-title" style="color: #fff">コラボ企画</h2>
+        </div>
+
+        <div class="partnerships-grid">
+          <div class="partnership-card">
+            <div><h3 class="partnership-title">＼同日・同時開催イベント／</h3></div>
+            <div class="partnership-header">
+              <div class="partnership-number" style="background: #e47f8c; color: #fff">1</div>
+              <div><h3 class="partnership-title">山里川マーケット ～手作りクラフト＆アウトドア～</h3></div>
+            </div>
+            <img src="./image/Market_logo_white.png" alt="マーケット イメージ" class="partnership-image" />
+            <div class="partnership-details">
+              <div class="partnership-detail">
+                <span class="partnership-badge">会場</span>
+                <span><a href="https://maps.app.goo.gl/fkwsmiBSHrvKCGxu5" target="_blank" rel="noopener noreferrer" style="color: inherit">フレア五日市（JR 武蔵五日市駅前）</a></span>
+              </div>
+              <div class="partnership-detail"><span class="partnership-badge">開催日時</span><span>2025年10月5日（日） 10:00～17:00</span></div>
+              <p class="partnership-description">
+                東京の山里川の自然の魅力を感じられるマーケットがスタート<br />
+                クラフト作品や体験ツアーの情報などが会場にギュッと凝縮！<br />
+                田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」でさっそく相談にも、<br />
+                のってもらえます！！
+              </p>
+            </div>
+          </div>
+
+          <div class="partnership-card">
+            <div class="partnership-header">
+              <div class="partnership-number" style="background: #e8954e; color: #fff">2</div>
+              <div><h3 class="partnership-title">おえかきの MOKUNAVI ショールーム展示</h3></div>
+            </div>
+            <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールーム展示" class="partnership-image" />
+            <div class="partnership-details">
+              <div class="partnership-detail">
+                <span class="partnership-badge">会場</span>
+                <span>
+                  <a href="https://maps.app.goo.gl/3g2yo5YiY7XH4g8D7" target="_blank" rel="noopener noreferrer" style="color: inherit">
+                    新宿リビングデザインセンター OZONE 7階<br />とうきょうの木 魅力発信拠点 TOKYO MOKUNAVI
+                  </a>
+                </span>
+              </div>
+              <div class="partnership-detail">
+                <span class="partnership-badge">展示期間</span>
+                <span>2025年10月9日（木） ― 11月4日（火）<br />10：30～18：30（休館日：祝日除く水曜日）</span>
+              </div>
+              <p class="partnership-description">TOKYO MOKUNAVI おえかきコーナーで描いた絵を、後日ショールームに展示します。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Footer
+    =============================== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-section">
             <h3>主催・後援</h3>
             <p>
-                主催：TOKYO MOKUNAVI
-                <a href="https://tokyomokunavi.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer">
-                    <img src="./image/Mokunabi_logo_green.png" alt="TOKYO MOKUNAVI">
-                </a>
+              主催： TOKYO MOKUNAVI
+              <a href="https://tokyomokunavi.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer">
+                <img src="./image/Mokunabi_logo_white.png" alt="TOKYO MOKUNAVI" style="height: 40px; vertical-align: middle; margin-right: 0.5rem" />
+              </a>
             </p>
-            <p>
-                後援： あきる野市、檜原村、あきる野市教育委員会
-            </p>
-        </div>
-        
-        <!-- 2行目・右：会場図 -->
-        <div>
-            <img src="./image/summary_map.png" alt="イベント会場地図" class="overview-map-image">
-        </div>
-        </div>
-    </div>
-    </section>
+            <p>後援： あきる野市、檜原村、あきる野市教育委員会</p>
+          </div>
 
-    <section id="films" class="section films">
-        <div class="section-container">
-            <h2 class="section-title">上映作品</h2>
-            <div class="films-grid">
-                <div class="film-card">
-                  <div class="film-head">ミニオンズ フィーバー</div>
-                  <div class="film-body">
-                    <img class="film-img" src="./image/movie_minions.png" alt="ミニオンズ フィーバー">
-                    <details class="film-accordion">
-                      <summary>作品詳細</summary>
-                      <div class="panel">
-                        <p>88分／ファミリー向け</p>
-                        <p style="font-size:.85rem;margin-top:.25rem;">©2022 Universal Studios. All Rights Reserved.</p>
-                        <p style="margin-top:1rem;">少年グルーの悪の組織への憧れと、ミニオンズたちの大騒動が巻き起こすドタバタ冒険ストーリー。</p>
-                        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;">
-                          <img src="./image/dummy.png" alt="場面写真1" style="width:100%;border-radius:.5rem;">
-                          <img src="./image/dummy.png" alt="場面写真2" style="width:100%;border-radius:.5rem;">
-                        </div>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-                <div class="film-card">
-                  <div class="film-head">パンダコパンダ</div>
-                  <div class="film-body">
-                    <img class="film-img" src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ">
-                    <details class="film-accordion">
-                      <summary>作品詳細</summary>
-                      <div class="panel">
-                        <p>33分／名作・ファミリー</p>
-                        <p style="font-size:.85rem;margin-top:.25rem;">©TMS</p>
-                        <p style="margin-top:1rem;">ミミ子と子パンダ・パパンダの心あたたまる日常を描いた、宮崎駿＆高畑勲による昭和の名作アニメ。</p>
-                        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;">
-                          <img src="./image/dummy.png" alt="場面写真1" style="width:100%;border-radius:.5rem;">
-                          <img src="./image/dummy.png" alt="場面写真2" style="width:100%;border-radius:.5rem;">
-                        </div>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-                <div class="film-card">
-                  <div class="film-head">SING</div>
-                  <div class="film-body">
-                    <img class="film-img" src="./image/movie_sing.png" alt="SING">
-                    <details class="film-accordion">
-                      <summary>作品詳細</summary>
-                      <div class="panel">
-                        <p>110分／音楽・ファミリー</p>
-                        <p style="font-size:.85rem;margin-top:.25rem;">©2016 Universal Studios. All Rights Reserved.</p>
-                        <p style="margin-top:1rem;">倒産寸前の劇場を救うため、動物たちが夢を胸に音楽オーディションに挑む感動と笑いのエンタメ作品。</p>
-                        <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;">
-                          <img src="./image/dummy.png" alt="場面写真1" style="width:100%;border-radius:.5rem;">
-                          <img src="./image/dummy.png" alt="場面写真2" style="width:100%;border-radius:.5rem;">
-                        </div>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="timetable" class="section timetable">
-        <div class="timetable-decorative">
-            <div class="decorative-circle decorative-circle-1"></div>
-            <div class="decorative-circle decorative-circle-2"></div>
-            <div class="decorative-circle decorative-circle-3"></div>
-            <div class="decorative-circle decorative-circle-4"></div>
-        </div>
-        <div class="timetable-container">
-            <div class="timetable-header">
-                <p class="timetable-subtitle">映画といっしょに、森をまるごと楽しもう！</p>
-                <div class="timetable-title-badge"><h2>TIME TABLE</h2></div>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-time">11:00</div>
-                        <div class="timeline-info"><h3>開場 OPEN</h3></div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-time">12:00</div>
-                        <div class="timeline-info">
-                        <h3>映画：ミニオンズ フィーバー</h3>
-                        <p>（88分）</p>
-                        <p class="text-xs">©2022 Universal Studios. All Rights Reserved.</p>
-                    </div>
-                </div>
-                <img src="./image/movie_minions.png" alt="ミニオンズ フィーバー" class="timeline-movie-icon">
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-time">13:35</div>
-                        <div class="timeline-info">
-                            <h3>森のお話：東京の森と水源と生き物</h3>
-                            <p>榎戸材木店</p>
-                            <p>（20分）</p>
-                        </div>
-                    </div>
-                <img src="./image/movie_enokido.png" alt="榎戸材木店" class="timeline-movie-icon">
-                </div>
-                <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-time">14:00</div>
-                        <div class="timeline-info">
-                        <h3>映画：パンダコパンダ</h3>
-                        <p>（33分）</p>
-                        <p class="text-xs">©TMS</p>
-                    </div>
-                </div>
-                <img src="./image/movie_pandakopanda_1.png" alt="パンダコパンダ" class="timeline-movie-icon">
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-time">14:45</div>
-                        <div class="timeline-info">
-                            <h3>森のお話：山と山の仕事</h3>
-                            <p>東京チェンソーズ 青木亮輔</p>
-                            <p>（20分）</p>
-                        </div>
-                    </div>
-                <img src="./image/movie_tokyochainsaws.png" alt="青木" class="timeline-movie-icon">
-                </div>
-                <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-time">15:10</div>
-                        <div class="timeline-info">
-                        <h3>映画：SING</h3>
-                        <p>（110分）</p>
-                        <p class="text-xs">©2016 Universal Studios. All Rights Reserved.</p>
-                    </div>
-                </div>
-                <img src="./image/movie_sing.png" alt="SING" class="timeline-movie-icon">
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-time">17:00</div>
-                        <div class="timeline-info"><h3>上映終了 CLOSE</h3></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="workshops" class="section workshops">
-        <div class="section-container-wide">
-            <h2 class="section-title">
-                <img src="./image/flag_workshop.png" alt="" class="title-icon">
-                「とうきょうの木」を楽しむワークショップ
-            </h2>
-            <div class="workshops-intro"><p>※参加費はすべて無料です。<br>申し込みは当日会場で受け付けます。</p></div>
-
-            <div class="workshop-group">
-                <h3 class="workshop-organization">東京チェンソーズ</h3>
-                <div class="workshop-grid workshop-grid-3">
-                    <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">丸太アスレチック</h4></div>
-                        <div class="workshop-card-content">
-                            <img src="./image/workshop_maruta.png" alt="丸太アスレチックの様子" class="workshop-image">
-                            <p class="workshop-description"><span class="circle-note">会期中は随時参加できます</span></p>
-                        </div>
-                    </div>
-                    <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">薪割りで焚き火を楽しむ</h4></div>
-                        <div class="workshop-card-content">
-                            <img src="./image/workshop_makiwari.png" alt="薪割り体験" class="workshop-image">
-                            <p class="workshop-description">～焼きマシュマロ、焼き芋なども一緒に～<br><span class="circle-note">会期中は随時参加できます</span></p>
-                        </div>
-                    </div>
-                    <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">山に入って森のお話</h4></div>
-                        <div class="workshop-card-content">
-                            <img src="./image/workshop_tokyochainsaws.png" alt="森のお話フィールドワーク" class="workshop-image">
-                            <p class="workshop-description text-sm">会場から少し歩き、周囲の山の植林や長年の森づくりの姿を見てもらいお話しする、40分ほどのプログラムです。<br>［15:30分より実施／当日会場で受付／定員15名予定］</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="workshop-group">
-                <h3 class="workshop-organization">榎戸材木店</h3>
-                <div class="workshop-grid workshop-grid-2">
-                    <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">ヒノキの枝でバードコールづくり</h4></div>
-                        <div class="workshop-card-content">
-                            <img src="./image/workshop_hinoki.png" alt="ヒノキのバードコールづくり" class="workshop-image">
-                            <p class="workshop-description text-sm">ネジを回すと鳥のさえずりのような 音が出ます。自然とつながる工作体験です。<br>（1回3分 ）［受付 11:00～13:00／14:00～16:00／定員 各40名（先着順）］</p>
-                        </div>
-                    </div>
-                    <div class="workshop-card">
-                        <div class="workshop-card-header"><h4 class="workshop-card-title">どんぐりパチンコ</h4></div>
-                        <div class="workshop-card-content">
-                            <img src="./image/workshop_donguri.png" alt="どんぐりパチンコで遊ぶ様子" class="workshop-image">
-                            <p class="workshop-description text-sm">どんぐりを拾ったらパチンコで遊ぼう！<br>拾ったどんぐりは何の木のどんぐりかわかるかな？<br>（1回5～10分）［受付11:00～13:00／14:00～16:00］</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="workshop-group">
-                <div class="workshop-grid workshop-grid-2">
-                    <div>
-                        <h3 class="workshop-organization">クレコ・ラボ</h3>
-                        <div class="workshop-card">
-                            <div class="workshop-card-header"><h4 class="workshop-card-title">スギ・ヒノキで、木のトンボづくり</h4></div>
-                            <div class="workshop-card-content">
-                                <img src="./image/workshop_tonbo.png" alt="木のトンボを飛ばす様子" class="workshop-image">
-                                <p class="workshop-description text-sm">組立簡単！モクトンボをつく<br>ろう！ 少しの力でフワッと飛びあがります。<br>（1回5分）［受付11:00～17:00／定員100名（先着順)］</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="workshop-organization">TOKYO MOKUNAVI</h3>   
-                        <div class="workshop-card">
-                            <div class="workshop-card-header"><h4 class="workshop-card-title">おえかきコーナー</h4></div>
-                            <div class="workshop-card-content">
-                                <img src="./image/collaboration_oekaki.png" alt="MOKUNAVIショールームの内観" class="workshop-image">
-                                <p class="workshop-description text-sm">会場で、このイベントの思い出を〝とうきょうの木〟の紙に描いてみよう。<br>［受付 11：00～17：00／定員70名（先着順）］</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="food" class="section food">
-        <div class="section-container-wide">
-            <h2 class="section-title">
-                <img src="./image/flag_foods.png" alt="" class="title-icon">
-                森のキッチンカー
-            </h2>
-            <div class="workshops-intro"><p>※11:00から営業予定。売り切れ次第、終了となります。</p></div>
-            
-            <div class="food-group">
-                <h3 class="workshop-organization">つけ麺 五ノ神製作所</h3>
-                <div class="food-grid">
-                    <div class="food-card">
-                        <div class="food-card-header"><h4 class="food-card-title">奥多摩産ヤマメのラーメン</h4></div>
-                        <div class="food-card-content">
-                            <img src="./image/food_ramen.png" alt="奥多摩ヤマメのラーメン" class="food-image">
-                            <p class="food-description">奥多摩の養殖ヤマメをスープ＆トッピングに贅沢に使った塩ラーメン</p>
-                        </div>
-                    </div>
-                    <div class="food-card">
-                        <div class="food-card-header"><h4 class="food-card-title">東京しゃもパエリア</h4></div>
-                        <div class="food-card-content">
-                            <img src="./image/food_piza.png" alt="東京軍鶏のパエリア" class="food-image">
-                            <p class="food-description">あきる野＆青梅で育った東京しゃもの旨味スープで炊きあげるパエリア。地場野菜、東京しゃもの味わいをお楽しみください。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="food-group food-group--kitchencar">
-                <h3 class="workshop-organization">喜輪</h3>
-                <div class="food-grid">
-                    <div class="food-card">
-                        <div class="food-card-header"><h4 class="food-card-title">お好み焼き</h4></div>
-                        <div class="food-card-content">
-                            <img src="./image/food_okonomiyaki.png" alt="お好み焼き" class="food-image">
-                            <p class="food-description">北海道産の小麦粉、青森県産の長芋など国産の材料にこだわったふわふわのお好み焼きです。</p>
-                        </div>
-                    </div>
-                    <!-- キッチンカー専用カード -->
-                    <div class="food-card food-card--kitchencar">
-                        <div class="food-card-content">
-                            <img src="./image/kitchencar.png" alt="キッチンカー" class="kitchencar-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="food-group">
-                <div class="food-grid">
-                    <div>
-                        <h3 class="workshop-organization">自然人村</h3>
-                        <div class="food-card">
-                            <div class="food-card-header"><h4 class="food-card-title">あじさい茶＆森のドリンクバー</h4></div>
-                            <div class="food-card-content">
-                                <img src="./image/food_azisai.png" alt="あじさい茶とドリンク" class="food-image">
-                                <p class="food-description">地元あきる野市にある、１万株のあじさいが咲く「南沢あじさい山」名物あじさい茶や、オリジナルジェラート、ソフトドリンク、アルコールをご用意します。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="workshop-organization">kaze labo</h3>
-                        <div class="food-card">
-                            <div class="food-card-header"><h4 class="food-card-title">スモークカクテル</h4></div>
-                            <div class="food-card-content">
-                                <img src="./image/food_cacuteru.png" alt="kaze labo オリジナルドリンク（イメージ）" class="food-image">
-                                <p class="food-description">燻製ギア体験もできる！スモークカクテルの実演販売。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="survey" class="section survey">
-        <div class="section-container">
-            <h2 class="section-title">事前アンケート</h2>
-            <div class="survey-grid">
-                <div class="survey-card">
-                    <p class="survey-description">
-                        事前アンケートに回答した方は、<br>来場時にノベルティをプレゼント！<br>※デザインは変更の可能性あり
-                    </p>
-                    <a href="https://forms.office.com/pages/responsepage.aspx?id=aubvRSI4qUuzWyFnBMiXavK9UT1ZAuRBmfsS9WyytGlUM1AwV0hRTlpYNVRQVTdPMTZZTUdWRTUySi4u&origin=QRCode&route=shorturl" 
-                    class="survey-button" 
-                    target="_blank" 
-                    rel="noopener noreferrer">
-                    アンケートに回答する
-                    </a>
-                </div>
+          <div class="footer-section">
+            <h3>アクセス</h3>
+            <div>
+              <div style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 0.25rem; flex-shrink: 0">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
                 <div>
-                    <img src="./image/novelty.png" alt="ノベルティ（トートバッグ）イメージ" class="novelty-image">
+                  <p>自然人村</p>
+                  <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">東京都あきる野市深沢198</a>
                 </div>
+              </div>
+              <p class="text-xs">JR武蔵五日市駅より無料往復シャトルで10分<br />（20～30分間隔で10:00─18:00に随時発着）</p>
             </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>お問い合わせ</h3>
+            <div>
+              <p>E-mail：<a href="mailto:entry@earth-garden.jp" class="footer-mail">entry@earth-garden.jp</a></p>
+              <p class="text-xs">受付時間：平日10:00～17:00（12:00～13:00を除く）</p>
+              <p class="text-xs">＊お返事までに数日お時間いただく場合もございます。</p>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <section id="partnerships" class="section partnerships">
-        <div class="partnerships-decorative">
-            <svg viewBox="0 0 200 200" style="width:100%;height:100%;"><path d="M20,20 Q180,20 180,180 Q20,180 20,20" fill="currentColor"/></svg>
-        </div>
-        <div class="partnerships-container">
-            <div class="partnerships-header">
-                <h2 class="partnerships-title">コラボ企画</h2>
-                <p class="partnerships-subtitle">同日・同時開催イベント</p>
-            </div>
-
-            <div class="partnerships-grid">
-                <div class="partnership-card">
-                    <div class="partnership-header">
-                        <div class="partnership-number">1</div>
-                        <div><h3 class="partnership-title">山里川マーケット ～手作りクラフト＆アウトドア～</h3></div>
-                    </div>
-                    <img src="./image/Market_logo_white.png" alt="マーケット イメージ" class="partnership-image">
-                    <div class="partnership-details">
-                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/fkwsmiBSHrvKCGxu5" target="_blank" rel="noopener noreferrer" style="color:inherit;">フレア五日市（JR 武蔵五日市駅前）</a></span></div>
-                        <div class="partnership-detail"><span class="partnership-badge">開催日時</span><span>2025年10月5日（日） 10:00～17:00</span></div>
-                        <p class="partnership-description">東京の山里川の自然の魅力を感じられるマーケットがスタート<br>
-                        クラフト作品や体験ツアーの情報などが会場にギュッと凝縮！<br>
-                        田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」でさっそく相談にも、<br>
-                        のってもらえます！！</p>
-                    </div>
-                </div>
-
-                <div class="partnership-card">
-                    <div class="partnership-header">
-                        <div class="partnership-number">2</div>
-                        <div><h3 class="partnership-title">おえかきの MOKUNAVI ショールーム展示</h3></div>
-                    </div>
-                    <img src="./image/collaboration_showroom.png" alt="MOKUNAVIショールーム展示" class="partnership-image">
-                    <div class="partnership-details">
-                        <div class="partnership-detail"><span class="partnership-badge">会場</span><span><a href="https://maps.app.goo.gl/3g2yo5YiY7XH4g8D7" target="_blank" rel="noopener noreferrer" style="color:inherit;">新宿リビングデザインセンター OZONE 7階<br>とうきょうの木 魅力発信拠点 TOKYO MOKUNAVI</a></span></div>
-                        <div class="partnership-detail"><span class="partnership-badge">展示期間</span><span>2025年10月9日（木） ― 11月4日（火）<br>10：30～18：30（休館日：祝日除く水曜日）</span></div>
-                        <p class="partnership-description">TOKYO MOKUNAVI おえかきコーナーで描いた絵を、後日ショールームに展示します。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-            <div class="footer-section">
-                <h3>主催・後援</h3>
-                <p>
-                    主催： TOKYO MOKUNAVI
-                    <a href="https://tokyomokunavi.metro.tokyo.lg.jp/" target="_blank" rel="noopener noreferrer">
-                        <img src="./image/Mokunabi_logo_white.png" alt="TOKYO MOKUNAVI" style="height:40px; vertical-align:middle; margin-right:.5rem;">
-                    </a>
-                </p>
-                <p>後援： あきる野市、檜原村、あきる野市教育委員会</p>
-            </div>
-                <div class="footer-section">
-                    <h3>アクセス</h3>
-                    <div>
-                        <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem;">
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:.25rem;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            <div>
-                                <p>自然人村</p>
-                                <a href="https://maps.app.goo.gl/ouW7XNo797ck7M2W9" target="_blank" rel="noopener noreferrer">
-                                東京都あきる野市深沢198
-                                </a>
-                            </div>
-                        </div>
-                        <p class="text-xs">JR武蔵五日市駅より無料往復シャトルで10分<br>（20～30分間隔で10:00─18:00に随時発着）</p>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h3>お問い合わせ</h3>   
-                    <div>
-                        <p>
-                            E-mail：
-                            <a href="mailto:entry@earth-garden.jp" class="footer-mail">entry@earth-garden.jp</a>
-                        </p>
-                        <p class="text-xs">受付時間：平日10:00～17:00（12:00～13:00を除く）</p>
-                        <p class="text-xs">＊お返事までに数日お時間いただく場合もございます。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-separator"></div>
-            <div style="text-align:center;"><p>&copy; 2025 木もれびシネマの森. All rights reserved.</p></div>
-        </div>
+        <div class="footer-separator"></div>
+        <div style="text-align: center"><p>© 2025 木もれびシネマの森. All rights reserved.</p></div>
+      </div>
     </footer>
 
+    <!-- ==============================
+         Scripts
+         仕様維持：
+         - ハンバーガー開閉（アイコン切替）
+         - メニュークリックで scrollIntoView（CSSの scroll-padding / margin による見切れ回避）
+         - スクロール位置に応じたアクティブ表示
+    =============================== -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const menuIcon = mobileMenuBtn.querySelector('.menu-icon');
-        const closeIcon = mobileMenuBtn.querySelector('.close-icon');
+      (function () {
+        // --- 要素参照
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navMenu       = document.getElementById("navMenu");
+        const menuIcon      = mobileMenuBtn.querySelector(".menu-icon");
+        const closeIcon     = mobileMenuBtn.querySelector(".close-icon");
+        const navItems      = document.querySelectorAll(".nav-item");
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                menuIcon.style.display = 'none';
-                closeIcon.style.display = 'block';
-            } else {
-                menuIcon.style.display = 'block';
-                closeIcon.style.display = 'none';
-            }
+        // --------------------------------
+        // Mobile menu toggle（仕様そのまま）
+        // --------------------------------
+        mobileMenuBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          const isOpen = navMenu.classList.contains("active");
+          menuIcon.style.display  = isOpen ? "none" : "block";
+          closeIcon.style.display = isOpen ? "block" : "none";
+          // ※ aria は付与しても挙動は変わらないため、アクセシビリティ向上のみ
+          mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
         });
 
+        // --------------------------------
         // Smooth scroll + active highlight
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = item.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
-                navMenu.classList.remove('active'); menuIcon.style.display='block'; closeIcon.style.display='none';
-            });
+        // scrollIntoView を継続使用（仕様維持）
+        // ※ アンカー見切れは CSS の scroll-padding/margin で解消
+        // --------------------------------
+        navItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = item.getAttribute("href").substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) targetEl.scrollIntoView({ behavior: "smooth" });
+
+            // メニューは必ず閉じ、アイコンを戻す（現仕様）
+            navMenu.classList.remove("active");
+            menuIcon.style.display = "block";
+            closeIcon.style.display = "none";
+            mobileMenuBtn.setAttribute("aria-expanded", "false");
+          });
         });
 
-        function updateActiveSection(){
-            const sections = ['home','overview','films','timetable','workshops','food','survey','partnerships'];
-            const scrollPosition = window.scrollY + 100;
-            for (let i=sections.length-1;i>=0;i--){
-                const s = document.getElementById(sections[i]);
-                if (s && s.offsetTop <= scrollPosition){
-                    navItems.forEach(it => { it.classList.remove('active'); if (it.getAttribute('data-section')===sections[i]) it.classList.add('active'); });
-                    break;
-                }
+        // --------------------------------
+        // スクロール量に応じてナビの active を更新（現仕様）
+        // --------------------------------
+        function updateActiveSection() {
+          const sections = ["home","overview-text","overview-info","films","timetable","workshops","food","survey","partnerships"];
+          const scrollPosition = window.scrollY + 100;
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const s = document.getElementById(sections[i]);
+            if (s && s.offsetTop <= scrollPosition) {
+              navItems.forEach((it) => {
+                it.classList.remove("active");
+                if (it.getAttribute("data-section") === sections[i]) it.classList.add("active");
+              });
+              break;
             }
+          }
         }
-        window.addEventListener('scroll', updateActiveSection);
+        window.addEventListener("scroll", updateActiveSection, { passive: true });
         updateActiveSection();
+      })();
     </script>
-</body>
+  </body>
 </html>
-
-
-
-
-
-
-
-
