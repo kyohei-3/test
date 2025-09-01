@@ -453,6 +453,16 @@
         body { padding-top: 0; padding-bottom: 56px; }
       }
 
+      .free-badge-new {
+      /* 既定 88px → 最低120pxへ。端末幅に応じて 30vw まで伸び、最大180pxに制限 */
+      --badge-size: clamp(120px, 30vw, 180px);
+      /* 文字間や角の余白も少しだけ増やす */
+      padding: clamp(8px, 2vw, 12px);
+      }
+    .free-badge-small-text { font-size: clamp(12px, 3.4vw, 16px); }
+    .free-badge-large-text { font-size: clamp(30px, 7.6vw, 48px); }
+    .free-badge-pill       { font-size: clamp(12px, 3.4vw, 16px); }
+      
       /* --------------------------------
          Responsive Grids (breakpoints only)
       --------------------------------- */
@@ -1118,4 +1128,5 @@
     </script>
   </body>
 </html>
+
 
