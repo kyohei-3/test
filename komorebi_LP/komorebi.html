@@ -500,6 +500,18 @@
         .partnerships-grid { grid-template-columns: repeat(2, 1fr); }
         .footer-grid { grid-template-columns: repeat(3, 1fr); }
       }
+
+      /* モバイルでは改行を無視 */
+      .pc-only {
+        display: none;
+      }
+      
+      /* PC時のみ改行タグを有効に */
+      @media screen and (min-width: 768px) {
+        .pc-only {
+          display: inline;
+        }
+      }
     </style>
   </head>
 
@@ -998,7 +1010,7 @@
               <p class="partnership-description">
                 東京の山里川の自然の魅力を感じられるマーケットがスタート。<br />
                 クラフト作品や体験ツアーの情報などが会場にギュッと凝縮！<br />
-                田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」でさっそく相談にも、のってもらえます！！
+                <span class="break-pc">田舎暮らしに憧れる方には会場の「移住・定住の相談窓口」で<br class="pc-only">さっそく相談にも、のってもらえます！！</span>
               </p>
             </div>
           </div>
@@ -1148,6 +1160,7 @@
     </script>
   </body>
 </html>
+
 
 
 
