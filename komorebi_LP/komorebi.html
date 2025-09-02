@@ -513,8 +513,10 @@
         }
       }
 
-      .partnership-lead {
-        margin-bottom: 1rem; /* 全デバイス共通で余白 */
+      @media (max-width: 1024px) {
+        .partnership-lead {
+          margin-bottom: 1rem; /* スマホ時のみ余白を追加 */
+        }
       }
       
     </style>
@@ -1167,6 +1169,7 @@
     </script>
   </body>
 </html>
+
 
 
 
