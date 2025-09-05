@@ -378,15 +378,14 @@
 
         /* 前面に（元CSSの通り z-index を強化） */
         .navbar { z-index: 2000; }
+
+        /* PCのみナビを非表示 */
+        .navbar { display: none !important; }
+
+        /* ナビ分の余白をなくす */
+        body { padding-top: 0 !important; }
+        html { scroll-padding-top: 0 !important; }  
       }
-
-      /* PCのみナビを非表示 */
-      .navbar { display: none !important; }
-
-      /* ナビ分の余白をなくす */
-      body { padding-top: 0 !important; }
-      html { scroll-padding-top: 0 !important; }  
-    }
       
       /* --------------------------------
          Mobile (≤767px)
@@ -1178,5 +1177,6 @@
     </script>
   </body>
 </html>
+
 
 
