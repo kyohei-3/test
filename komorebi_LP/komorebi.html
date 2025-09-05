@@ -380,6 +380,14 @@
         .navbar { z-index: 2000; }
       }
 
+      /* PCのみナビを非表示 */
+      .navbar { display: none !important; }
+
+      /* ナビ分の余白をなくす */
+      body { padding-top: 0 !important; }
+      html { scroll-padding-top: 0 !important; }  
+    }
+      
       /* --------------------------------
          Mobile (≤767px)
          仕様：下部固定ナビ / 余白は下に確保
@@ -1170,38 +1178,5 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
